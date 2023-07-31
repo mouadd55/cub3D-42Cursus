@@ -24,8 +24,9 @@
 
 typedef struct s_infos
 {
-	char			*element;
+	int				*rgb;
 	char			*value;
+	char			*element;
 	struct s_infos	*link;
 }	t_infos;
 
@@ -56,6 +57,7 @@ typedef struct s_vars
 
 void		ft_putnbr(int nbr);
 void		ft_putstr(char *str);
+ssize_t		ft_atoi(const char *str);
 char		**ft_free_arr(char **arr);
 size_t		ft_strlen(const char *str);
 char		*ft_strdup(const char *s1);

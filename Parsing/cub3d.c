@@ -12,6 +12,22 @@
 
 #include "../cub3d.h"
 
+int	count_commas(char *value)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (value[i])
+	{
+		if (value[i] == ',')
+			count++;
+		i++;
+	}
+	return (count);
+}
+
 int	is_print(char *line)
 {
 	int	i;
@@ -24,6 +40,33 @@ int	is_print(char *line)
 		i++;
 	}
 	return (0);
+}
+
+int	ft_isdigit(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		if (!(str[i] >= '0' && str[i++] <= '9'))
+			return (1);
+	return (0);
+}
+
+int	*create_rgb_arr(int r, int g, int b)
+{
+	int	*rgb;
+
+	if (!(r >= 0 && r < 256) || !(g >= 0 && g < 256) || !(b >= 0 && b < 256))
+		return (NULL);
+	rgb = malloc(4 * sizeof(int));
+	if (!rgb)
+		return(NULL);
+	rgb[0] = r;
+	rgb[1] = g;
+	rgb[2] = b;
+	rgb[3] = 0;
+	return (rgb);
 }
 
 int	count_elements(t_vars *vars, t_counter *count)
@@ -49,6 +92,34 @@ int	count_elements(t_vars *vars, t_counter *count)
 	return (0);
 }
 
+int	check_rgb_values(t_infos *infos)
+{
+	t_vars	vars;
+
+	vars.tmp = infos;
+	while (vars.tmp)
+	{
+		vars.i = -1;
+		if (vars.tmp->element[0] == 'F' || vars.tmp->element[0] == 'C')
+		{
+			if (count_commas(vars.tmp->value) > 2)
+				return (1);
+			vars.arr = ft_split(vars.tmp->value, ',');
+			while (vars.arr[++vars.i])
+				if (ft_isdigit(vars.arr[vars.i])
+					|| ft_strlen(vars.arr[vars.i]) > 3)
+					return (1);
+			vars.tmp->rgb = create_rgb_arr(ft_atoi(vars.arr[0]),
+				ft_atoi(vars.arr[1]), ft_atoi(vars.arr[2]));
+			if (!vars.tmp->rgb)
+				return (1);
+			ft_free_arr(vars.arr);
+		}
+		vars.tmp = vars.tmp->link;
+	}
+	return (0);
+}
+
 int	check_missing_ar_duplicated_element(t_infos **infos, t_vars vars)
 {
 	t_counter	count;
@@ -62,10 +133,12 @@ int	check_missing_ar_duplicated_element(t_infos **infos, t_vars vars)
 	vars.tmp = *infos;
 	if (count_elements(&vars, &count))
 		return (1);
-	if (count.ceiling == 1 && count.floor == 1 && count.north == 1
-		&& count.south == 1 && count.east == 1 && count.west == 1)
-		return (0);
-	return (1);
+	if (count.ceiling != 1 || count.floor != 1 || count.north != 1
+		|| count.south != 1 || count.east != 1 || count.west != 1)
+		return (1);
+	if (check_rgb_values(*infos))
+		return (1);
+	return (0);
 }
 
 void	check_if_informations_are_valid(char **elements)
