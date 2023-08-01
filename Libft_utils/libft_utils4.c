@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:08:05 by moudrib           #+#    #+#             */
-/*   Updated: 2023/07/31 11:08:10 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/01 13:17:47 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ void	*ft_destroy_list(t_infos **head)
 	while (tmp)
 	{
 		tmp = (*head)->link;
+		free((*head)->rgb);
+		free((*head)->value);
 		free((*head)->element);
-		if ((*head)->value)
-			free((*head)->value);
 		free(*head);
 		(*head) = tmp;
 	}

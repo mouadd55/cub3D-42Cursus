@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 13:38:45 by moudrib           #+#    #+#             */
-/*   Updated: 2023/07/31 13:26:49 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/01 13:25:40 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int	ft_isdigit(char *str)
 	int	i;
 
 	i = 0;
+	while (str[i] && str[i] <= 32)
+		i++;
 	while (str[i])
 		if (!(str[i] >= '0' && str[i++] <= '9'))
 			return (1);
@@ -61,7 +63,7 @@ int	*create_rgb_arr(int r, int g, int b)
 		return (NULL);
 	rgb = malloc(4 * sizeof(int));
 	if (!rgb)
-		return(NULL);
+		return (NULL);
 	rgb[0] = r;
 	rgb[1] = g;
 	rgb[2] = b;
@@ -73,19 +75,19 @@ int	count_elements(t_vars *vars, t_counter *count)
 {
 	while (vars->tmp)
 	{
-		if (ft_strlen(vars->tmp->element) > 2)
+		if (ft_strlen(vars->tmp->element) > 3)
 			return (1);
-		if (!ft_strcmp(vars->tmp->element, "C"))
+		if (!ft_strcmp(vars->tmp->element, "C "))
 			count->ceiling++;
-		else if (!ft_strcmp(vars->tmp->element, "F"))
+		else if (!ft_strcmp(vars->tmp->element, "F "))
 			count->floor++;
-		else if (!ft_strcmp(vars->tmp->element, "NO"))
+		else if (!ft_strcmp(vars->tmp->element, "NO "))
 			count->north++;
-		else if (!ft_strcmp(vars->tmp->element, "SO"))
+		else if (!ft_strcmp(vars->tmp->element, "SO "))
 			count->south++;
-		else if (!ft_strcmp(vars->tmp->element, "WE"))
+		else if (!ft_strcmp(vars->tmp->element, "WE "))
 			count->west++;
-		else if (!ft_strcmp(vars->tmp->element, "EA"))
+		else if (!ft_strcmp(vars->tmp->element, "EA "))
 			count->east++;
 		vars->tmp = vars->tmp->link;
 	}
@@ -106,11 +108,11 @@ int	check_rgb_values(t_infos *infos)
 				return (1);
 			vars.arr = ft_split(vars.tmp->value, ',');
 			while (vars.arr[++vars.i])
-				if (ft_isdigit(vars.arr[vars.i])
-					|| ft_strlen(vars.arr[vars.i]) > 3)
+				if (ft_isdigit(vars.arr[vars.i]))
 					return (1);
-			vars.tmp->rgb = create_rgb_arr(ft_atoi(vars.arr[0]),
-				ft_atoi(vars.arr[1]), ft_atoi(vars.arr[2]));
+			if (vars.i == 3)
+				vars.tmp->rgb = create_rgb_arr(ft_atoi(vars.arr[0]),
+						ft_atoi(vars.arr[1]), ft_atoi(vars.arr[2]));
 			if (!vars.tmp->rgb)
 				return (1);
 			ft_free_arr(vars.arr);
@@ -120,7 +122,7 @@ int	check_rgb_values(t_infos *infos)
 	return (0);
 }
 
-int	check_missing_ar_duplicated_element(t_infos **infos, t_vars vars)
+int	check_missing_or_duplicated_element(t_infos **infos, t_vars vars)
 {
 	t_counter	count;
 
@@ -150,26 +152,34 @@ void	check_if_informations_are_valid(char **elements)
 	infos = NULL;
 	while (elements[++vars.i])
 	{
-		vars.j = 0;
-		vars.arr = ft_split(elements[vars.i], ' ');
-		while (vars.arr[vars.j])
-			vars.j++;
-		if (vars.j > 2)
-			ft_error(5, &infos, elements, vars.arr);
+		vars.arr = malloc(3 * sizeof(char *));
+		if (!vars.arr)
+			return ;
+		vars.length = ft_strlen(elements[vars.i]);
+		if (elements[vars.i][0]  == 'F' || elements[vars.i][0]  == 'C')
+		{
+			vars.arr[0] = ft_substr(elements[vars.i], 0, 2);
+			vars.arr[1] = ft_substr(elements[vars.i], 2, vars.length);
+		}
 		else
-			ft_lstadd_back(&infos, ft_lstnew(ft_strdup(vars.arr[0]),
-					ft_strdup(vars.arr[1])));
+		{
+			vars.arr[0] = ft_substr(elements[vars.i], 0, 3);
+			vars.arr[1] = ft_substr(elements[vars.i], 3, vars.length);
+		}
+		vars.arr[2] = 0;
+		ft_lstadd_back(&infos, ft_lstnew(ft_strdup(vars.arr[0]),
+			ft_strdup(vars.arr[1])));
 		ft_free_arr(vars.arr);
 	}
-	if (check_missing_ar_duplicated_element(&infos, vars))
+	if (check_missing_or_duplicated_element(&infos, vars))
 		ft_error(5, 0, 0, 0);
 	ft_free_arr(elements);
-	while (infos)
-	{
-		printf("element: %3s -- value: %s\n", infos->element, infos->value);
-		infos = infos->link;
-	}
-	// ft_destroy_list(&infos);
+	// while (infos)
+	// {
+	// 	printf("element: %3s -- value: %s\n", infos->element, infos->value);
+	// 	infos = infos->link;
+	// }
+	ft_destroy_list(&infos);
 }
 
 void	read_file_and_get_informations(char *file_path)
@@ -192,7 +202,7 @@ void	read_file_and_get_informations(char *file_path)
 		if (vars.i == 6)
 		{
 			vars.elements[vars.i] = 0;
-			free (line);
+			free (line); // -1 line
 			break ;
 		}
 		free(line);
@@ -201,10 +211,10 @@ void	read_file_and_get_informations(char *file_path)
 	check_if_informations_are_valid(vars.elements);
 }
 
-void	leaks()
-{
-	system("leaks cub3D");
-}
+// void	leaks()
+// {
+// 	system("leaks cub3D");
+// }
 
 int	main(int ac, char **av)
 {

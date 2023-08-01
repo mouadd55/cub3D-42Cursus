@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:03:57 by moudrib           #+#    #+#             */
-/*   Updated: 2023/07/31 11:12:11 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/01 12:42:53 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_vars
 	int				i;
 	int				j;
 	int				flag;
+	int				length;
 	int				map_fd;
 	int				map_index;
 	char			*str;
