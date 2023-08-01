@@ -44,12 +44,14 @@ typedef struct s_vars
 {
 	int				i;
 	int				j;
+	int				size;
 	int				flag;
 	int				length;
 	int				map_fd;
 	int				map_index;
 	char			*str;
 	char			**arr;
+	char			**map;
 	char			**elements;
 	t_infos			*tmp;
 }	t_vars;
@@ -77,8 +79,17 @@ char		*ft_read_line(int fd, char *buf);
 
 /***************************** Parsing functions ******************************/
 
+int			ft_isdigit(char *str);
+int			is_printable(char *line);
+int			count_commas(char *value);
 int			check_valid_extension(char *file_name);
 void		ft_error(int cases, t_infos **infos, char **elements, char **arr);
+
+int			check_rgb_values(t_infos *infos);
+int			*create_rgb_arr(int r, int g, int b);
+int			count_elements(t_vars *vars, t_counter *count);
+void		check_if_informations_are_valid(char **elements);
+int			check_missing_or_duplicated_element(t_infos **infos, t_vars vars);
 
 t_infos		*ft_lstlast(t_infos *head);
 void		*ft_destroy_list(t_infos **head);

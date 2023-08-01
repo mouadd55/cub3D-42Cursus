@@ -21,6 +21,8 @@ B		= \033[1m
 SRC		= \
 			Parsing/cub3d.c \
 			Parsing/parsing.c \
+			Parsing/parsing_utils.c \
+			Parsing/parsing_elements.c \
 			Libft_utils/libft_utils1.c \
 			Libft_utils/libft_utils2.c \
 			Libft_utils/libft_utils3.c \
