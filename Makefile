@@ -6,7 +6,7 @@
 #    By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/14 09:05:11 by moudrib           #+#    #+#              #
-#    Updated: 2023/08/02 11:04:58 by moudrib          ###   ########.fr        #
+#    Updated: 2023/08/02 11:53:49 by moudrib          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRC		= \
 			Parsing/parsing.c \
 			Parsing/parsing_utils.c \
 			Parsing/parsing_elements.c \
+			Parsing/window_management.c \
 			Libft_utils/libft_utils1.c \
 			Libft_utils/libft_utils2.c \
 			Libft_utils/libft_utils3.c \

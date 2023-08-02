@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:03:57 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/02 11:06:58 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/02 11:50:28 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ typedef struct s_vars
 	char			**arr;
 	char			**map;
 	char			**elements;
+	void			*mlx;
+	void			*mlx_win;
 	t_infos			*infos;
 	t_infos			*tmp;
 }	t_vars;
@@ -65,9 +67,13 @@ ssize_t		ft_atoi(const char *str);
 char		**ft_free_arr(char **arr);
 size_t		ft_strlen(const char *str);
 char		*ft_strdup(const char *s1);
+t_infos		*ft_lstlast(t_infos *head);
 int			ft_strcmp(char *s1, char *s2);
 char		*ft_strjoin(char *s1, char *s2);
+void		*ft_destroy_list(t_infos **head);
 char		**ft_split(char const *s, char c);
+t_infos		*ft_lstnew(char *element, char *value);
+void		ft_lstadd_back(t_infos **head, t_infos *new);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 int			ft_strnstr(const char *str, const char *to_find, size_t len);
 
@@ -88,13 +94,14 @@ void		ft_error(int cases, t_infos **infos, char **elements, char **arr);
 
 int			check_rgb_values(t_infos *infos);
 int			*create_rgb_arr(int r, int g, int b);
-int			count_elements(t_vars *vars, t_counter *count);
 void		check_if_informations_are_valid(t_vars *vars);
+int			count_elements(t_vars *vars, t_counter *count);
+void		free_data(t_infos **infos, char **elements, char **arr);
 int			check_missing_or_duplicated_element(t_infos **infos, t_vars *vars);
 
-t_infos		*ft_lstlast(t_infos *head);
-void		*ft_destroy_list(t_infos **head);
-t_infos		*ft_lstnew(char *element, char *value);
-void		ft_lstadd_back(t_infos **head, t_infos *new);
+
+void		open_window(t_vars *vars);
+int			close_window(t_vars *vars);
+int			key_press(int keycode, t_vars *vars);
 
 #endif

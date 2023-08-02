@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 13:38:45 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/02 11:07:16 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/02 11:55:10 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,10 @@ int	main(int ac, char **av)
 	vars->map = copy_the_map_from_file_to_2d_array(av[1], vars->map_fd);
 	// for (int i = 0; vars->map[i]; i++)
 		// printf(">%s<\n", vars->map[i]);
-	ft_free_arr(vars->map);
-	ft_destroy_list(&vars->infos);
-	free(vars);
-	return (0);
+	open_window(vars);
+	mlx_hook(vars->mlx_win, 2, 0, key_press, vars);
+	mlx_hook(vars->mlx_win, 17, 0, close_window, vars);
+	mlx_loop(vars->mlx);
+	free_data(&vars->infos, NULL, vars->map);
+	return (free(vars), 0);
 }
