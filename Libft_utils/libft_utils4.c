@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:08:05 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/01 13:17:47 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/02 11:02:48 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ t_infos	*ft_lstnew(char *element, char *value)
 	head = (t_infos *)malloc(sizeof(t_infos));
 	if (!head)
 		return (NULL);
-	head->element = element;
+	head->rgb = NULL;
 	head->value = value;
+	head->element = element;
 	head->link = NULL;
 	return (head);
 }
@@ -55,18 +56,19 @@ void	*ft_destroy_list(t_infos **head)
 {
 	t_infos	*tmp;
 
-	if (!head || !*head)
+	if (!head || !(*head))
 		return (0);
 	tmp = *head;
 	while (tmp)
 	{
 		tmp = (*head)->link;
-		free((*head)->rgb);
+		if ((*head)->rgb)
+			free((*head)->rgb);
 		free((*head)->value);
 		free((*head)->element);
 		free(*head);
 		(*head) = tmp;
 	}
-	head = NULL;
+	*head = NULL;
 	return (0);
 }

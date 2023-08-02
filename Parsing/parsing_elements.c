@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing_elements.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/02 09:04:40 by moudrib           #+#    #+#             */
+/*   Updated: 2023/08/02 09:38:44 by moudrib          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 int	*create_rgb_arr(int r, int g, int b)
@@ -67,7 +79,7 @@ int	check_rgb_values(t_infos *infos)
 	return (0);
 }
 
-int	check_missing_or_duplicated_element(t_infos **infos, t_vars vars)
+int	check_missing_or_duplicated_element(t_infos **infos, t_vars *vars)
 {
 	t_counter	count;
 
@@ -77,8 +89,8 @@ int	check_missing_or_duplicated_element(t_infos **infos, t_vars vars)
 	count.south = 0;
 	count.floor = 0;
 	count.ceiling = 0;
-	vars.tmp = *infos;
-	if (count_elements(&vars, &count))
+	vars->tmp = *infos;
+	if (count_elements(vars, &count))
 		return (1);
 	if (count.ceiling != 1 || count.floor != 1 || count.north != 1
 		|| count.south != 1 || count.east != 1 || count.west != 1)
@@ -88,41 +100,36 @@ int	check_missing_or_duplicated_element(t_infos **infos, t_vars vars)
 	return (0);
 }
 
-void	check_if_informations_are_valid(char **elements)
+void	check_if_informations_are_valid(t_vars *vars)
 {
-	t_vars	vars;
-	t_infos	*infos;
-
-	vars.i = -1;
-	infos = NULL;
-	while (elements[++vars.i])
+	vars->i = -1;
+	vars->infos = NULL;
+	while (vars->elements[++vars->i])
 	{
-		vars.arr = malloc(3 * sizeof(char *));
-		if (!vars.arr)
+		vars->arr = malloc(3 * sizeof(char *));
+		if (!vars->arr)
 			return ;
-		vars.length = ft_strlen(elements[vars.i]);
-		if (elements[vars.i][0]  == 'F' || elements[vars.i][0]  == 'C')
-		{
-			vars.arr[0] = ft_substr(elements[vars.i], 0, 2);
-			vars.arr[1] = ft_substr(elements[vars.i], 2, vars.length);
-		}
+		vars->length = ft_strlen(vars->elements[vars->i]);
+		if (vars->elements[vars->i][0] == 'F'
+				|| vars->elements[vars->i][0] == 'C')
+			vars->flag = 2;
 		else
-		{
-			vars.arr[0] = ft_substr(elements[vars.i], 0, 3);
-			vars.arr[1] = ft_substr(elements[vars.i], 3, vars.length);
-		}
-		vars.arr[2] = 0;
-		ft_lstadd_back(&infos, ft_lstnew(ft_strdup(vars.arr[0]),
-			ft_strdup(vars.arr[1])));
-		ft_free_arr(vars.arr);
+			vars->flag = 3;
+		vars->arr[0] = ft_substr(vars->elements[vars->i], 0, vars->flag);
+		vars->arr[1] = ft_substr(vars->elements[vars->i], vars->flag,
+				vars->length);
+		vars->arr[2] = 0;
+		ft_lstadd_back(&vars->infos, ft_lstnew(ft_strdup(vars->arr[0]),
+				ft_strdup(vars->arr[1])));
+		ft_free_arr(vars->arr);
 	}
-	if (check_missing_or_duplicated_element(&infos, vars))
+	if (check_missing_or_duplicated_element(&vars->infos, vars))
 		ft_error(5, 0, 0, 0);
-	ft_free_arr(elements);
-	while (infos)
-	{
-		printf("element: %3s -- value: %s\n", infos->element, infos->value);
-		infos = infos->link;
-	}
-	// ft_destroy_list(&infos);
+	ft_free_arr(vars->elements);
 }
+
+	// while (vars->infos)
+	// {
+	// 	printf("element: %3s -- value: %s\n", vars->infos->element, vars->infos->value);
+	// 	vars->infos = vars->infos->link;
+	// }

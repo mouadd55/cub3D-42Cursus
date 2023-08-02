@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 13:38:45 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/01 13:25:40 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/02 11:07:16 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 int	get_size_of_map_array(int map_fd)
 {
-	int		size;
 	int		flag;
+	int		size;
 	char	*line;
+
 	size = 0;
 	flag = 0;
 	line = ft_get_next_line(map_fd);
@@ -53,7 +54,7 @@ char	**copy_the_map_from_file_to_2d_array(char *file_path, int map_fd)
 			vars.j++;
 		if (vars.j > 6)
 			vars.map[vars.i++] = ft_substr(line, 0, ft_strlen(line) - 1);
-		// free(line);
+		free(line);
 		line = ft_get_next_line(map_fd);
 	}
 	vars.map[vars.i] = 0;
@@ -72,31 +73,29 @@ void	read_file_and_get_informations(char *file_path, t_vars *vars)
 		return ;
 	line = ft_get_next_line(vars->map_fd);
 	vars->i = 0;
-	vars->map_index = 1;
 	while (line)
 	{
-		vars->map_index++;
 		if (is_printable(line) && vars->i < 6)
 			vars->elements[vars->i++] = ft_substr(line, 0, ft_strlen(line) - 1);
-		free (line);
+		free(line);
 		vars->elements[vars->i] = 0;
 		if (vars->i == 6)
 			break ;
 		line = ft_get_next_line(vars->map_fd);
 	}
-	check_if_informations_are_valid(vars->elements);
+	check_if_informations_are_valid(vars);
 }
 
-// void	leaks()
-// {
-// 	system("leaks cub3D");
-// }
+void	leaks(void)
+{
+	system("leaks cub3D");
+}
 
 int	main(int ac, char **av)
 {
-	// atexit(leaks);
 	t_vars	*vars;
 
+	// atexit(leaks);
 	vars = malloc(sizeof(t_vars));
 	if (!vars)
 		return (0);
@@ -108,7 +107,10 @@ int	main(int ac, char **av)
 		ft_error(3, 0, 0, 0);
 	read_file_and_get_informations(av[1], vars);
 	vars->map = copy_the_map_from_file_to_2d_array(av[1], vars->map_fd);
-	for (int i = 0; vars->map[i]; i++)
-		printf(">%s<\n", vars->map[i]);
+	// for (int i = 0; vars->map[i]; i++)
+		// printf(">%s<\n", vars->map[i]);
+	ft_free_arr(vars->map);
+	ft_destroy_list(&vars->infos);
 	free(vars);
+	return (0);
 }

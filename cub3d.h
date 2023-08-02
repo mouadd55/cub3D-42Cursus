@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:03:57 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/01 12:42:53 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/02 11:06:58 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #  define BUFFER_SIZE 5
 # endif
 
+# include <mlx.h>
 # include <stdio.h>
 # include <fcntl.h>
 # include <unistd.h>
@@ -48,11 +49,11 @@ typedef struct s_vars
 	int				flag;
 	int				length;
 	int				map_fd;
-	int				map_index;
 	char			*str;
 	char			**arr;
 	char			**map;
 	char			**elements;
+	t_infos			*infos;
 	t_infos			*tmp;
 }	t_vars;
 
@@ -88,8 +89,8 @@ void		ft_error(int cases, t_infos **infos, char **elements, char **arr);
 int			check_rgb_values(t_infos *infos);
 int			*create_rgb_arr(int r, int g, int b);
 int			count_elements(t_vars *vars, t_counter *count);
-void		check_if_informations_are_valid(char **elements);
-int			check_missing_or_duplicated_element(t_infos **infos, t_vars vars);
+void		check_if_informations_are_valid(t_vars *vars);
+int			check_missing_or_duplicated_element(t_infos **infos, t_vars *vars);
 
 t_infos		*ft_lstlast(t_infos *head);
 void		*ft_destroy_list(t_infos **head);

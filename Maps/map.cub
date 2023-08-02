@@ -1,10 +1,10 @@
 NO ./path_to_the_north_texture
 SO ./path_to_the_south_texture
 WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture    dfgd
 
 C 225,30,240
 F  00251,   0000220,  00000000255
+EA ./path_to_the_east_texture    dfgd
 
 
 
