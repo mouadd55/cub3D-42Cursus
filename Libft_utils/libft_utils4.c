@@ -6,11 +6,11 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:08:05 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/02 11:02:48 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/05 11:03:02 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "libft.h"
 
 t_infos	*ft_lstnew(char *element, char *value)
 {

@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 13:38:45 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/02 11:55:10 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/05 17:22:49 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char	**copy_the_map_from_file_to_2d_array(char *file_path, int map_fd)
 		if (is_printable(line))
 			vars.j++;
 		if (vars.j > 6)
-			vars.map[vars.i++] = ft_substr(line, 0, ft_strlen(line) - 1);
+			vars.map[vars.i++] = ft_strtrim(line, "\n");
 		free(line);
 		line = ft_get_next_line(map_fd);
 	}

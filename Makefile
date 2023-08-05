@@ -6,13 +6,13 @@
 #    By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/14 09:05:11 by moudrib           #+#    #+#              #
-#    Updated: 2023/08/02 11:53:49 by moudrib          ###   ########.fr        #
+#    Updated: 2023/08/05 12:17:35 by moudrib          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME    = cub3D
 CC      = cc
-CFLAGS	= -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS	= -Wall -Wextra -Werror -g #-fsanitize=address
 OBJDIR	= _Object_files/
 R		= \x1B[91m
 G		= \x1B[32m
@@ -24,10 +24,12 @@ SRC		= \
 			Parsing/parsing_utils.c \
 			Parsing/parsing_elements.c \
 			Parsing/window_management.c \
+			Parsing/player_movements.c \
 			Libft_utils/libft_utils1.c \
 			Libft_utils/libft_utils2.c \
 			Libft_utils/libft_utils3.c \
 			Libft_utils/libft_utils4.c \
+			Libft_utils/libft_utils5.c \
 			Get_next_line/get_next_line.c \
 
 
@@ -52,7 +54,7 @@ $(NAME): $(OBJ)
 # @echo
 # @echo
 
-$(OBJDIR)%.o: %.c cub3d.h
+$(OBJDIR)%.o: %.c cub3d.h Libft_utils/libft.h Get_next_line/get_next_line.h
 	@mkdir -p $(@D)
 	@$(CC) $(CFLAGS) -c $< -o $@
 	@echo "$(G)Compiling: $(W)$<"

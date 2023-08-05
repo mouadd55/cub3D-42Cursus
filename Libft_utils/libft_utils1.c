@@ -6,11 +6,11 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 08:36:16 by moudrib           #+#    #+#             */
-/*   Updated: 2023/07/18 08:45:30 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/05 11:02:47 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "libft.h"
 
 size_t	ft_strlen(const char *str)
 {

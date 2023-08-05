@@ -6,30 +6,23 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:03:57 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/02 11:50:28 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/05 16:16:09 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 5
-# endif
+# define WINDOW_HEIGHT 810
+# define WINDOW_WIDTH 1280
+
 
 # include <mlx.h>
-# include <stdio.h>
-# include <fcntl.h>
-# include <unistd.h>
-# include <stdlib.h>
+#include <limits.h>
+#include <math.h>
+# include "Libft_utils/libft.h"
+# include "Get_next_line/get_next_line.h"
 
-typedef struct s_infos
-{
-	int				*rgb;
-	char			*value;
-	char			*element;
-	struct s_infos	*link;
-}	t_infos;
 
 typedef struct s_counter
 {
@@ -45,6 +38,8 @@ typedef struct s_vars
 {
 	int				i;
 	int				j;
+	int				x;
+	int				y;
 	int				size;
 	int				flag;
 	int				length;
@@ -55,34 +50,11 @@ typedef struct s_vars
 	char			**elements;
 	void			*mlx;
 	void			*mlx_win;
-	t_infos			*infos;
+	int				width;
+	int				height;
 	t_infos			*tmp;
+	t_infos			*infos;
 }	t_vars;
-
-/********************************* Libft utils ********************************/
-
-void		ft_putnbr(int nbr);
-void		ft_putstr(char *str);
-ssize_t		ft_atoi(const char *str);
-char		**ft_free_arr(char **arr);
-size_t		ft_strlen(const char *str);
-char		*ft_strdup(const char *s1);
-t_infos		*ft_lstlast(t_infos *head);
-int			ft_strcmp(char *s1, char *s2);
-char		*ft_strjoin(char *s1, char *s2);
-void		*ft_destroy_list(t_infos **head);
-char		**ft_split(char const *s, char c);
-t_infos		*ft_lstnew(char *element, char *value);
-void		ft_lstadd_back(t_infos **head, t_infos *new);
-char		*ft_substr(char const *s, unsigned int start, size_t len);
-int			ft_strnstr(const char *str, const char *to_find, size_t len);
-
-/******************************* Get next line ********************************/
-
-char		*ft_save_rest(char *buf);
-char		*ft_get_next_line(int fd);
-int			ft_search_newline(char *s);
-char		*ft_read_line(int fd, char *buf);
 
 /***************************** Parsing functions ******************************/
 
@@ -99,9 +71,10 @@ int			count_elements(t_vars *vars, t_counter *count);
 void		free_data(t_infos **infos, char **elements, char **arr);
 int			check_missing_or_duplicated_element(t_infos **infos, t_vars *vars);
 
-
 void		open_window(t_vars *vars);
 int			close_window(t_vars *vars);
 int			key_press(int keycode, t_vars *vars);
+int			move_player(t_vars *v, int i, int j);
+
 
 #endif
