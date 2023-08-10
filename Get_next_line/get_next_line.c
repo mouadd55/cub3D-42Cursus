@@ -6,11 +6,11 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 08:50:18 by moudrib           #+#    #+#             */
-/*   Updated: 2023/07/20 08:50:37 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/10 10:07:15 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "get_next_line.h"
 
 char	*ft_save_rest(char *buf)
 {

@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:03:57 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/07 17:49:09 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/10 10:25:17 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include <mlx.h>
 # include <math.h>
 # include <limits.h>
-# include "Libft_utils/libft.h"
-# include "Get_next_line/get_next_line.h"
+# include "../Libft_utils/libft.h"
+# include "../Get_next_line/get_next_line.h"
 
 typedef struct s_player
 {
@@ -58,6 +58,8 @@ typedef struct s_vars
 	int				j;
 	int				x;
 	int				y;
+	double			x1;
+	double			y1;
 	int				size;
 	int				flag;
 	int				length;
@@ -75,7 +77,7 @@ typedef struct s_vars
 	t_infos			*infos;
 	t_img			image;
 	int				player_move;
-	int 			player_rotation;
+	int				player_rotation;
 	t_player		player;
 }	t_vars;
 
@@ -96,8 +98,11 @@ int			check_missing_or_duplicated_element(t_infos **infos, t_vars *vars);
 
 void		open_window(t_vars *vars);
 int			close_window(t_vars *vars);
+void		draw_minimap(t_vars *vars);
 int			key_press(int keycode, t_vars *vars);
-int			move_player(t_vars *v, int i, int j);
-
+void		calculate_x2_and_y2(t_player *player);
+void		draw_circle(int x, int y, t_img *img);
+void		draw_line(t_vars *vars, int x2, int y2);
+void		draw_pixels_on_image(t_img *img, int x, int y, int color);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/14 09:05:11 by moudrib           #+#    #+#              #
-#    Updated: 2023/08/05 12:17:35 by moudrib          ###   ########.fr        #
+#    Updated: 2023/08/10 10:08:01 by moudrib          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,17 +19,17 @@ G		= \x1B[32m
 W		= \x1B[0m
 B		= \033[1m
 SRC		= \
-			Parsing/cub3d.c \
-			Parsing/parsing.c \
-			Parsing/parsing_utils.c \
-			Parsing/parsing_elements.c \
-			Parsing/window_management.c \
-			Parsing/player_movements.c \
 			Libft_utils/libft_utils1.c \
 			Libft_utils/libft_utils2.c \
 			Libft_utils/libft_utils3.c \
 			Libft_utils/libft_utils4.c \
 			Libft_utils/libft_utils5.c \
+			Mandatory/Parsing/cub3d.c \
+			Mandatory/Parsing/parsing.c \
+			Mandatory/Parsing/parsing_utils.c \
+			Mandatory/Parsing/parsing_elements.c \
+			Mandatory/Parsing/window_management.c \
+			Mandatory/Parsing/player_movements.c \
 			Get_next_line/get_next_line.c \
 
 
@@ -54,7 +54,7 @@ $(NAME): $(OBJ)
 # @echo
 # @echo
 
-$(OBJDIR)%.o: %.c cub3d.h Libft_utils/libft.h Get_next_line/get_next_line.h
+$(OBJDIR)%.o: %.c Mandatory/cub3d.h Libft_utils/libft.h Get_next_line/get_next_line.h
 	@mkdir -p $(@D)
 	@$(CC) $(CFLAGS) -c $< -o $@
 	@echo "$(G)Compiling: $(W)$<"

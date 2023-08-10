@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 09:04:40 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/02 09:38:44 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/10 10:25:48 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,9 +127,3 @@ void	check_if_informations_are_valid(t_vars *vars)
 		ft_error(5, 0, 0, 0);
 	ft_free_arr(vars->elements);
 }
-
-	// while (vars->infos)
-	// {
-	// 	printf("element: %3s -- value: %s\n", vars->infos->element, vars->infos->value);
-	// 	vars->infos = vars->infos->link;
-	// }
