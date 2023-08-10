@@ -6,13 +6,13 @@
 #    By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/14 09:05:11 by moudrib           #+#    #+#              #
-#    Updated: 2023/08/10 10:08:01 by moudrib          ###   ########.fr        #
+#    Updated: 2023/08/10 15:17:11 by moudrib          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME    = cub3D
 CC      = cc
-CFLAGS	= -Wall -Wextra -Werror -g #-fsanitize=address
+CFLAGS	= -Wall -Wextra -Werror -g -fsanitize=address
 OBJDIR	= _Object_files/
 R		= \x1B[91m
 G		= \x1B[32m
@@ -28,8 +28,9 @@ SRC		= \
 			Mandatory/Parsing/parsing.c \
 			Mandatory/Parsing/parsing_utils.c \
 			Mandatory/Parsing/parsing_elements.c \
-			Mandatory/Parsing/window_management.c \
-			Mandatory/Parsing/player_movements.c \
+			Mandatory/Execution/player_movements.c \
+			Mandatory/Execution/drawing_functions.c \
+			Mandatory/Execution/window_management.c \
 			Get_next_line/get_next_line.c \
 
 

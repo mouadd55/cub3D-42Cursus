@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 12:14:02 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/10 10:27:15 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/10 15:07:09 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	calculate_x2_and_y2(t_player *player)
 {
 	player->x_final = (int)((player->x + (MINIMAP_SIZE / 2))
-		 + (cos(player->starting_angle ) * (MINIMAP_SIZE / 2)));
+			+ (cos(player->starting_angle) * (MINIMAP_SIZE / 2)));
 	player->y_final = (int)((player->y + (MINIMAP_SIZE / 2))
-		 + (-sin(player->starting_angle) * (MINIMAP_SIZE / 2)));
+			+ (-sin(player->starting_angle) * (MINIMAP_SIZE / 2)));
 }
 
 int	key_press(int keycode, t_vars *vars)
@@ -42,49 +42,31 @@ int	key_press(int keycode, t_vars *vars)
 	return (0);
 }
 
-void draw_line(t_vars *vars, int x2, int y2)
+void	init_player_infos(t_vars *v)
 {
-	double	dx;
-	double	dy;
-	int		steps;
-	double	x_inc;
-	double	y_inc;
-
-	vars->x1 = vars->player.x + (MINIMAP_SIZE / 2);
-	vars->y1 = vars->player.y + (MINIMAP_SIZE / 2);
-	dx = x2 - vars->x1;
-	dy = y2 - vars->y1;
-	if (fabs(dx) > fabs(dy))
-		steps = fabs(dx);
-	else
-		steps = fabs(dy);
-	x_inc = dx / steps;
-	y_inc = dy / steps;
-	for (int i = 0; i < steps; i++)
+	v->j = -1;
+	while (++v->j < v->height)
 	{
-		draw_pixels_on_image(&vars->image,
-			(int)round(vars->x1), (int)round(vars->y1), 0xff0000);
-		vars->x1 = vars->x1 + x_inc;
-		vars->y1 = vars->y1 + y_inc;
+		v->i = -1;
+		while (++v->i < v->width && v->map[v->j][v->i])
+		{
+			if (v->map[v->j][v->i] == 'N' || v->map[v->j][v->i] == 'W'
+				|| v->map[v->j][v->i] == 'S' || v->map[v->j][v->i] == 'E')
+				break ;
+		}
+		if (v->map[v->j][v->i] == 'N' || v->map[v->j][v->i] == 'W'
+			|| v->map[v->j][v->i] == 'S' || v->map[v->j][v->i] == 'E')
+			break ;
 	}
-}
-
-void draw_circle(int x, int y, t_img *img)
-{
-	int		a;
-	int		x1;
-	int		y1;
-	double	x2;
-	double	y2;
-
-	a = 0;
-	x1 = x + MINIMAP_SIZE / 2;
-	y1 = y + MINIMAP_SIZE / 2;
-	while (a < 360)
-	{
-		x2 = x1 + cos(a * M_PI / 180) * MINIMAP_SIZE / 11;
-		y2 = y1 + sin(a * M_PI / 180) * MINIMAP_SIZE / 11;
-		draw_pixels_on_image(img, x2, y2, 0xff0000);
-		a++;
-	}
+	v->player.x = v->i * MINIMAP_SIZE;
+	v->player.y = v->j * MINIMAP_SIZE;
+	if (v->map[v->j][v->i] == 'N')
+		v->player.starting_angle = M_PI / 2;
+	else if (v->map[v->j][v->i] == 'W')
+		v->player.starting_angle = M_PI;
+	else if (v->map[v->j][v->i] == 'E')
+		v->player.starting_angle = 2 * M_PI;
+	else if (v->map[v->j][v->i] == 'S')
+		v->player.starting_angle = 3 * M_PI / 2;
+	v->map[v->j][v->i] = 'P';
 }
