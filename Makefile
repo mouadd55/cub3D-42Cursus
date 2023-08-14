@@ -6,7 +6,7 @@
 #    By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/14 09:05:11 by moudrib           #+#    #+#              #
-#    Updated: 2023/08/10 15:17:11 by moudrib          ###   ########.fr        #
+#    Updated: 2023/08/10 18:40:09 by moudrib          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,12 +26,12 @@ SRC		= \
 			Libft_utils/libft_utils5.c \
 			Mandatory/Parsing/cub3d.c \
 			Mandatory/Parsing/parsing.c \
+			Get_next_line/get_next_line.c \
 			Mandatory/Parsing/parsing_utils.c \
 			Mandatory/Parsing/parsing_elements.c \
 			Mandatory/Execution/player_movements.c \
 			Mandatory/Execution/drawing_functions.c \
 			Mandatory/Execution/window_management.c \
-			Get_next_line/get_next_line.c \
 
 
 			

@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:03:57 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/10 15:06:57 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/13 19:08:39 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,14 @@
 
 typedef struct s_player
 {
-	int			x;
-	int			y;
-	int			x_final;
-	int			y_final;
+	double		x1;
+	double		y1;
+	double		x2;
+	double		y2;
+	int			turn_direction;
+	int			walk_direction;
+	double		walking_speed;
+	double		rotation_speed;
 	double		starting_angle;
 }	t_player;
 
@@ -96,12 +100,13 @@ int			check_missing_or_duplicated_element(t_infos **infos, t_vars *vars);
 
 void		open_window(t_vars *vars);
 int			close_window(t_vars *vars);
-void		draw_minimap(t_vars *vars);
+int			draw_minimap(t_vars *vars);
 void		init_player_infos(t_vars *v);
+void		create_new_image(t_vars *vars);
 int			key_press(int keycode, t_vars *vars);
 void		calculate_x2_and_y2(t_player *player);
 void		draw_circle(int x, int y, t_img *img);
-void		draw_line(t_vars *vars, int x2, int y2);
+void		draw_line(t_vars *vars, double x2, double y2);
 void		draw_pixels_in_each_square(t_vars *vars);
 void		draw_pixels_on_image(t_img *img, int x, int y, int color);
 
