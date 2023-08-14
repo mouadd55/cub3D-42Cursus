@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 07:31:19 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/14 16:50:19 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/08/01 12:43:33 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ void	ft_error(int cases, t_infos **infos, char **elements, char **arr)
 		ft_putstr("\e[1m\x1B[31mError: \e[37mFile does not exist.\n");
 	else if (cases == 5)
 		ft_putstr("\e[1m\x1B[31mError: \e[37mElements are invalid.\n");
-	else if (cases == 6)
-		ft_putstr("\e[1m\x1B[31mError: \e[37mMap's not sealed! Edit and retry.\n");
 	free_data(infos, elements, arr);
 	exit(1);
 }

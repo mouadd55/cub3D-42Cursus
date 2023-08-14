@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 11:19:21 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/10 15:14:37 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/13 19:21:43 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,26 @@ int	close_window(t_vars *vars)
 	exit(0);
 }
 
+void	create_new_image(t_vars *vars)
+{
+	vars->image.img = mlx_new_image(vars->mlx, vars->width
+			* MINIMAP_SIZE, vars->height * MINIMAP_SIZE);
+	vars->image.addr = mlx_get_data_addr(vars->image.img,
+			&vars->image.bits_per_pixel, &vars->image.line_length,
+			&vars->image.endian);
+}
+
 void	open_window(t_vars *vars)
 {
 	vars->mlx = mlx_init();
 	if (!vars->mlx)
 		exit(1);
 	get_window_resolution(vars);
-	vars->mlx_win = mlx_new_window(vars->mlx, WINDOW_WIDTH,
-			WINDOW_HEIGHT, "Cub3D");
+	vars->mlx_win = mlx_new_window(vars->mlx, vars->width * MINIMAP_SIZE,
+			vars->height * MINIMAP_SIZE, "Cub3D");
 	if (!vars->mlx_win)
 		exit(1);
-	vars->image.img = mlx_new_image(vars->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-	vars->image.addr = mlx_get_data_addr(vars->image.img,
-			&vars->image.bits_per_pixel, &vars->image.line_length,
-			&vars->image.endian);
+	create_new_image(vars);
 	init_player_infos(vars);
 	draw_minimap(vars);
 	mlx_put_image_to_window(vars->mlx, vars->mlx_win, vars->image.img, 0, 0);
