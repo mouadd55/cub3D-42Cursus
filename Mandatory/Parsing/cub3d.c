@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 13:38:45 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/10 15:16:04 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/14 16:56:48 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,10 +107,12 @@ int	main(int ac, char **av)
 		ft_error(3, 0, 0, 0);
 	read_file_and_get_informations(av[1], vars);
 	vars->map = copy_the_map_from_file_to_2d_array(av[1], vars->map_fd);
-	open_window(vars);
-	mlx_hook(vars->mlx_win, 2, 0, key_press, vars);
-	mlx_hook(vars->mlx_win, 17, 0, close_window, vars);
-	mlx_loop(vars->mlx);
-	free_data(&vars->infos, NULL, vars->map);
+	if (!general_map_check(vars->map))
+		exit(1);
+	// open_window(vars);
+	// mlx_hook(vars->mlx_win, 2, 0, key_press, vars);
+	// mlx_hook(vars->mlx_win, 17, 0, close_window, vars);
+	// mlx_loop(vars->mlx);
+	// free_data(&vars->infos, NULL, vars->map);
 	return (free(vars), 0);
 }
