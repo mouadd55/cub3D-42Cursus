@@ -1,57 +1,56 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft_utils1.c                                     :+:      :+:    :+:   */
+/*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/18 08:36:16 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/05 11:02:47 by moudrib          ###   ########.fr       */
+/*   Created: 2023/08/02 09:36:14 by moudrib           #+#    #+#             */
+/*   Updated: 2023/08/02 09:36:21 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../cub3d.h"
 
-size_t	ft_strlen(const char *str)
+int	ft_isdigit(char *str)
 {
 	int	i;
 
 	i = 0;
-	if (str)
-		while (str[i])
-			i++;
-	return (i);
-}
-
-void	ft_putnbr(int nbr)
-{
-	if (nbr < 10)
-	{
-		nbr += 48;
-		write (1, &nbr, 1);
-	}
-	else
-	{
-		ft_putnbr(nbr / 10);
-		ft_putnbr(nbr % 10);
-	}
-}
-
-void	ft_putstr(char *str)
-{
-	int	i;
-
-	i = -1;
-	while (str[++i])
-		write (1, &str[i], 1);
-}
-
-int	ft_strcmp(char *s1, char *s2)
-{
-	int	i;
-
-	i = 0;
-	while (s1[i] && s2[i] && s1[i] == s2[i])
+	while (str[i] && str[i] <= 32)
 		i++;
-	return (s1[i] - s2[i]);
+	while (str[i])
+		if (!(str[i] >= '0' && str[i++] <= '9'))
+			return (1);
+	return (0);
+}
+
+int	is_printable(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] > 32)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int	count_commas(char *value)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (value[i])
+	{
+		if (value[i] == ',')
+			count++;
+		i++;
+	}
+	return (count);
 }

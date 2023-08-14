@@ -6,11 +6,11 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 09:27:28 by moudrib           #+#    #+#             */
-/*   Updated: 2023/07/20 09:27:39 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/05 11:02:54 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "libft.h"
 
 char	*ft_strdup(const char *s1)
 {
