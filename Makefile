@@ -6,7 +6,7 @@
 #    By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/14 09:05:11 by moudrib           #+#    #+#              #
-#    Updated: 2023/08/10 18:40:09 by moudrib          ###   ########.fr        #
+#    Updated: 2023/08/15 01:50:38 by bbenidar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,8 @@ SRC		= \
 			Mandatory/Execution/player_movements.c \
 			Mandatory/Execution/drawing_functions.c \
 			Mandatory/Execution/window_management.c \
+			Mandatory/Parsing/bben_parsing/map_pars.c \
+			Mandatory/Parsing/bben_parsing/check_elemnts.c \
 
 
 			

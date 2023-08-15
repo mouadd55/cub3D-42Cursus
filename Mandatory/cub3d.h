@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:03:57 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/13 19:08:39 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/15 01:50:10 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,5 +109,9 @@ void		draw_circle(int x, int y, t_img *img);
 void		draw_line(t_vars *vars, double x2, double y2);
 void		draw_pixels_in_each_square(t_vars *vars);
 void		draw_pixels_on_image(t_img *img, int x, int y, int color);
+int			general_map_check(char **map);
+int			check_wall(char **str, int i, int j);
+void		ft_bben_error(int cases);
+int			ft_tablen(char **str);
 
 #endif
