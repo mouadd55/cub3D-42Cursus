@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_movements.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 12:14:02 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/13 19:09:25 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/18 21:16:25 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	init_player_infos(t_vars *vars)
 	find_player_position(vars);
 	vars->player.turn_direction = 0;
 	vars->player.walk_direction = 0;
-	vars->player.walking_speed = 3;
+	vars->player.walking_speed = 6;
 	vars->player.x1 = vars->i * MINIMAP_SIZE;
 	vars->player.y1 = vars->j * MINIMAP_SIZE;
 	vars->player.rotation_speed = (M_PI / 180) * 9;

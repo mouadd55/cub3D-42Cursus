@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing_functions.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 15:06:11 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/14 18:07:47 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/18 21:48:08 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,44 @@
 
 void	draw_line(t_vars *vars, double x2, double y2)
 {
-	double	dx;
-	double	dy;
-	int		steps;
-	double	x_inc;
-	double	y_inc;
+    double dx;
+    double dy;
+    int steps;
+    double x_inc;
+    double y_inc;
 
-	vars->x1 = vars->player.x1 + (MINIMAP_SIZE / 2);
-	vars->y1 = vars->player.y1 + (MINIMAP_SIZE / 2);
-	dx = x2 - vars->x1;
-	dy = y2 - vars->y1;
-	if (fabs(dx) > fabs(dy))
-		steps = fabs(dx);
-	else
-		steps = fabs(dy);
-	x_inc = dx / steps;
-	y_inc = dy / steps;
-	x2 = 0;
-	while (x2++ < steps)
-	{
-		draw_pixels_on_image(&vars->image,
-			(int)round(vars->x1), (int)round(vars->y1), 0xff0000);
-		vars->x1 = vars->x1 + x_inc;
-		vars->y1 = vars->y1 + y_inc;
-	}
+    vars->x1 = vars->player.x1 + (MINIMAP_SIZE / 2);
+    vars->y1 = vars->player.y1 + (MINIMAP_SIZE / 2);
+
+    dx = x2 - vars->x1;
+    dy = y2 - vars->y1;
+    if (fabs(dx) > fabs(dy))
+        steps = fabs(dx);
+    else
+        steps = fabs(dy);
+
+    x_inc = dx / steps;
+    y_inc = dy / steps;
+
+    int currentX = (int)round(vars->x1);
+    int currentY = (int)round(vars->y1);
+
+    for (int step = 0; step <= steps; ++step)
+    {
+        for (int y = currentY; y <= currentY + 5; ++y)
+        {
+            for (int x = currentX; x <= currentX + 5; ++x)
+            {
+                draw_pixels_on_image(&vars->image, x, y, 0xff0000);
+            }
+        }
+
+        currentX = (int)round(vars->x1);
+        currentY = (int)round(vars->y1);
+
+        vars->x1 += x_inc;
+        vars->y1 += y_inc;
+    }
 }
 
 void	draw_circle(int x, int y, t_img *img)
@@ -115,7 +129,7 @@ int	draw_minimap(t_vars *vars)
 	}
 	vars->player.turn_direction = 0;
 	vars->player.walk_direction = 0;
-	draw_circle(vars->player.x1, vars->player.y1, &vars->image);
+	// draw_circle(vars->player.x1, vars->player.y1, &vars->image);
 	calculate_x2_and_y2(&vars->player);
 	draw_line(vars, vars->player.x2, vars->player.y2);
 	mlx_put_image_to_window(vars->mlx, vars->mlx_win, vars->image.img, 0, 0);
