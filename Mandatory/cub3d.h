@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:03:57 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/13 19:08:39 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/21 12:20:02 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # define WINDOW_WIDTH 1280
 
 # define MINIMAP_SIZE 30
+# define WALKING_SPEED 3
+# define ROTATION_SPEED (M_PI / 180) * 9
 
 # include <mlx.h>
 # include <math.h>
@@ -26,10 +28,12 @@
 
 typedef struct s_player
 {
-	double		x1;
-	double		y1;
-	double		x2;
-	double		y2;
+	double		p_x1;
+	double		p_y1;
+	double		p_x2;
+	double		p_y2;
+	double		x_final;
+	double		y_final;
 	int			turn_direction;
 	int			walk_direction;
 	double		walking_speed;

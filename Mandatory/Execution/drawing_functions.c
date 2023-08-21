@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 15:06:11 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/14 18:07:47 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/21 12:19:06 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	draw_line(t_vars *vars, double x2, double y2)
 	double	x_inc;
 	double	y_inc;
 
-	vars->x1 = vars->player.x1 + (MINIMAP_SIZE / 2);
-	vars->y1 = vars->player.y1 + (MINIMAP_SIZE / 2);
+	vars->x1 = vars->player.p_x1;
+	vars->y1 = vars->player.p_y1;
 	dx = x2 - vars->x1;
 	dy = y2 - vars->y1;
 	if (fabs(dx) > fabs(dy))
@@ -49,8 +49,8 @@ void	draw_circle(int x, int y, t_img *img)
 	double	y2;
 
 	a = 0;
-	x1 = x + MINIMAP_SIZE / 2;
-	y1 = y + MINIMAP_SIZE / 2;
+	x1 = x;
+	y1 = y;
 	while (a < 360)
 	{
 		x2 = x1 + cos(a * M_PI / 180) * MINIMAP_SIZE / 10;
@@ -100,10 +100,10 @@ int	draw_minimap(t_vars *vars)
 	vars->y = -1;
 	vars->player.starting_angle += vars->player.turn_direction * vars->player.rotation_speed;
 	pixels_per_step = vars->player.walk_direction * vars->player.walking_speed;
-	vars->player.x1 = vars->player.x1 + cos(vars->player.starting_angle) * pixels_per_step;
-	vars->player.y1 = vars->player.y1 - sin(vars->player.starting_angle) * pixels_per_step;
-	printf("cos: %f -- sin: %f\n", cos(vars->player.starting_angle), sin(vars->player.starting_angle));
-	printf("walk_direction: %d -- turn_direction: %d -- angle: %f -- rotation_speed: %f\n", vars->player.walk_direction, vars->player.turn_direction, vars->player.starting_angle, vars->player.rotation_speed);
+	vars->player.p_x2 = vars->player.p_x1 + cos(vars->player.starting_angle) * pixels_per_step;
+	vars->player.p_y2 = vars->player.p_y1 - sin(vars->player.starting_angle) * pixels_per_step;
+	// printf("cos: %f -- sin: %f\n", cos(vars->player.starting_angle), sin(vars->player.starting_angle));
+	// printf("walk_direction: %d -- turn_direction: %d -- angle: %f -- rotation_speed: %f\n", vars->player.walk_direction, vars->player.turn_direction, vars->player.starting_angle, vars->player.rotation_speed);
 	while (vars->map && ++vars->y < vars->height)
 	{
 		vars->x = -1;
@@ -115,9 +115,17 @@ int	draw_minimap(t_vars *vars)
 	}
 	vars->player.turn_direction = 0;
 	vars->player.walk_direction = 0;
-	draw_circle(vars->player.x1, vars->player.y1, &vars->image);
+	printf("y:%f -- x:%f\n", vars->player.p_y2, vars->player.p_x2);
+	printf("%f -- %f\n", floor(vars->player.p_y2 / MINIMAP_SIZE), floor(vars->player.p_x2 / MINIMAP_SIZE));
+	printf("%c\n", vars->map[(int)floor(vars->player.p_y2 / MINIMAP_SIZE)][(int)floor(vars->player.p_x2 / MINIMAP_SIZE)]);
+	if (vars->map[(int)floor(vars->player.p_y2 / MINIMAP_SIZE)][(int)floor(vars->player.p_x2 / MINIMAP_SIZE)] != '1')
+	{
+		vars->player.p_x1 = vars->player.p_x2;
+		vars->player.p_y1 = vars->player.p_y2;
+	}
+	draw_circle(vars->player.p_x1, vars->player.p_y1, &vars->image);
 	calculate_x2_and_y2(&vars->player);
-	draw_line(vars, vars->player.x2, vars->player.y2);
+	draw_line(vars, vars->player.x_final, vars->player.y_final);
 	mlx_put_image_to_window(vars->mlx, vars->mlx_win, vars->image.img, 0, 0);
 	create_new_image(vars);
 	return (0);

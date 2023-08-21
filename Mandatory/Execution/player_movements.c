@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 12:14:02 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/13 19:09:25 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/21 12:19:21 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	find_player_position(t_vars *v)
 
 void	calculate_x2_and_y2(t_player *player)
 {
-	player->x2 = (int)((player->x1 + (MINIMAP_SIZE / 2))
+	player->x_final = (int)((player->p_x1)
 			+ (cos(player->starting_angle) * (MINIMAP_SIZE / 2)));
-	player->y2 = (int)((player->y1 + (MINIMAP_SIZE / 2))
+	player->y_final = (int)((player->p_y1)
 			+ (-sin(player->starting_angle) * (MINIMAP_SIZE / 2)));
 }
 
@@ -72,10 +72,10 @@ void	init_player_infos(t_vars *vars)
 	find_player_position(vars);
 	vars->player.turn_direction = 0;
 	vars->player.walk_direction = 0;
-	vars->player.walking_speed = 3;
-	vars->player.x1 = vars->i * MINIMAP_SIZE;
-	vars->player.y1 = vars->j * MINIMAP_SIZE;
-	vars->player.rotation_speed = (M_PI / 180) * 9;
+	vars->player.walking_speed = WALKING_SPEED;
+	vars->player.p_x1 = vars->i * MINIMAP_SIZE + MINIMAP_SIZE / 2;
+	vars->player.p_y1 = vars->j * MINIMAP_SIZE + MINIMAP_SIZE / 2;
+	vars->player.rotation_speed = ROTATION_SPEED;
 	if (vars->map[vars->j][vars->i] == 'N')
 		vars->player.starting_angle = M_PI / 2;
 	else if (vars->map[vars->j][vars->i] == 'W')
