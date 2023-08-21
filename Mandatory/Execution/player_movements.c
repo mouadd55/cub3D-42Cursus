@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 12:14:02 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/21 12:19:21 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/21 14:44:31 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,23 +44,23 @@ int	key_press(int keycode, t_vars *vars)
 		close_window(vars);
 	else if (keycode == 13)
 	{
-		vars->player.walk_direction = 1;
-		vars->player.turn_direction = 0;
+		vars->player.walk_direction = FORWARD;
+		vars->player.turn_direction = FALSE;
 	}
 	else if (keycode == 1)
 	{
-		vars->player.walk_direction = -1;
-		vars->player.turn_direction = 0;
+		vars->player.walk_direction = BACKWARD;
+		vars->player.turn_direction = FALSE;
 	}
 	else if (keycode == 123)
 	{
-		vars->player.walk_direction = 0;
-		vars->player.turn_direction = 1;
+		vars->player.walk_direction = FALSE;
+		vars->player.turn_direction = RIGHT;
 	}
 	else if (keycode == 124)
 	{
-		vars->player.walk_direction = 0;
-		vars->player.turn_direction = -1;
+		vars->player.walk_direction = FALSE;
+		vars->player.turn_direction = LEFT;
 	}
 	mlx_clear_window(vars->mlx, vars->mlx_win);
 	draw_minimap(vars);
@@ -72,10 +72,9 @@ void	init_player_infos(t_vars *vars)
 	find_player_position(vars);
 	vars->player.turn_direction = 0;
 	vars->player.walk_direction = 0;
-	vars->player.walking_speed = WALKING_SPEED;
+	vars->player.rotation_speed = (M_PI / 180) * 7;
 	vars->player.p_x1 = vars->i * MINIMAP_SIZE + MINIMAP_SIZE / 2;
 	vars->player.p_y1 = vars->j * MINIMAP_SIZE + MINIMAP_SIZE / 2;
-	vars->player.rotation_speed = ROTATION_SPEED;
 	if (vars->map[vars->j][vars->i] == 'N')
 		vars->player.starting_angle = M_PI / 2;
 	else if (vars->map[vars->j][vars->i] == 'W')
@@ -84,5 +83,5 @@ void	init_player_infos(t_vars *vars)
 		vars->player.starting_angle = 2 * M_PI;
 	else if (vars->map[vars->j][vars->i] == 'S')
 		vars->player.starting_angle = 3 * M_PI / 2;
-	vars->map[vars->j][vars->i] = 'P';
+	vars->map[vars->j][vars->i] = '0';
 }
