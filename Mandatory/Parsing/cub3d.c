@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 13:38:45 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/21 16:21:14 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/22 15:18:53 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,44 @@ void	leaks(void)
 	system("leaks cub3D");
 }
 
+void	get_floor_and_ceiling_color(t_vars *vars)
+{
+	t_infos	*tmp;
+
+	tmp = vars->infos;
+	while (tmp)
+	{
+		if (tmp->element[0] == 'C')
+			vars->ceiling_color = (tmp->rgb[0] * pow(256, 2)) + tmp->rgb[1] * 256 + tmp->rgb[2];
+		else if (tmp->element[0] == 'F')
+			vars->floor_color = (tmp->rgb[0] * pow(256, 2)) + tmp->rgb[1] * 256 + tmp->rgb[2];
+		tmp = tmp->link;
+	}
+	printf(">%d<\n", vars->floor_color);
+	printf(">%d<\n", vars->ceiling_color);
+	vars->i = -1;
+	vars->j = -1;
+	while (++vars->i < WINDOW_HEIGHT)
+	{
+		while (++vars->j < WINDOW_WIDTH)
+		{
+			if (vars->i < WINDOW_HEIGHT / 2)
+				draw_pixels_on_image(&vars->image, vars->j, vars->i, vars->ceiling_color);
+			else
+				draw_pixels_on_image(&vars->image, vars->j, vars->i, vars->floor_color);
+		}
+	}
+}
+
+int	release(int keycode, t_vars *vars)
+{
+	if (keycode == 13 || keycode == 1)
+		vars->player.walk_direction = FALSE;
+	else if (keycode == 123 || keycode == 124)
+		vars->player.turn_direction = FALSE;
+	return (0);
+}
+
 int	main(int ac, char **av)
 {
 	t_vars	*vars;
@@ -106,9 +144,11 @@ int	main(int ac, char **av)
 	if (check_valid_extension(av[1]))
 		ft_error(3, 0, 0, 0);
 	read_file_and_get_informations(av[1], vars);
+
 	vars->map = copy_the_map_from_file_to_2d_array(av[1], vars->map_fd);
 	open_window(vars);
 	mlx_loop_hook(vars->mlx, draw_minimap, vars);
+	mlx_hook(vars->mlx_win, 3, 0, release, vars);
 	mlx_hook(vars->mlx_win, 2, 0, key_press, vars);
 	mlx_hook(vars->mlx_win, 17, 0, close_window, vars);
 	mlx_loop(vars->mlx);

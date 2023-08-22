@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:03:57 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/21 14:49:32 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/22 14:59:17 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define BACKWARD -1
 
 # define MINIMAP_SIZE 30
-# define WALKING_SPEED 2
+# define WALKING_SPEED 1
 
 # include <mlx.h>
 # include <math.h>
@@ -76,6 +76,8 @@ typedef struct s_vars
 	int				flag;
 	int				length;
 	int				map_fd;
+	int				floor_color;
+	int				ceiling_color;
 	char			*str;
 	char			**arr;
 	char			**map;
@@ -117,5 +119,6 @@ void		draw_circle(int x, int y, t_img *img);
 void		draw_line(t_vars *vars, double x2, double y2);
 void		draw_pixels_in_each_square(t_vars *vars);
 void		draw_pixels_on_image(t_img *img, int x, int y, int color);
+void		get_floor_and_ceiling_color(t_vars *vars);
 
 #endif

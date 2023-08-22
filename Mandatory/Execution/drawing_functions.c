@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 15:06:11 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/21 14:44:42 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/22 14:40:46 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,15 +92,32 @@ void	draw_pixels_in_each_square(t_vars *vars)
 	}
 }
 
-int	draw_minimap(t_vars *vars)
+void	calculate_next_move_of_player(t_vars *vars)
 {
 	double	pixels_per_step;
 
-	vars->y = -1;
-	vars->player.starting_angle += vars->player.turn_direction * vars->player.rotation_speed;
 	pixels_per_step = vars->player.walk_direction * WALKING_SPEED;
+	vars->player.starting_angle += vars->player.turn_direction * vars->player.rotation_speed;
 	vars->player.p_x2 = vars->player.p_x1 + cos(vars->player.starting_angle) * pixels_per_step;
 	vars->player.p_y2 = vars->player.p_y1 - sin(vars->player.starting_angle) * pixels_per_step;
+}
+
+void	check_if_there_is_a_wall(t_vars *vars)
+{
+	// vars->player.turn_direction = 0;
+	// vars->player.walk_direction = 0;
+	if (vars->map[(int)floor(vars->player.p_y2 / MINIMAP_SIZE)]
+		[(int)floor(vars->player.p_x2 / MINIMAP_SIZE)] != '1')
+	{
+		vars->player.p_x1 = vars->player.p_x2;
+		vars->player.p_y1 = vars->player.p_y2;
+	}
+}
+
+int	draw_minimap(t_vars *vars)
+{
+	vars->y = -1;
+	calculate_next_move_of_player(vars);
 	while (vars->map && ++vars->y < vars->height)
 	{
 		vars->x = -1;
@@ -110,17 +127,11 @@ int	draw_minimap(t_vars *vars)
 			draw_pixels_in_each_square(vars);
 		}
 	}
-	vars->player.turn_direction = 0;
-	vars->player.walk_direction = 0;
-	if (vars->map[(int)floor(vars->player.p_y2 / MINIMAP_SIZE)][(int)floor(vars->player.p_x2 / MINIMAP_SIZE)] != '1')
-	{
-		vars->player.p_x1 = vars->player.p_x2;
-		vars->player.p_y1 = vars->player.p_y2;
-	}
+	check_if_there_is_a_wall(vars);
 	draw_circle(vars->player.p_x1, vars->player.p_y1, &vars->image);
 	calculate_x2_and_y2(&vars->player);
 	draw_line(vars, vars->player.x_final, vars->player.y_final);
+	mlx_clear_window(vars->mlx, vars->mlx_win);
 	mlx_put_image_to_window(vars->mlx, vars->mlx_win, vars->image.img, 0, 0);
-	create_new_image(vars);
 	return (0);
 }
