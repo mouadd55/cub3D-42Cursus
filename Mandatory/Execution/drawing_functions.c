@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 15:06:11 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/22 14:40:46 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/22 16:28:06 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	draw_pixels_in_each_square(t_vars *vars)
 		{
 			if (vars->map[vars->y][vars->x] == ' ')
 				draw_pixels_on_image(&vars->image, (vars->x * MINIMAP_SIZE)
-					+ vars->i, (vars->y * MINIMAP_SIZE) + vars->j, 0x000000);
+					+ vars->i, (vars->y * MINIMAP_SIZE) + vars->j, vars->ceiling_color);
 			else if (vars->map[vars->y][vars->x] == '1')
 				draw_pixels_on_image(&vars->image, (vars->x * MINIMAP_SIZE)
 					+ vars->i, (vars->y * MINIMAP_SIZE) + vars->j, 0xffffff);
@@ -104,8 +104,6 @@ void	calculate_next_move_of_player(t_vars *vars)
 
 void	check_if_there_is_a_wall(t_vars *vars)
 {
-	// vars->player.turn_direction = 0;
-	// vars->player.walk_direction = 0;
 	if (vars->map[(int)floor(vars->player.p_y2 / MINIMAP_SIZE)]
 		[(int)floor(vars->player.p_x2 / MINIMAP_SIZE)] != '1')
 	{
@@ -118,6 +116,7 @@ int	draw_minimap(t_vars *vars)
 {
 	vars->y = -1;
 	calculate_next_move_of_player(vars);
+	get_floor_and_ceiling_color(vars);
 	while (vars->map && ++vars->y < vars->height)
 	{
 		vars->x = -1;

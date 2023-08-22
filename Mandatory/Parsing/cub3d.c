@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 13:38:45 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/22 15:18:53 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/22 16:05:14 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,12 +104,10 @@ void	get_floor_and_ceiling_color(t_vars *vars)
 			vars->floor_color = (tmp->rgb[0] * pow(256, 2)) + tmp->rgb[1] * 256 + tmp->rgb[2];
 		tmp = tmp->link;
 	}
-	printf(">%d<\n", vars->floor_color);
-	printf(">%d<\n", vars->ceiling_color);
 	vars->i = -1;
-	vars->j = -1;
 	while (++vars->i < WINDOW_HEIGHT)
 	{
+		vars->j = -1;
 		while (++vars->j < WINDOW_WIDTH)
 		{
 			if (vars->i < WINDOW_HEIGHT / 2)
@@ -144,7 +142,6 @@ int	main(int ac, char **av)
 	if (check_valid_extension(av[1]))
 		ft_error(3, 0, 0, 0);
 	read_file_and_get_informations(av[1], vars);
-
 	vars->map = copy_the_map_from_file_to_2d_array(av[1], vars->map_fd);
 	open_window(vars);
 	mlx_loop_hook(vars->mlx, draw_minimap, vars);
