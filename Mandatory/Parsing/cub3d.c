@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 13:38:45 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/23 11:13:38 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/23 16:54:51 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,8 @@ int	release_key(int keycode, t_vars *vars)
 {
 	if (keycode == 13 || keycode == 1)
 		vars->player.walk_direction = FALSE;
+	else if (keycode == 0 || keycode == 2)
+		vars->player.walk_dir_side = FALSE;
 	else if (keycode == 123 || keycode == 124)
 		vars->player.turn_direction = FALSE;
 	return (0);

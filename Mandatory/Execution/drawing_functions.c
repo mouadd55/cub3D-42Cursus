@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing_functions.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 15:06:11 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/23 12:43:28 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/23 16:54:54 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,11 +103,18 @@ void	draw_pixels_in_each_square(t_vars *vars)
 void	calculate_next_move_of_player(t_vars *vars)
 {
 	double	pixels_per_step;
-
-	pixels_per_step = vars->player.walk_direction * WALKING_SPEED;
-	vars->player.starting_angle += vars->player.turn_direction * vars->player.rotation_speed;
-	vars->player.p_x2 = vars->player.p_x1 + cos(vars->player.starting_angle) * pixels_per_step;
-	vars->player.p_y2 = vars->player.p_y1 - sin(vars->player.starting_angle) * pixels_per_step;
+	if (vars->player.walk_dir_side)
+	{
+		pixels_per_step = vars->player.walk_dir_side * WALKING_SPEED;
+		vars->player.p_x2 = vars->player.p_x1 + cos(vars->player.starting_angle + (M_PI / 2)) * pixels_per_step;
+		vars->player.p_y2 = vars->player.p_y1 - sin(vars->player.starting_angle + (M_PI / 2)) * pixels_per_step;
+	}
+	else {
+		pixels_per_step = vars->player.walk_direction * WALKING_SPEED;
+		vars->player.starting_angle += vars->player.turn_direction * vars->player.rotation_speed;
+		vars->player.p_x2 = vars->player.p_x1 + cos(vars->player.starting_angle) * pixels_per_step;
+		vars->player.p_y2 = vars->player.p_y1 - sin(vars->player.starting_angle) * pixels_per_step;
+	}
 }
 
 void	check_if_there_is_a_wall(t_vars *vars)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:03:57 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/23 12:04:57 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/23 16:39:43 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ typedef struct s_player
 	double		x_final;
 	double		y_final;
 	int			turn_direction;
+	int			turn_dir_top;
+	int			walk_dir_side;
 	int			walk_direction;
 	double		rotation_speed;
 	double		starting_angle;
