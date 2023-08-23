@@ -6,14 +6,14 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:03:57 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/22 14:59:17 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/23 12:04:57 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# define WINDOW_HEIGHT 810
+# define WINDOW_HEIGHT 720
 # define WINDOW_WIDTH 1280
 
 # define FALSE 0

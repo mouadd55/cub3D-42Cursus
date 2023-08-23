@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 15:06:11 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/22 16:28:06 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/23 12:43:28 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,16 @@ void	draw_pixels_in_each_square(t_vars *vars)
 		while (++vars->i < MINIMAP_SIZE)
 		{
 			if (vars->map[vars->y][vars->x] == ' ')
-				draw_pixels_on_image(&vars->image, (vars->x * MINIMAP_SIZE)
-					+ vars->i, (vars->y * MINIMAP_SIZE) + vars->j, vars->ceiling_color);
+			{
+				if (vars->y * MINIMAP_SIZE < WINDOW_HEIGHT / 2)
+					draw_pixels_on_image(&vars->image, (vars->x * MINIMAP_SIZE)
+						+ vars->i, (vars->y * MINIMAP_SIZE) + vars->j, vars->ceiling_color);
+				else
+				{
+					draw_pixels_on_image(&vars->image, (vars->x * MINIMAP_SIZE)
+						+ vars->i, (vars->y * MINIMAP_SIZE) + vars->j, vars->floor_color);
+				}
+			}
 			else if (vars->map[vars->y][vars->x] == '1')
 				draw_pixels_on_image(&vars->image, (vars->x * MINIMAP_SIZE)
 					+ vars->i, (vars->y * MINIMAP_SIZE) + vars->j, 0xffffff);

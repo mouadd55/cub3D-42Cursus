@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 13:38:45 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/22 16:05:14 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/23 11:13:38 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	get_floor_and_ceiling_color(t_vars *vars)
 		tmp = tmp->link;
 	}
 	vars->i = -1;
-	while (++vars->i < WINDOW_HEIGHT)
+	while (++vars->i < WINDOW_HEIGHT / 2)
 	{
 		vars->j = -1;
 		while (++vars->j < WINDOW_WIDTH)
@@ -118,7 +118,7 @@ void	get_floor_and_ceiling_color(t_vars *vars)
 	}
 }
 
-int	release(int keycode, t_vars *vars)
+int	release_key(int keycode, t_vars *vars)
 {
 	if (keycode == 13 || keycode == 1)
 		vars->player.walk_direction = FALSE;
@@ -145,7 +145,7 @@ int	main(int ac, char **av)
 	vars->map = copy_the_map_from_file_to_2d_array(av[1], vars->map_fd);
 	open_window(vars);
 	mlx_loop_hook(vars->mlx, draw_minimap, vars);
-	mlx_hook(vars->mlx_win, 3, 0, release, vars);
+	mlx_hook(vars->mlx_win, 3, 0, release_key, vars);
 	mlx_hook(vars->mlx_win, 2, 0, key_press, vars);
 	mlx_hook(vars->mlx_win, 17, 0, close_window, vars);
 	mlx_loop(vars->mlx);
