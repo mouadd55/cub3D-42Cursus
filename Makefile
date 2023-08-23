@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+         #
+#    By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/14 09:05:11 by moudrib           #+#    #+#              #
-#    Updated: 2023/08/23 11:13:44 by moudrib          ###   ########.fr        #
+#    Updated: 2023/08/23 17:16:54 by bbenidar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,8 @@ SRC		= \
 			Mandatory/Parsing/parsing.c \
 			Get_next_line/get_next_line.c \
 			Mandatory/Parsing/parsing_utils.c \
+			Mandatory/Parsing/check_elemnts.c \
+			Mandatory/Parsing/map_pars.c \
 			Mandatory/Parsing/parsing_elements.c \
 			Mandatory/Execution/player_movements.c \
 			Mandatory/Execution/drawing_functions.c \

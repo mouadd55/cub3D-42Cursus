@@ -6,7 +6,7 @@
 /*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:03:57 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/23 16:39:43 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/08/23 17:15:53 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,10 @@ typedef struct s_vars
 /***************************** Parsing functions ******************************/
 
 int			ft_isdigit(char *str);
+int			general_map_check(char **map);
+int			check_wall(char **str, int i, int j);
+void		ft_bben_error(int cases);
+int			ft_tablen(char **str);
 int			is_printable(char *line);
 int			count_commas(char *value);
 int			check_valid_extension(char *file_name);
