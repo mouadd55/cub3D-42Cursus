@@ -6,13 +6,11 @@
 /*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 15:46:38 by bbenidar          #+#    #+#             */
-/*   Updated: 2023/08/23 17:36:16 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/08/23 17:45:55 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-
 
 int	ft_count_elem(char **str)
 {
@@ -99,7 +97,6 @@ int	check_for_emty_line(char **str)
 		}
 		i++;
 	}
-	printf("str[i]\n");
 	return (0);
 }
 

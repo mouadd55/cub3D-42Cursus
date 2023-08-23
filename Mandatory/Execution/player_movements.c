@@ -6,7 +6,7 @@
 /*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 12:14:02 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/23 16:44:48 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/08/23 17:43:41 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,10 @@ void	calculate_x2_and_y2(t_player *player)
 
 int	key_press(int keycode, t_vars *vars)
 {
-	// D : 2
-	// A : 0
-	printf("keycode = %d\n", keycode);
 	if (keycode == 53)
 		close_window(vars);
 	else if (keycode == 124)
 		vars->player.turn_direction = LEFT;
-	// else if (keycode == 0)
-	// 	vars->player.turn_direction = LEFT;
 	else if (keycode == 123)
 		vars->player.turn_direction = RIGHT;
 	else if (keycode == 13)
