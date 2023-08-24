@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 07:31:19 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/01 12:43:33 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/24 14:00:11 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@ void	ft_error(int cases, t_infos **infos, char **elements, char **arr)
 	else if (cases == 4)
 		ft_putstr("\e[1m\x1B[31mError: \e[37mFile does not exist.\n");
 	else if (cases == 5)
+		ft_putstr("\e[1m\x1B[31mError: \e[37mElements are invalid.\n");
+	else if (cases == 6)
+		ft_putstr("\e[1m\x1B[31mError: \e[37mMap's not sealed! Edit and retry.\n");
+	else if (cases == 7)
 		ft_putstr("\e[1m\x1B[31mError: \e[37mElements are invalid.\n");
 	free_data(infos, elements, arr);
 	exit(1);
