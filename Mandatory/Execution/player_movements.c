@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 12:14:02 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/24 11:47:17 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/24 13:18:18 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	check_if_there_is_a_wall(t_vars *vars)
 {
-	if (vars->map[(int)floor(vars->player.p_y2 / MINIMAP_SIZE)]
-		[(int)floor(vars->player.p_x2 / MINIMAP_SIZE)] != '1')
+	if (vars->map[(int)floor((vars->player.p_y2) / MINIMAP_SIZE)]
+		[(int)floor((vars->player.p_x2) / MINIMAP_SIZE)] != '1')
 	{
 		vars->player.p_x1 = vars->player.p_x2;
 		vars->player.p_y1 = vars->player.p_y2;
@@ -29,6 +29,8 @@ void	calculate_next_move_of_player(t_vars *vars)
 	if (vars->player.walk_dir_side)
 	{
 		pixels_per_step = vars->player.walk_dir_side * WALKING_SPEED;
+		vars->player.starting_angle += vars->player.turn_direction
+			* vars->player.rotation_speed;
 		vars->player.p_x2 = vars->player.p_x1 + cos(vars->player.starting_angle
 				+ (M_PI / 2)) * pixels_per_step;
 		vars->player.p_y2 = vars->player.p_y1 - sin(vars->player.starting_angle

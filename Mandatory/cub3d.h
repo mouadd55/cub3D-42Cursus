@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:03:57 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/24 11:51:17 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/24 12:02:51 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,12 +98,12 @@ typedef struct s_vars
 /***************************** Parsing functions ******************************/
 
 int			ft_isdigit(char *str);
-int			general_map_check(char **map);
-int			check_wall(char **str, int i, int j);
-void		ft_bben_error(int cases);
 int			ft_tablen(char **str);
+void		ft_bben_error(int cases);
 int			is_printable(char *line);
 int			count_commas(char *value);
+int			general_map_check(char **map);
+int			check_wall(char **str, int i, int j);
 int			check_valid_extension(char *file_name);
 void		ft_error(int cases, t_infos **infos, char **elements, char **arr);
 
@@ -122,14 +122,14 @@ void		create_new_image(t_vars *vars);
 int			key_press(int keycode, t_vars *vars);
 void		calculate_x2_and_y2(t_player *player);
 void		draw_circle(int x, int y, t_img *img);
-void		draw_line(t_vars *vars, double x2, double y2);
-void		draw_pixels_in_each_square(t_vars *vars);
-void		draw_pixels_on_image(t_img *img, int x, int y, int color);
-void		get_floor_and_ceiling_color(t_vars *vars);
 int			key_release(int keycode, t_vars *vars);
-void		calculate_next_move_of_player(t_vars *vars);
 void		check_if_there_is_a_wall(t_vars *vars);
+void		draw_pixels_in_each_square(t_vars *vars);
+void		get_floor_and_ceiling_color(t_vars *vars);
 void		get_colors_values_from_file(t_vars *vars);
 void		get_floor_and_ceiling_color(t_vars *vars);
+void		calculate_next_move_of_player(t_vars *vars);
+void		draw_line(t_vars *vars, double x2, double y2);
+void		draw_pixels_on_image(t_img *img, int x, int y, int color);
 
 #endif
