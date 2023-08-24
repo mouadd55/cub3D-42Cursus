@@ -6,7 +6,7 @@
 #    By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/14 09:05:11 by moudrib           #+#    #+#              #
-#    Updated: 2023/08/24 11:41:55 by moudrib          ###   ########.fr        #
+#    Updated: 2023/08/24 12:00:39 by moudrib          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRC		= \
 			Mandatory/Parsing/check_elemnts.c \
 			Mandatory/Parsing/map_pars.c \
 			Mandatory/Parsing/parsing_elements.c \
+			Mandatory/Execution/colors.c \
 			Mandatory/Execution/player_movements.c \
 			Mandatory/Execution/drawing_functions.c \
 			Mandatory/Execution/window_management.c \
