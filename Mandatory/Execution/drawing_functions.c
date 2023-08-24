@@ -6,13 +6,13 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 15:06:11 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/24 11:46:30 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/24 17:51:25 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	draw_line(t_vars *vars, double x2, double y2)
+void	draw_line(t_vars *vars, double x2, double y2, int color)
 {
 	double	dx;
 	double	dy;
@@ -34,7 +34,7 @@ void	draw_line(t_vars *vars, double x2, double y2)
 	while (x2++ < steps)
 	{
 		draw_pixels_on_image(&vars->image,
-			(int)round(vars->x1), (int)round(vars->y1), 0xff0000);
+			(int)round(vars->x1), (int)round(vars->y1), color);
 		vars->x1 = vars->x1 + x_inc;
 		vars->y1 = vars->y1 + y_inc;
 	}
@@ -55,7 +55,7 @@ void	draw_circle(int x, int y, t_img *img)
 	{
 		x2 = x1 + cos(a * M_PI / 180) * 1.9;
 		y2 = y1 + sin(a * M_PI / 180) * 1.9;
-		draw_pixels_on_image(img, x2, y2, 0xff0000);
+		draw_pixels_on_image(img, x2, y2, 0xB85042);
 		a++;
 	}
 }
@@ -92,10 +92,10 @@ void	draw_pixels_in_each_square(t_vars *vars)
 			}
 			else if (vars->map[vars->y][vars->x] == '1')
 				draw_pixels_on_image(&vars->image, (vars->x * MINIMAP_SIZE)
-					+ vars->i, (vars->y * MINIMAP_SIZE) + vars->j, 0xffffff);
+					+ vars->i, (vars->y * MINIMAP_SIZE) + vars->j, 0x525b56);
 			else if (vars->map[vars->y][vars->x] == '0')
 				draw_pixels_on_image(&vars->image, (vars->x * MINIMAP_SIZE)
-					+ vars->i, (vars->y * MINIMAP_SIZE) + vars->j, 0xdbd6d6);
+					+ vars->i, (vars->y * MINIMAP_SIZE) + vars->j, 0xa4978e);
 		}
 	}
 }
@@ -115,9 +115,10 @@ int	draw_minimap(t_vars *vars)
 		}
 	}
 	check_if_there_is_a_wall(vars);
+	initialize_rays_infos(vars);
 	draw_circle(vars->player.p_x1, vars->player.p_y1, &vars->image);
-	calculate_x2_and_y2(&vars->player);
-	draw_line(vars, vars->player.x_final, vars->player.y_final);
+	calculate_next_position_coordinates(&vars->player);
+	draw_line(vars, vars->player.x_final, vars->player.y_final, 12079170);
 	mlx_clear_window(vars->mlx, vars->mlx_win);
 	mlx_put_image_to_window(vars->mlx, vars->mlx_win, vars->image.img, 0, 0);
 	return (0);

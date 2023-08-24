@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 12:14:02 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/24 13:18:18 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/24 17:51:25 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,15 @@ void	find_player_position(t_vars *v)
 	}
 }
 
-void	calculate_x2_and_y2(t_player *player)
+void	calculate_next_position_coordinates(t_player *player)
 {
-	player->x_final = (int)((player->p_x1)
-			+ (cos(player->starting_angle) * (MINIMAP_SIZE / 2)));
-	player->y_final = (int)((player->p_y1)
-			- sin(player->starting_angle) * (MINIMAP_SIZE / 2));
+	int	hypotenuse;
+
+	hypotenuse = MINIMAP_SIZE / 2;
+	player->x_final = (player->p_x1)
+			+ (cos(player->starting_angle) * hypotenuse);
+	player->y_final = (player->p_y1)
+			- (sin(player->starting_angle) * hypotenuse);
 }
 
 void	init_player_infos(t_vars *vars)

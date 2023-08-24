@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:03:57 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/24 12:02:51 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/24 17:51:25 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@
 # include <limits.h>
 # include "../Libft_utils/libft.h"
 # include "../Get_next_line/get_next_line.h"
+
+typedef struct s_ray
+{
+	double	ray_angle;
+}	t_ray;
 
 typedef struct s_player
 {
@@ -72,11 +77,11 @@ typedef struct s_vars
 	int				j;
 	int				x;
 	int				y;
-	double			x1;
-	double			y1;
 	int				size;
 	int				flag;
 	int				length;
+	int				width;
+	int				height;
 	int				map_fd;
 	int				floor_color;
 	int				ceiling_color;
@@ -87,19 +92,20 @@ typedef struct s_vars
 	void			*mlx;
 	void			*img;
 	void			*mlx_win;
-	int				width;
-	int				height;
+	double			x1;
+	double			y1;
+	double			fov_angle;
 	t_infos			*tmp;
-	t_infos			*infos;
 	t_img			image;
+	t_infos			*infos;
 	t_player		player;
+	t_ray			ray[WINDOW_WIDTH];
 }	t_vars;
 
 /***************************** Parsing functions ******************************/
 
 int			ft_isdigit(char *str);
 int			ft_tablen(char **str);
-void		ft_bben_error(int cases);
 int			is_printable(char *line);
 int			count_commas(char *value);
 int			general_map_check(char **map);
@@ -119,8 +125,9 @@ int			close_window(t_vars *vars);
 int			draw_minimap(t_vars *vars);
 void		init_player_infos(t_vars *v);
 void		create_new_image(t_vars *vars);
+void		initialize_rays_infos(t_vars *vars);
 int			key_press(int keycode, t_vars *vars);
-void		calculate_x2_and_y2(t_player *player);
+void		calculate_next_position_coordinates(t_player *player);
 void		draw_circle(int x, int y, t_img *img);
 int			key_release(int keycode, t_vars *vars);
 void		check_if_there_is_a_wall(t_vars *vars);
@@ -129,7 +136,8 @@ void		get_floor_and_ceiling_color(t_vars *vars);
 void		get_colors_values_from_file(t_vars *vars);
 void		get_floor_and_ceiling_color(t_vars *vars);
 void		calculate_next_move_of_player(t_vars *vars);
-void		draw_line(t_vars *vars, double x2, double y2);
+void		draw_line(t_vars *vars, double x2, double y2, int color);
 void		draw_pixels_on_image(t_img *img, int x, int y, int color);
+
 
 #endif

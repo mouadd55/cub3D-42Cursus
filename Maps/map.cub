@@ -2,8 +2,8 @@ NO ./path_to_the_north_texture
 SO ./path_to_the_south_texture 
 WE ./path_to_the_west_texture
 
-C 64, 12, 12
-F  25, 24, 24
+F 4, 12, 14
+C  13, 22, 26
 EA ./path_to_the_east_texture    dfgd
 
 
