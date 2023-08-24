@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 13:38:45 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/23 17:07:57 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/08/24 11:50:26 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,54 +86,10 @@ void	read_file_and_get_informations(char *file_path, t_vars *vars)
 	check_if_informations_are_valid(vars);
 }
 
-void	leaks(void)
-{
-	system("leaks cub3D");
-}
-
-void	get_floor_and_ceiling_color(t_vars *vars)
-{
-	t_infos	*tmp;
-
-	tmp = vars->infos;
-	while (tmp)
-	{
-		if (tmp->element[0] == 'C')
-			vars->ceiling_color = (tmp->rgb[0] * pow(256, 2)) + tmp->rgb[1] * 256 + tmp->rgb[2];
-		else if (tmp->element[0] == 'F')
-			vars->floor_color = (tmp->rgb[0] * pow(256, 2)) + tmp->rgb[1] * 256 + tmp->rgb[2];
-		tmp = tmp->link;
-	}
-	vars->i = -1;
-	while (++vars->i < WINDOW_HEIGHT / 2)
-	{
-		vars->j = -1;
-		while (++vars->j < WINDOW_WIDTH)
-		{
-			if (vars->i < WINDOW_HEIGHT / 2)
-				draw_pixels_on_image(&vars->image, vars->j, vars->i, vars->ceiling_color);
-			else
-				draw_pixels_on_image(&vars->image, vars->j, vars->i, vars->floor_color);
-		}
-	}
-}
-
-int	release_key(int keycode, t_vars *vars)
-{
-	if (keycode == 13 || keycode == 1)
-		vars->player.walk_direction = FALSE;
-	else if (keycode == 0 || keycode == 2)
-		vars->player.walk_dir_side = FALSE;
-	else if (keycode == 123 || keycode == 124)
-		vars->player.turn_direction = FALSE;
-	return (0);
-}
-
 int	main(int ac, char **av)
 {
 	t_vars	*vars;
 
-	// atexit(leaks);
 	vars = malloc(sizeof(t_vars));
 	if (!vars)
 		return (0);
@@ -149,8 +105,8 @@ int	main(int ac, char **av)
 		exit(1);
 	open_window(vars);
 	mlx_loop_hook(vars->mlx, draw_minimap, vars);
-	mlx_hook(vars->mlx_win, 3, 0, release_key, vars);
 	mlx_hook(vars->mlx_win, 2, 0, key_press, vars);
+	mlx_hook(vars->mlx_win, 3, 0, key_release, vars);
 	mlx_hook(vars->mlx_win, 17, 0, close_window, vars);
 	mlx_loop(vars->mlx);
 	free_data(&vars->infos, NULL, vars->map);

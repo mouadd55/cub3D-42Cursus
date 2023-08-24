@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing_functions.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 15:06:11 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/23 17:45:19 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/08/24 11:46:30 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,12 @@ void	draw_pixels_in_each_square(t_vars *vars)
 			{
 				if (vars->y * MINIMAP_SIZE < WINDOW_HEIGHT / 2)
 					draw_pixels_on_image(&vars->image, (vars->x * MINIMAP_SIZE)
-						+ vars->i, (vars->y * MINIMAP_SIZE) + vars->j, vars->ceiling_color);
+						+ vars->i, (vars->y * MINIMAP_SIZE) + vars->j,
+						vars->ceiling_color);
 				else
-				{
 					draw_pixels_on_image(&vars->image, (vars->x * MINIMAP_SIZE)
-						+ vars->i, (vars->y * MINIMAP_SIZE) + vars->j, vars->floor_color);
-				}
+						+ vars->i, (vars->y * MINIMAP_SIZE) + vars->j,
+						vars->floor_color);
 			}
 			else if (vars->map[vars->y][vars->x] == '1')
 				draw_pixels_on_image(&vars->image, (vars->x * MINIMAP_SIZE)
@@ -97,35 +97,6 @@ void	draw_pixels_in_each_square(t_vars *vars)
 				draw_pixels_on_image(&vars->image, (vars->x * MINIMAP_SIZE)
 					+ vars->i, (vars->y * MINIMAP_SIZE) + vars->j, 0xdbd6d6);
 		}
-	}
-}
-
-void	calculate_next_move_of_player(t_vars *vars)
-{
-	double	pixels_per_step;
-
-	if (vars->player.walk_dir_side)
-	{
-		pixels_per_step = vars->player.walk_dir_side * WALKING_SPEED;
-		vars->player.p_x2 = vars->player.p_x1 + cos(vars->player.starting_angle + (M_PI / 2)) * pixels_per_step;
-		vars->player.p_y2 = vars->player.p_y1 - sin(vars->player.starting_angle + (M_PI / 2)) * pixels_per_step;
-	}
-	else
-	{
-		pixels_per_step = vars->player.walk_direction * WALKING_SPEED;
-		vars->player.starting_angle += vars->player.turn_direction * vars->player.rotation_speed;
-		vars->player.p_x2 = vars->player.p_x1 + cos(vars->player.starting_angle) * pixels_per_step;
-		vars->player.p_y2 = vars->player.p_y1 - sin(vars->player.starting_angle) * pixels_per_step;
-	}
-}
-
-void	check_if_there_is_a_wall(t_vars *vars)
-{
-	if (vars->map[(int)floor(vars->player.p_y2 / MINIMAP_SIZE)]
-		[(int)floor(vars->player.p_x2 / MINIMAP_SIZE)] != '1')
-	{
-		vars->player.p_x1 = vars->player.p_x2;
-		vars->player.p_y1 = vars->player.p_y2;
 	}
 }
 

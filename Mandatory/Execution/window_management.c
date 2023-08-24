@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 11:19:21 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/22 16:04:26 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/24 10:50:35 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ void	open_window(t_vars *vars)
 	if (!vars->mlx)
 		exit(1);
 	get_window_resolution(vars);
-	vars->mlx_win = mlx_new_window(vars->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Cub3D");
+	vars->mlx_win = mlx_new_window(vars->mlx, WINDOW_WIDTH,
+			WINDOW_HEIGHT, "Cub3D");
 	if (!vars->mlx_win)
 		exit(1);
 	create_new_image(vars);

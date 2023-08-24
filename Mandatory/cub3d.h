@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:03:57 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/23 17:15:53 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/08/24 11:51:17 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define BACKWARD -1
 
 # define MINIMAP_SIZE 30
-# define WALKING_SPEED 1
+# define WALKING_SPEED 2
 
 # include <mlx.h>
 # include <math.h>
@@ -125,6 +125,11 @@ void		draw_circle(int x, int y, t_img *img);
 void		draw_line(t_vars *vars, double x2, double y2);
 void		draw_pixels_in_each_square(t_vars *vars);
 void		draw_pixels_on_image(t_img *img, int x, int y, int color);
+void		get_floor_and_ceiling_color(t_vars *vars);
+int			key_release(int keycode, t_vars *vars);
+void		calculate_next_move_of_player(t_vars *vars);
+void		check_if_there_is_a_wall(t_vars *vars);
+void		get_colors_values_from_file(t_vars *vars);
 void		get_floor_and_ceiling_color(t_vars *vars);
 
 #endif

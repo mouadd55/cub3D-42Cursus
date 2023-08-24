@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+         #
+#    By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/14 09:05:11 by moudrib           #+#    #+#              #
-#    Updated: 2023/08/23 17:16:54 by bbenidar         ###   ########.fr        #
+#    Updated: 2023/08/24 11:41:55 by moudrib          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRC		= \
 			Mandatory/Execution/player_movements.c \
 			Mandatory/Execution/drawing_functions.c \
 			Mandatory/Execution/window_management.c \
+			Mandatory/Execution/events_management.c \
 
 
 			
