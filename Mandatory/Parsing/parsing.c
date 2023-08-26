@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 07:31:19 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/24 14:00:11 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/26 11:46:22 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,18 @@ void	free_data(t_infos **infos, char **elements, char **arr)
 		ft_destroy_list(infos);
 	if (elements)
 		ft_free_arr(elements);
+}
+
+void	first_checks(int ac)
+{
+	if (ac < 2)
+		ft_error(1, 0, 0, 0);
+	else if (ac > 2)
+		ft_error(2, 0, 0, 0);
+	if (WINDOW_HEIGHT != 720 || WINDOW_WIDTH != 1280)
+		ft_error(8, 0, 0, 0);
+	if (WALKING_SPEED < 0 || WALKING_SPEED > 10)
+		ft_error(9, 0, 0, 0);
 }
 
 void	ft_error(int cases, t_infos **infos, char **elements, char **arr)
@@ -38,6 +50,10 @@ void	ft_error(int cases, t_infos **infos, char **elements, char **arr)
 		ft_putstr("\e[1m\x1B[31mError: \e[37mMap's not sealed! Edit and retry.\n");
 	else if (cases == 7)
 		ft_putstr("\e[1m\x1B[31mError: \e[37mElements are invalid.\n");
+	else if (cases == 8)
+		ft_putstr("\e[1m\x1B[31mError: \e[37mResolution not supported.\n");
+	else if (cases == 9)
+		ft_putstr("\e[1m\x1B[31mError: \e[37mAdjust player settings.\n");
 	free_data(infos, elements, arr);
 	exit(1);
 }

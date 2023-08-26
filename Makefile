@@ -6,13 +6,13 @@
 #    By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/14 09:05:11 by moudrib           #+#    #+#              #
-#    Updated: 2023/08/24 15:17:06 by moudrib          ###   ########.fr        #
+#    Updated: 2023/08/26 11:53:55 by moudrib          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME    = cub3D
 CC      = cc
-CFLAGS	= -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS	= -Wall -Wextra -Werror #-g -fsanitize=address
 OBJDIR	= _Object_files/
 R		= \x1B[91m
 G		= \x1B[32m
@@ -24,12 +24,12 @@ SRC		= \
 			Libft_utils/libft_utils3.c \
 			Libft_utils/libft_utils4.c \
 			Libft_utils/libft_utils5.c \
+			Get_next_line/get_next_line.c \
 			Mandatory/Parsing/cub3d.c \
 			Mandatory/Parsing/parsing.c \
-			Get_next_line/get_next_line.c \
+			Mandatory/Parsing/map_pars.c \
 			Mandatory/Parsing/parsing_utils.c \
 			Mandatory/Parsing/check_elemnts.c \
-			Mandatory/Parsing/map_pars.c \
 			Mandatory/Parsing/parsing_elements.c \
 			Mandatory/Execution/colors.c \
 			Mandatory/Execution/raycasting.c \

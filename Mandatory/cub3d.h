@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:03:57 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/24 17:51:25 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/26 13:08:46 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,18 @@
 # define WINDOW_WIDTH 1280
 
 # define FALSE 0
-# define LEFT -1
-# define RIGHT 1
+
+# define LEFT 1
+# define RIGHT -1
+
 # define FORWARD 1
 # define BACKWARD -1
+
+# define UP 1
+# define DOWN -1
+
+# define LEFT 1
+# define RIGHT -1
 
 # define MINIMAP_SIZE 30
 # define WALKING_SPEED 2
@@ -33,7 +41,14 @@
 
 typedef struct s_ray
 {
+	int		up_down;
+	int		left_right;
+	double	distance;
 	double	ray_angle;
+	double	vertical_intersection_x;
+	double	vertical_intersection_y;
+	double	horizontal_intersection_x;
+	double	horizontal_intersection_y;
 }	t_ray;
 
 typedef struct s_player
@@ -44,9 +59,9 @@ typedef struct s_player
 	double		p_y2;
 	double		x_final;
 	double		y_final;
-	int			turn_direction;
 	int			turn_dir_top;
 	int			walk_dir_side;
+	int			turn_direction;
 	int			walk_direction;
 	double		rotation_speed;
 	double		starting_angle;
@@ -104,6 +119,7 @@ typedef struct s_vars
 
 /***************************** Parsing functions ******************************/
 
+void		first_checks(int ac);
 int			ft_isdigit(char *str);
 int			ft_tablen(char **str);
 int			is_printable(char *line);
@@ -125,9 +141,9 @@ int			close_window(t_vars *vars);
 int			draw_minimap(t_vars *vars);
 void		init_player_infos(t_vars *v);
 void		create_new_image(t_vars *vars);
+void		adjust_angles(double *ray_angle);
 void		initialize_rays_infos(t_vars *vars);
 int			key_press(int keycode, t_vars *vars);
-void		calculate_next_position_coordinates(t_player *player);
 void		draw_circle(int x, int y, t_img *img);
 int			key_release(int keycode, t_vars *vars);
 void		check_if_there_is_a_wall(t_vars *vars);
@@ -136,8 +152,8 @@ void		get_floor_and_ceiling_color(t_vars *vars);
 void		get_colors_values_from_file(t_vars *vars);
 void		get_floor_and_ceiling_color(t_vars *vars);
 void		calculate_next_move_of_player(t_vars *vars);
+void		calculate_next_position_coordinates(t_player *player);
 void		draw_line(t_vars *vars, double x2, double y2, int color);
 void		draw_pixels_on_image(t_img *img, int x, int y, int color);
-
 
 #endif
