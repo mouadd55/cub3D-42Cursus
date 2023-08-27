@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:03:57 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/26 13:08:46 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/27 13:40:59 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ typedef struct s_ray
 	int		left_right;
 	double	distance;
 	double	ray_angle;
-	double	vertical_intersection_x;
-	double	vertical_intersection_y;
-	double	horizontal_intersection_x;
-	double	horizontal_intersection_y;
+	double		vertical_intersection_x;
+	double		vertical_intersection_y;
+	double		horizontal_intersection_x;
+	double		horizontal_intersection_y;
 }	t_ray;
 
 typedef struct s_player
