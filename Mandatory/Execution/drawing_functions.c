@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 15:06:11 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/28 15:46:41 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/28 17:20:30 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,13 @@ void	draw_pixels_in_each_square(t_vars *vars)
 		while (++vars->i < MINIMAP_SIZE * 0.2)
 		{
 			if (vars->map[vars->y][vars->x] == '1')
-				draw_pixels_on_image(&vars->image, (vars->x * MINIMAP_SIZE * 0.2)
-					+ vars->i, (vars->y * MINIMAP_SIZE * 0.2) + vars->j, 0x525b56);
+				draw_pixels_on_image(&vars->image, vars->x * MINIMAP_SIZE * 0.2
+					+ vars->i, (vars->y * MINIMAP_SIZE * 0.2)
+					+ vars->j, 0x525b56);
 			else if (vars->map[vars->y][vars->x] == '0')
-				draw_pixels_on_image(&vars->image, (vars->x * MINIMAP_SIZE * 0.2)
-					+ vars->i, (vars->y * MINIMAP_SIZE * 0.2) + vars->j, 0xa4978e);
+				draw_pixels_on_image(&vars->image, vars->x * MINIMAP_SIZE * 0.2
+					+ vars->i, (vars->y * MINIMAP_SIZE * 0.2)
+					+ vars->j, 0xa4978e);
 		}
 	}
 }
@@ -106,7 +108,8 @@ int	draw_minimap(t_vars *vars)
 			draw_pixels_in_each_square(vars);
 		}
 	}
-	draw_line(vars, vars->player.x_final * 0.2, vars->player.y_final * 0.2, 12079170);
+	draw_line(vars, vars->player.x_final * 0.2,
+		vars->player.y_final * 0.2, 12079170);
 	draw_circle(vars->player.p_x1 * 0.2, vars->player.p_y1 * 0.2, &vars->image);
 	mlx_clear_window(vars->mlx, vars->mlx_win);
 	mlx_put_image_to_window(vars->mlx, vars->mlx_win, vars->image.img, 0, 0);

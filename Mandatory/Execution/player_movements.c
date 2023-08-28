@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 12:14:02 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/28 16:06:39 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/28 17:20:46 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	init_player_infos(t_vars *vars)
 	else if (vars->map[vars->j][vars->i] == 'S')
 		vars->player.starting_angle = M_PI_2;
 	vars->player.rotation_speed = (M_PI / 180) * 2;
-	vars->player.p_x1 = vars->i * MINIMAP_SIZE + MINIMAP_SIZE  / 2;
+	vars->player.p_x1 = vars->i * MINIMAP_SIZE + MINIMAP_SIZE / 2;
 	vars->player.p_y1 = vars->j * MINIMAP_SIZE + MINIMAP_SIZE / 2;
 	vars->map[vars->j][vars->i] = '0';
 }

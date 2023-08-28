@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:03:57 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/28 14:41:17 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/28 17:01:08 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define RIGHT -1
 
 # define MINIMAP_SIZE 64
-# define WALKING_SPEED 2
+# define WALKING_SPEED 3
 
 # include <mlx.h>
 # include <math.h>
@@ -109,6 +109,10 @@ typedef struct s_vars
 	void			*mlx_win;
 	double			x1;
 	double			y1;
+	double			a_x;
+	double			a_y;
+	double			xstep;
+	double			ystep;
 	double			fov_angle;
 	t_infos			*tmp;
 	t_img			image;

@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 14:57:31 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/28 16:11:21 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/28 17:22:01 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,87 +21,76 @@ void	what_direction_the_player_is_facing(t_vars *vars)
 		vars->ray[vars->i].left_right = RIGHT;
 }
 
-/*
- * a_x and a_y are the coordinates of the first horizontal intersection point
-*/
-void	horizontal_wall_intersection(t_vars *vars)
+void	find_first_intersection_with_wall(t_vars *vars,
+	double *ray_x, double *ray_y)
 {
-	double	a_x;
-	double	a_y;
-	double	xstep;
-	double	ystep;
-
-	what_direction_the_player_is_facing(vars);
-	a_y = floor(vars->player.p_y1 / MINIMAP_SIZE) * MINIMAP_SIZE;
-	if (vars->ray[vars->i].up_down == DOWN)
-		a_y += MINIMAP_SIZE;
-	a_x = vars->player.p_x1
-		+ (a_y - vars->player.p_y1) / tan(vars->ray[vars->i].ray_angle);
-	ystep = MINIMAP_SIZE;
-	if (vars->ray[vars->i].up_down == UP)
-		ystep *= -1;
-	xstep = ystep / tan(vars->ray[vars->i].ray_angle);
-	if ((vars->ray[vars->i].left_right == LEFT && xstep > 0)
-		|| (vars->ray[vars->i].left_right == RIGHT && xstep < 0))
-		xstep *= -1;
-	vars->ray[vars->i].horizontal_intersection_x = a_x;
-	vars->ray[vars->i].horizontal_intersection_y = a_y;
-	if (vars->ray[vars->i].up_down == UP)
-		vars->ray[vars->i].horizontal_intersection_y--;
-	while (vars->ray[vars->i].horizontal_intersection_x >= 0
-		&& vars->ray[vars->i].horizontal_intersection_y >= 0
-		&& vars->ray[vars->i].horizontal_intersection_y < vars->height * MINIMAP_SIZE
-		&& vars->ray[vars->i].horizontal_intersection_x < (int)ft_strlen(vars->map[(int)vars->ray[vars->i].horizontal_intersection_y / MINIMAP_SIZE]) * MINIMAP_SIZE)
+	while (*ray_x >= 0
+		&& *ray_y >= 0
+		&& *ray_y < vars->height * MINIMAP_SIZE
+		&& *ray_x < (int)ft_strlen(vars->map[(int)*ray_y / MINIMAP_SIZE])
+		* MINIMAP_SIZE)
 	{
-		if (vars->map[(int)(vars->ray[vars->i].horizontal_intersection_y / MINIMAP_SIZE)]
-			[(int)vars->ray[vars->i].horizontal_intersection_x / MINIMAP_SIZE] != '0')
+		if (vars->map[(int)(*ray_y / MINIMAP_SIZE)]
+			[(int)*ray_x / MINIMAP_SIZE] != '0')
 			break ;
 		else
 		{
-			vars->ray[vars->i].horizontal_intersection_x += xstep;
-			vars->ray[vars->i].horizontal_intersection_y += ystep;
+			*ray_x += vars->xstep;
+			*ray_y += vars->ystep;
 		}
 	}
-	// draw_pixels_on_image(&vars->image, (int)vars->ray[vars->i].horizontal_intersection_x, (int)vars->ray[vars->i].horizontal_intersection_y, 0xffffff);
+}
+
+/*
+ * a_x and vars->a_y are the coordinates of
+ * the first horizontal intersection point
+*/
+void	horizontal_wall_intersection(t_vars *vars)
+{
+	what_direction_the_player_is_facing(vars);
+	vars->a_y = floor(vars->player.p_y1 / MINIMAP_SIZE) * MINIMAP_SIZE;
+	if (vars->ray[vars->i].up_down == DOWN)
+		vars->a_y += MINIMAP_SIZE;
+	vars->a_x = vars->player.p_x1
+		+ (vars->a_y - vars->player.p_y1) / tan(vars->ray[vars->i].ray_angle);
+	vars->ystep = MINIMAP_SIZE;
+	if (vars->ray[vars->i].up_down == UP)
+		vars->ystep *= -1;
+	vars->xstep = vars->ystep / tan(vars->ray[vars->i].ray_angle);
+	if ((vars->ray[vars->i].left_right == LEFT && vars->xstep > 0)
+		|| (vars->ray[vars->i].left_right == RIGHT && vars->xstep < 0))
+		vars->xstep *= -1;
+	vars->ray[vars->i].horizontal_intersection_x = vars->a_x;
+	vars->ray[vars->i].horizontal_intersection_y = vars->a_y;
+	if (vars->ray[vars->i].up_down == UP)
+		vars->ray[vars->i].horizontal_intersection_y--;
+	find_first_intersection_with_wall(vars,
+		&vars->ray[vars->i].horizontal_intersection_x,
+		&vars->ray[vars->i].horizontal_intersection_y);
 }
 
 void	vertical_wall_intersection(t_vars *vars)
 {
-	double	a_x;
-	double	a_y;
-	double	xstep;
-	double	ystep;
-
 	what_direction_the_player_is_facing(vars);
-	a_x = floor(vars->player.p_x1 / MINIMAP_SIZE) * MINIMAP_SIZE;
+	vars->a_x = floor(vars->player.p_x1 / MINIMAP_SIZE) * MINIMAP_SIZE;
 	if (vars->ray[vars->i].left_right == RIGHT)
-		a_x += MINIMAP_SIZE;
-	a_y = vars->player.p_y1 + (a_x - vars->player.p_x1) * tan(vars->ray[vars->i].ray_angle);
-	xstep = MINIMAP_SIZE;
+		vars->a_x += MINIMAP_SIZE;
+	vars->a_y = vars->player.p_y1 + (vars->a_x - vars->player.p_x1)
+		* tan(vars->ray[vars->i].ray_angle);
+	vars->xstep = MINIMAP_SIZE;
 	if (vars->ray[vars->i].left_right == LEFT)
-		xstep *= -1;
-	ystep = xstep * tan(vars->ray[vars->i].ray_angle);
-	if ((vars->ray[vars->i].up_down == UP && ystep > 0) || (vars->ray[vars->i].up_down == DOWN && ystep < 0))
-		ystep *= -1;
-	vars->ray[vars->i].vertical_intersection_x = a_x;
-	vars->ray[vars->i].vertical_intersection_y = a_y;
+		vars->xstep *= -1;
+	vars->ystep = vars->xstep * tan(vars->ray[vars->i].ray_angle);
+	if ((vars->ray[vars->i].up_down == UP && vars->ystep > 0)
+		|| (vars->ray[vars->i].up_down == DOWN && vars->ystep < 0))
+		vars->ystep *= -1;
+	vars->ray[vars->i].vertical_intersection_x = vars->a_x;
+	vars->ray[vars->i].vertical_intersection_y = vars->a_y;
 	if (vars->ray[vars->i].left_right == LEFT)
 		vars->ray[vars->i].vertical_intersection_x--;
-	while (vars->ray[vars->i].vertical_intersection_x >= 0
-		&& vars->ray[vars->i].vertical_intersection_y >= 0
-		&& vars->ray[vars->i].vertical_intersection_y < vars->height * MINIMAP_SIZE
-		&& vars->ray[vars->i].vertical_intersection_x < (int)ft_strlen(vars->map[(int)vars->ray[vars->i].horizontal_intersection_y / MINIMAP_SIZE]) * MINIMAP_SIZE)
-	{
-		if (vars->map[(int)(vars->ray[vars->i].vertical_intersection_y / MINIMAP_SIZE)]
-			[(int)vars->ray[vars->i].vertical_intersection_x / MINIMAP_SIZE] != '0')
-			break ;
-		else
-		{
-			vars->ray[vars->i].vertical_intersection_x += xstep;
-			vars->ray[vars->i].vertical_intersection_y += ystep;
-		}
-	}
-	// draw_pixels_on_image(&vars->image, (int)vars->ray[vars->i].vertical_intersection_x, (int)vars->ray[vars->i].vertical_intersection_y, 0xffffff);
+	find_first_intersection_with_wall(vars,
+		&vars->ray[vars->i].vertical_intersection_x,
+		&vars->ray[vars->i].vertical_intersection_y);
 }
 
 void	adjust_angles(double *ray_angle)
@@ -114,19 +103,9 @@ void	adjust_angles(double *ray_angle)
 void	draw_rays(t_vars *vars, int horizontal_distance, int vertical_distance)
 {
 	if (horizontal_distance < vertical_distance)
-	{
 		vars->ray[vars->i].distance = horizontal_distance;
-		printf("ray_distance: %d\n", horizontal_distance);
-		// draw_line(vars, vars->ray[vars->i].horizontal_intersection_x,
-			// vars->ray[vars->i].horizontal_intersection_y, 12488803);
-	}
 	else
-	{
 		vars->ray[vars->i].distance = vertical_distance;
-		printf("ray_distance: %d\n", vertical_distance);
-		// draw_line(vars, vars->ray[vars->i].verticawl_intersection_x,
-			// vars->ray[vars->i].vertical_intersection_y, 12488803);
-	}
 }
 
 void	rendering_walls(t_vars *vars)
@@ -138,8 +117,8 @@ void	rendering_walls(t_vars *vars)
 	vars->i = -1;
 	while (++vars->i < WINDOW_WIDTH)
 	{
-		projected_wall_height = fabs((64 / vars->ray[vars->i].distance) * ((WINDOW_WIDTH / 2) / tan(vars->fov_angle / 2)));
-		// printf("projected_wall_height: %d\n", projected_wall_height);
+		projected_wall_height = fabs((64 / vars->ray[vars->i].distance)
+				* ((WINDOW_WIDTH / 2) / tan(vars->fov_angle / 2)));
 		rect_y1 = (WINDOW_HEIGHT / 2) - (projected_wall_height / 2);
 		rect_y2 = rect_y1 + projected_wall_height;
 		while (rect_y1 < rect_y2)
@@ -166,8 +145,12 @@ void	initialize_rays_infos(t_vars *vars)
 		adjust_angles(&ray_angle);
 		vertical_wall_intersection(vars);
 		horizontal_wall_intersection(vars);
-		vertical_distance = fabs(vars->player.p_x1 - vars->ray[vars->i].vertical_intersection_x) / fabs(cos(vars->ray[vars->i].ray_angle));
-		horizontal_distance = fabs(vars->player.p_x1 - vars->ray[vars->i].horizontal_intersection_x) / fabs(cos(vars->ray[vars->i].ray_angle));
+		vertical_distance = fabs(vars->player.p_x1
+				- vars->ray[vars->i].vertical_intersection_x)
+			/ fabs(cos(vars->ray[vars->i].ray_angle));
+		horizontal_distance = fabs(vars->player.p_x1
+				- vars->ray[vars->i].horizontal_intersection_x)
+			/ fabs(cos(vars->ray[vars->i].ray_angle));
 		vars->ray[vars->i].ray_angle = ray_angle;
 		draw_rays(vars, horizontal_distance, vertical_distance);
 		ray_angle += vars->fov_angle / WINDOW_WIDTH;
