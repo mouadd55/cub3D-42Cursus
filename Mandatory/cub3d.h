@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:03:57 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/27 13:40:59 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/28 14:41:17 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define LEFT 1
 # define RIGHT -1
 
-# define MINIMAP_SIZE 30
+# define MINIMAP_SIZE 64
 # define WALKING_SPEED 2
 
 # include <mlx.h>
@@ -41,39 +41,39 @@
 
 typedef struct s_ray
 {
-	int		up_down;
-	int		left_right;
-	double	distance;
-	double	ray_angle;
-	double		vertical_intersection_x;
-	double		vertical_intersection_y;
-	double		horizontal_intersection_x;
-	double		horizontal_intersection_y;
+	int				up_down;
+	int				left_right;
+	double			distance;
+	double			ray_angle;
+	double			vertical_intersection_x;
+	double			vertical_intersection_y;
+	double			horizontal_intersection_x;
+	double			horizontal_intersection_y;
 }	t_ray;
 
 typedef struct s_player
 {
-	double		p_x1;
-	double		p_y1;
-	double		p_x2;
-	double		p_y2;
-	double		x_final;
-	double		y_final;
-	int			turn_dir_top;
-	int			walk_dir_side;
-	int			turn_direction;
-	int			walk_direction;
-	double		rotation_speed;
-	double		starting_angle;
+	double			p_x1;
+	double			p_y1;
+	double			p_x2;
+	double			p_y2;
+	double			x_final;
+	double			y_final;
+	int				turn_dir_top;
+	int				walk_dir_side;
+	int				turn_direction;
+	int				walk_direction;
+	double			rotation_speed;
+	double			starting_angle;
 }	t_player;
 
 typedef struct s_img
 {
-	void	*img;
-	char	*addr;
-	int		endian;
-	int		line_length;
-	int		bits_per_pixel;
+	void			*img;
+	char			*addr;
+	int				endian;
+	int				line_length;
+	int				bits_per_pixel;
 }	t_img;
 
 typedef struct s_counter

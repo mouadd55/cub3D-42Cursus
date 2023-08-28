@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 12:14:02 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/26 11:38:38 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/28 16:06:39 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 void	check_if_there_is_a_wall(t_vars *vars)
 {
-	if ((vars->player.p_y2 >= 0 && vars->player.p_y2 < WINDOW_HEIGHT
-		&& vars->player.p_x2 >= 0 && vars->player.p_x2 < WINDOW_WIDTH)
-		&& (vars->map[(int)floor((vars->player.p_y2) / MINIMAP_SIZE)]
-		[(int)floor((vars->player.p_x2) / MINIMAP_SIZE)] != '1'))
+	if ((vars->map[(int)floor((vars->player.p_y2) / MINIMAP_SIZE)]
+			[(int)floor((vars->player.p_x2) / MINIMAP_SIZE)] != '1'))
 	{
 		vars->player.p_x1 = vars->player.p_x2;
 		vars->player.p_y1 = vars->player.p_y2;
@@ -74,7 +72,7 @@ void	calculate_next_position_coordinates(t_player *player)
 {
 	int	hypotenuse;
 
-	hypotenuse = MINIMAP_SIZE / 2;
+	hypotenuse = (MINIMAP_SIZE * 0.2) / 2;
 	player->x_final = (player->p_x1)
 		+ (cos(player->starting_angle) * hypotenuse);
 	player->y_final = (player->p_y1)
@@ -95,8 +93,8 @@ void	init_player_infos(t_vars *vars)
 		vars->player.starting_angle = 2 * M_PI;
 	else if (vars->map[vars->j][vars->i] == 'S')
 		vars->player.starting_angle = M_PI_2;
-	vars->player.rotation_speed = (M_PI / 180) * 4;
-	vars->player.p_x1 = vars->i * MINIMAP_SIZE + MINIMAP_SIZE / 2;
+	vars->player.rotation_speed = (M_PI / 180) * 2;
+	vars->player.p_x1 = vars->i * MINIMAP_SIZE + MINIMAP_SIZE  / 2;
 	vars->player.p_y1 = vars->j * MINIMAP_SIZE + MINIMAP_SIZE / 2;
 	vars->map[vars->j][vars->i] = '0';
 }
