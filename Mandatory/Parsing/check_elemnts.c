@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_elemnts.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 15:49:46 by bbenidar          #+#    #+#             */
-/*   Updated: 2023/08/15 01:49:34 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/08/26 11:43:54 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "../cub3d.h"
 
 int	ft_tablen(char **str)
 {
@@ -20,14 +20,6 @@ int	ft_tablen(char **str)
 	while (str[i])
 		i++;
 	return (i);
-}
-
-void	ft_bben_error(int cases)
-{
-	if (cases == 1)
-		ft_putstr("\e[1m\x1B[31mError: \e[37mMap's not sealed! Edit and retry.\n");
-	else if (cases == 2)
-		ft_putstr("\e[1m\x1B[31mError: \e[37mElements are invalid.\n");
 }
 
 int	check_wall(char **str, int i, int j)

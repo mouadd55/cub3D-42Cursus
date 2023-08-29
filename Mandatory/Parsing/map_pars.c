@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map_pars.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 15:46:38 by bbenidar          #+#    #+#             */
-/*   Updated: 2023/08/15 01:50:56 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/08/24 14:09:39 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
-
-
+#include "../cub3d.h"
 
 int	ft_count_elem(char **str)
 {
@@ -81,7 +79,7 @@ int	is_empty(char *map)
 	return (1);
 }
 
-int	check_for_emty_line(char **str)
+int	check_for_empty_line(char **str)
 {
 	int	i;
 
@@ -99,7 +97,7 @@ int	check_for_emty_line(char **str)
 		}
 		i++;
 	}
-	return (1);
+	return (0);
 }
 
 int	general_map_check(char **map)
@@ -108,10 +106,10 @@ int	general_map_check(char **map)
 	int	j;
 
 	i = 0;
-	if (check_for_emty_line(map))
-		return (ft_bben_error(2), 0);
+	if (check_for_empty_line(map))
+		return (ft_error(7, 0, 0, 0), 0);
 	if (!ft_count_elem(map) || !ft_check_map(map))
-		return (ft_bben_error(2), 0);
+		return (ft_error(7, 0, 0, 0), 0);
 	while (map[i])
 	{
 		j = 0;
@@ -120,7 +118,7 @@ int	general_map_check(char **map)
 			if ((map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == '0'
 				|| map[i][j] == 'E' || map[i][j] == 'W' )
 					&& !check_wall(map, i, j))
-				return (ft_bben_error(1), 0);
+				return (ft_error(6, 0, 0, 0), 0);
 			j++;
 		}
 		i++;

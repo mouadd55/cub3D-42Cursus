@@ -3,14 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   player_movements.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 12:14:02 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/18 21:16:25 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/08/28 17:20:46 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+void	check_if_there_is_a_wall(t_vars *vars)
+{
+	if ((vars->map[(int)floor((vars->player.p_y2) / MINIMAP_SIZE)]
+			[(int)floor((vars->player.p_x2) / MINIMAP_SIZE)] != '1'))
+	{
+		vars->player.p_x1 = vars->player.p_x2;
+		vars->player.p_y1 = vars->player.p_y2;
+	}
+}
+
+void	calculate_next_move_of_player(t_vars *vars)
+{
+	double	pixels_per_step;
+
+	if (vars->player.walk_dir_side)
+	{
+		pixels_per_step = vars->player.walk_dir_side * WALKING_SPEED;
+		vars->player.starting_angle += vars->player.turn_direction
+			* vars->player.rotation_speed;
+		adjust_angles(&vars->player.starting_angle);
+		vars->player.p_x2 = vars->player.p_x1 + cos(vars->player.starting_angle
+				+ (M_PI / 2)) * pixels_per_step;
+		vars->player.p_y2 = vars->player.p_y1 + sin(vars->player.starting_angle
+				+ (M_PI / 2)) * pixels_per_step;
+	}
+	else
+	{
+		pixels_per_step = vars->player.walk_direction * WALKING_SPEED;
+		vars->player.starting_angle += vars->player.turn_direction
+			* vars->player.rotation_speed;
+		adjust_angles(&vars->player.starting_angle);
+		vars->player.p_x2 = vars->player.p_x1
+			+ cos(vars->player.starting_angle) * pixels_per_step;
+		vars->player.p_y2 = vars->player.p_y1
+			+ sin(vars->player.starting_angle) * pixels_per_step;
+	}
+}
 
 void	find_player_position(t_vars *v)
 {
@@ -30,59 +68,33 @@ void	find_player_position(t_vars *v)
 	}
 }
 
-void	calculate_x2_and_y2(t_player *player)
+void	calculate_next_position_coordinates(t_player *player)
 {
-	player->x2 = (int)((player->x1 + (MINIMAP_SIZE / 2))
-			+ (cos(player->starting_angle) * (MINIMAP_SIZE / 2)));
-	player->y2 = (int)((player->y1 + (MINIMAP_SIZE / 2))
-			+ (-sin(player->starting_angle) * (MINIMAP_SIZE / 2)));
-}
+	int	hypotenuse;
 
-int	key_press(int keycode, t_vars *vars)
-{
-	if (keycode == 53)
-		close_window(vars);
-	else if (keycode == 13)
-	{
-		vars->player.walk_direction = 1;
-		vars->player.turn_direction = 0;
-	}
-	else if (keycode == 1)
-	{
-		vars->player.walk_direction = -1;
-		vars->player.turn_direction = 0;
-	}
-	else if (keycode == 123)
-	{
-		vars->player.walk_direction = 0;
-		vars->player.turn_direction = 1;
-	}
-	else if (keycode == 124)
-	{
-		vars->player.walk_direction = 0;
-		vars->player.turn_direction = -1;
-	}
-	mlx_clear_window(vars->mlx, vars->mlx_win);
-	draw_minimap(vars);
-	return (0);
+	hypotenuse = (MINIMAP_SIZE * 0.2) / 2;
+	player->x_final = (player->p_x1)
+		+ (cos(player->starting_angle) * hypotenuse);
+	player->y_final = (player->p_y1)
+		+ (sin(player->starting_angle) * hypotenuse);
 }
 
 void	init_player_infos(t_vars *vars)
 {
 	find_player_position(vars);
+	vars->player.walk_dir_side = 0;
 	vars->player.turn_direction = 0;
 	vars->player.walk_direction = 0;
-	vars->player.walking_speed = 6;
-	vars->player.x1 = vars->i * MINIMAP_SIZE;
-	vars->player.y1 = vars->j * MINIMAP_SIZE;
-	vars->player.rotation_speed = (M_PI / 180) * 9;
 	if (vars->map[vars->j][vars->i] == 'N')
-		vars->player.starting_angle = M_PI / 2;
+		vars->player.starting_angle = 3 * M_PI_2;
 	else if (vars->map[vars->j][vars->i] == 'W')
 		vars->player.starting_angle = M_PI;
 	else if (vars->map[vars->j][vars->i] == 'E')
 		vars->player.starting_angle = 2 * M_PI;
 	else if (vars->map[vars->j][vars->i] == 'S')
-		vars->player.starting_angle = 3 * M_PI / 2;
-	vars->map[vars->j][vars->i] = 'P';
+		vars->player.starting_angle = M_PI_2;
+	vars->player.rotation_speed = (M_PI / 180) * 2;
+	vars->player.p_x1 = vars->i * MINIMAP_SIZE + MINIMAP_SIZE / 2;
+	vars->player.p_y1 = vars->j * MINIMAP_SIZE + MINIMAP_SIZE / 2;
+	vars->map[vars->j][vars->i] = '0';
 }

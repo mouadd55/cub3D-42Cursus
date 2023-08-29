@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 13:38:45 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/15 01:51:04 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/08/27 14:40:42 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,23 +86,14 @@ void	read_file_and_get_informations(char *file_path, t_vars *vars)
 	check_if_informations_are_valid(vars);
 }
 
-void	leaks(void)
-{
-	system("leaks cub3D");
-}
-
 int	main(int ac, char **av)
 {
 	t_vars	*vars;
 
-	// atexit(leaks);
+	first_checks(ac);
 	vars = malloc(sizeof(t_vars));
 	if (!vars)
 		return (0);
-	if (ac < 2)
-		ft_error(1, 0, 0, 0);
-	else if (ac > 2)
-		ft_error(2, 0, 0, 0);
 	if (check_valid_extension(av[1]))
 		ft_error(3, 0, 0, 0);
 	read_file_and_get_informations(av[1], vars);
@@ -112,6 +103,7 @@ int	main(int ac, char **av)
 	open_window(vars);
 	mlx_loop_hook(vars->mlx, draw_minimap, vars);
 	mlx_hook(vars->mlx_win, 2, 0, key_press, vars);
+	mlx_hook(vars->mlx_win, 3, 0, key_release, vars);
 	mlx_hook(vars->mlx_win, 17, 0, close_window, vars);
 	mlx_loop(vars->mlx);
 	free_data(&vars->infos, NULL, vars->map);

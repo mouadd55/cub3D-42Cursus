@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+         #
+#    By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/14 09:05:11 by moudrib           #+#    #+#              #
-#    Updated: 2023/08/15 01:50:38 by bbenidar         ###   ########.fr        #
+#    Updated: 2023/08/28 17:24:08 by moudrib          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME    = cub3D
 CC      = cc
-CFLAGS	= -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS	= -Wall -Wextra -Werror #-g -fsanitize=address
 OBJDIR	= _Object_files/
 R		= \x1B[91m
 G		= \x1B[32m
@@ -24,16 +24,19 @@ SRC		= \
 			Libft_utils/libft_utils3.c \
 			Libft_utils/libft_utils4.c \
 			Libft_utils/libft_utils5.c \
+			Get_next_line/get_next_line.c \
 			Mandatory/Parsing/cub3d.c \
 			Mandatory/Parsing/parsing.c \
-			Get_next_line/get_next_line.c \
+			Mandatory/Parsing/map_pars.c \
 			Mandatory/Parsing/parsing_utils.c \
+			Mandatory/Parsing/check_elemnts.c \
 			Mandatory/Parsing/parsing_elements.c \
+			Mandatory/Execution/colors.c \
+			Mandatory/Execution/raycasting.c \
 			Mandatory/Execution/player_movements.c \
 			Mandatory/Execution/drawing_functions.c \
 			Mandatory/Execution/window_management.c \
-			Mandatory/Parsing/bben_parsing/map_pars.c \
-			Mandatory/Parsing/bben_parsing/check_elemnts.c \
+			Mandatory/Execution/events_management.c \
 
 
 			
@@ -53,7 +56,7 @@ $(NAME): $(OBJ)
 # @echo "                           $(W)██$(R)║      $(W)██$(R)║   $(W)██$(R)║ $(W)██$(R)╔══$(W)██$(R)╗  ╚═══$(W)██$(R)╗ $(W)██$(R)║  $(W)██$(R)║"
 # @echo "                           ╚$(W)██████$(R)╗ ╚$(W)██████$(R)╔╝ $(W)██████$(R)╔╝ $(W)██████$(R)╔╝ $(W)██████$(R)╔╝"
 # @echo "                            ╚═════╝  ╚═════╝  ╚═════╝  ╚═════╝  ╚═════╝ "
-# @echo "                                                  $(B)$(R)Made by $(W)$(B)moudrib $(R)&& $(W)$(B)bbenidar"
+# @echo "                                                  $(B)$(R)Made by $(W)$(B)Arobase $(R)&& $(W)$(B)Don Juan"
 # @echo
 # @echo
 
