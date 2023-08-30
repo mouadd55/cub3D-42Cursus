@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:03:57 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/30 15:12:15 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/30 19:14:39 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,5 +159,11 @@ void		calculate_next_move_of_player(t_vars *vars);
 void		calculate_next_position_coordinates(t_player *player);
 void		draw_line(t_vars *vars, double x2, double y2, int color);
 void		draw_pixels_on_image(t_img *img, int x, int y, int color);
+
+void		vertical_wall_intersection(t_vars *vars);
+void		horizontal_wall_intersection(t_vars *vars);
+void		find_first_intersection_with_wall(t_vars *vars,
+				double *ray_x, double *ray_y);
+void		what_direction_the_player_is_facing(t_vars *vars);
 
 #endif
