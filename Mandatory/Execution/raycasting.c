@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 14:57:31 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/28 17:22:01 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/30 11:41:02 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	adjust_angles(double *ray_angle)
 		*ray_angle += (2 * M_PI);
 }
 
-void	draw_rays(t_vars *vars, int horizontal_distance, int vertical_distance)
+void	draw_rays(t_vars *vars, long horizontal_distance, long vertical_distance)
 {
 	if (horizontal_distance < vertical_distance)
 		vars->ray[vars->i].distance = horizontal_distance;
@@ -113,11 +113,14 @@ void	rendering_walls(t_vars *vars)
 	int	rect_y1;
 	int	rect_y2;
 	int	projected_wall_height;
+	double correct_wall_height;
 
 	vars->i = -1;
 	while (++vars->i < WINDOW_WIDTH)
 	{
-		projected_wall_height = fabs((64 / vars->ray[vars->i].distance)
+		correct_wall_height = vars->ray[vars->i].distance
+			* cos(vars->ray[vars->i].ray_angle- vars->player.starting_angle);
+		projected_wall_height = fabs((64 / correct_wall_height)
 				* ((WINDOW_WIDTH / 2) / tan(vars->fov_angle / 2)));
 		rect_y1 = (WINDOW_HEIGHT / 2) - (projected_wall_height / 2);
 		rect_y2 = rect_y1 + projected_wall_height;
@@ -145,6 +148,8 @@ void	initialize_rays_infos(t_vars *vars)
 		adjust_angles(&ray_angle);
 		vertical_wall_intersection(vars);
 		horizontal_wall_intersection(vars);
+		if (fabs(cos(vars->ray[vars->i].ray_angle)) == 0.0)
+			printf("!!!\n");
 		vertical_distance = fabs(vars->player.p_x1
 				- vars->ray[vars->i].vertical_intersection_x)
 			/ fabs(cos(vars->ray[vars->i].ray_angle));
