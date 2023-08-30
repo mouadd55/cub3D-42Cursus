@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 15:06:11 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/28 17:20:30 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/30 15:12:37 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,18 +74,18 @@ void	draw_pixels_on_image(t_img *img, int x, int y, int color)
 
 void	draw_pixels_in_each_square(t_vars *vars)
 {
-	while (++vars->j < MINIMAP_SIZE * 0.2)
+	while (++vars->j < WALL_SIZE * 0.2)
 	{
 		vars->i = -1;
-		while (++vars->i < MINIMAP_SIZE * 0.2)
+		while (++vars->i < WALL_SIZE * 0.2)
 		{
 			if (vars->map[vars->y][vars->x] == '1')
-				draw_pixels_on_image(&vars->image, vars->x * MINIMAP_SIZE * 0.2
-					+ vars->i, (vars->y * MINIMAP_SIZE * 0.2)
+				draw_pixels_on_image(&vars->image, vars->x * WALL_SIZE * 0.2
+					+ vars->i, (vars->y * WALL_SIZE * 0.2)
 					+ vars->j, 0x525b56);
 			else if (vars->map[vars->y][vars->x] == '0')
-				draw_pixels_on_image(&vars->image, vars->x * MINIMAP_SIZE * 0.2
-					+ vars->i, (vars->y * MINIMAP_SIZE * 0.2)
+				draw_pixels_on_image(&vars->image, vars->x * WALL_SIZE * 0.2
+					+ vars->i, (vars->y * WALL_SIZE * 0.2)
 					+ vars->j, 0xa4978e);
 		}
 	}

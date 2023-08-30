@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:03:57 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/30 11:42:01 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/30 15:12:15 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define LEFT 1
 # define RIGHT -1
 
-# define MINIMAP_SIZE 64
+# define WALL_SIZE 64
 # define WALKING_SPEED 3
 
 # include <mlx.h>

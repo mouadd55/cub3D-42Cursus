@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 11:49:49 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/28 15:13:11 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/30 12:45:52 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ void	get_colors_values_from_file(t_vars *vars)
 
 void	get_floor_and_ceiling_color(t_vars *vars)
 {
+	int	floor_gradation;
+	
+	floor_gradation = vars->floor_color;
 	get_colors_values_from_file(vars);
 	vars->i = -1;
 	while (++vars->i < WINDOW_HEIGHT / 2)
@@ -46,6 +49,8 @@ void	get_floor_and_ceiling_color(t_vars *vars)
 		vars->j = -1;
 		while (++vars->j < WINDOW_WIDTH)
 			draw_pixels_on_image(&vars->image, vars->j, vars->i,
-				vars->floor_color);
+				floor_gradation);
+		if (vars->i % 6 == 0)
+			floor_gradation += (1 << 16);
 	}
 }
