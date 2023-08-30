@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing_functions.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 15:06:11 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/28 17:20:30 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/29 18:47:08 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	draw_line(t_vars *vars, double x2, double y2, int color)
 	x_inc = dx / steps;
 	y_inc = dy / steps;
 	x2 = 0;
-	while (x2++ <= steps)
+	while (x2++ <= steps + 5)
 	{
 		draw_pixels_on_image(&vars->image,
 			(int)round(vars->x1), (int)round(vars->y1), color);

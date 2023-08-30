@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:03:57 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/28 17:01:08 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/29 13:20:28 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,8 @@ typedef struct s_vars
 	double			xstep;
 	double			ystep;
 	double			fov_angle;
+	double			wallhit_x;
+	double			wallhit_y;
 	t_infos			*tmp;
 	t_img			image;
 	t_infos			*infos;
