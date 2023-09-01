@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 11:49:49 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/28 15:13:11 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/30 12:42:06 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	get_colors_values_from_file(t_vars *vars)
 	}
 }
 
+
 void	get_floor_and_ceiling_color(t_vars *vars)
 {
 	get_colors_values_from_file(vars);
@@ -41,11 +42,14 @@ void	get_floor_and_ceiling_color(t_vars *vars)
 				vars->ceiling_color);
 	}
 	vars->i--;
+	int  flor_color = vars->floor_color;
 	while (++vars->i < WINDOW_HEIGHT)
 	{
 		vars->j = -1;
 		while (++vars->j < WINDOW_WIDTH)
 			draw_pixels_on_image(&vars->image, vars->j, vars->i,
-				vars->floor_color);
+				 flor_color);
+		if(vars->i % 6 == 0)
+			flor_color += (1 << 16) + (1 << 8) + 1;
 	}
 }

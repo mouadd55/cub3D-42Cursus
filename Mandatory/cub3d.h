@@ -6,7 +6,7 @@
 /*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:03:57 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/29 13:20:28 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/09/01 22:16:29 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,9 @@ typedef struct s_ray
 	double			vertical_intersection_y;
 	double			horizontal_intersection_x;
 	double			horizontal_intersection_y;
+	double			was_hit_v;
+	double			wallhit_x;
+	double			wallhit_y;
 }	t_ray;
 
 typedef struct s_player
@@ -70,10 +73,15 @@ typedef struct s_player
 typedef struct s_img
 {
 	void			*img;
+	char			*text_img;
+	char			*text_img2;
+	int				size_line;
+	int				size_line2;
 	char			*addr;
 	int				endian;
 	int				line_length;
 	int				bits_per_pixel;
+	int 			bits_p_pixel;
 }	t_img;
 
 typedef struct s_counter
@@ -92,11 +100,18 @@ typedef struct s_vars
 	int				j;
 	int				x;
 	int				y;
+	int 			red;
+	int 			green;
+	int 			blue;
 	int				size;
 	int				flag;
 	int				length;
 	int				width;
 	int				height;
+	int				xpm_height;
+	int				xpm_height2;
+	int				xpm_width;
+	int				xpm_width2;
 	int				map_fd;
 	int				floor_color;
 	int				ceiling_color;
@@ -114,8 +129,7 @@ typedef struct s_vars
 	double			xstep;
 	double			ystep;
 	double			fov_angle;
-	double			wallhit_x;
-	double			wallhit_y;
+
 	t_infos			*tmp;
 	t_img			image;
 	t_infos			*infos;
@@ -128,6 +142,9 @@ typedef struct s_vars
 void		first_checks(int ac);
 int			ft_isdigit(char *str);
 int			ft_tablen(char **str);
+unsigned int	draw_pixels_image(t_img *img, int x, int y, int flag);
+void		ft_texture(t_vars *vars);
+void		rgb(int red, int green, int blue, int *color);
 int			is_printable(char *line);
 int			count_commas(char *value);
 int			general_map_check(char **map);

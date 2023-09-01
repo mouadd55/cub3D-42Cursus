@@ -6,7 +6,7 @@
 /*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 15:06:11 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/29 18:47:08 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/09/01 22:16:32 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,26 @@ void	draw_pixels_on_image(t_img *img, int x, int y, int color)
 	position = ((x * (img->bits_per_pixel / 8)) + (y * img->line_length));
 	pixel = img->addr + position;
 	*(int *)pixel = color;
+}
+
+unsigned int	draw_pixels_image(t_img *img, int x, int y, int flag)
+{
+	int		position;
+	char	*pixel;
+	
+	if (x < 0 || y < 0 || y >= WINDOW_HEIGHT || x >= WINDOW_WIDTH)
+		return (0);
+	if (flag == 1)
+	{
+		position = ((x * (4)) + (y * img->size_line));
+		pixel = img->text_img + position;
+	}
+	else{
+		position = ((x * (4)) + (y * img->size_line2));
+		pixel = img->text_img2 + position;
+	}
+	
+	return (*(unsigned int *)pixel);
 }
 
 void	draw_pixels_in_each_square(t_vars *vars)

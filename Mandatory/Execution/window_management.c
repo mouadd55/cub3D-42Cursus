@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window_management.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 11:19:21 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/26 16:41:03 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/08/31 18:05:21 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	open_window(t_vars *vars)
 	get_window_resolution(vars);
 	vars->mlx_win = mlx_new_window(vars->mlx, WINDOW_WIDTH,
 			WINDOW_HEIGHT, "Cub3D");
+	ft_texture(vars);
 	if (!vars->mlx_win)
 		exit(1);
 	create_new_image(vars);
