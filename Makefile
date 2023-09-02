@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+         #
+#    By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/14 09:05:11 by moudrib           #+#    #+#              #
-#    Updated: 2023/08/31 12:36:13 by moudrib          ###   ########.fr        #
+#    Updated: 2023/09/02 14:46:54 by bbenidar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ MANDATORY_SRCS		= \
 			Mandatory/Execution/window_management.c \
 			Mandatory/Execution/events_management.c \
 			Mandatory/Execution/wall_intersections.c \
+			Mandatory/Execution/texture.c \
 
 BONUS_SRCS		= \
 			Bonus/Libft_utils/libft_utils1.c \
