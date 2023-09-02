@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:03:57 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/02 15:34:04 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/09/02 15:36:27 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 # define WINDOW_HEIGHT 720
 # define WINDOW_WIDTH 1280
@@ -47,9 +47,6 @@ typedef struct s_ray
 	double			ray_angle;
 	double			vertical_intersection_x;
 	double			vertical_intersection_y;
-	double			wallhit_y;
-	double			wallhit_x;
-	int				was_hit_v;
 	double			horizontal_intersection_x;
 	double			horizontal_intersection_y;
 }	t_ray;
@@ -73,15 +70,10 @@ typedef struct s_player
 typedef struct s_img
 {
 	void			*img;
-	char			*text_img;
-	char			*text_img2;
-	int				size_line;
-	int				size_line2;
 	char			*addr;
 	int				endian;
 	int				line_length;
 	int				bits_per_pixel;
-	int				bits_p_pixel;
 }	t_img;
 
 typedef struct s_counter
@@ -115,10 +107,6 @@ typedef struct s_vars
 	void			*mlx;
 	void			*img;
 	void			*mlx_win;
-	int				xpm_width;
-	int				xpm_height;
-	int				xpm_width2;
-	int				xpm_height2;
 	double			x1;
 	double			y1;
 	double			a_x;
@@ -135,51 +123,47 @@ typedef struct s_vars
 
 /***************************** Parsing functions ******************************/
 
-void			first_checks(int ac);
-int				ft_isdigit(char *str);
-int				ft_tablen(char **str);
-int				is_printable(char *line);
-int				count_commas(char *value);
-int				general_map_check(char **map);
-int				check_wall(char **str, int i, int j);
-int				check_valid_extension(char *file_name);
-void			ft_error(int cases, t_infos **infos,
-					char **elements, char **arr);
-int				draw_pixels_image(t_img *img, int x, int y, int flag);
+void		first_checks(int ac);
+int			ft_isdigit(char *str);
+int			ft_tablen(char **str);
+int			is_printable(char *line);
+int			count_commas(char *value);
+int			general_map_check(char **map);
+int			check_wall(char **str, int i, int j);
+int			check_valid_extension(char *file_name);
+void		ft_error(int cases, t_infos **infos, char **elements, char **arr);
 
-int				check_rgb_values(t_infos *infos);
-int				*create_rgb_arr(int r, int g, int b);
-void			check_if_informations_are_valid(t_vars *vars);
-int				count_elements(t_vars *vars, t_counter *count);
-void			free_data(t_infos **infos, char **elements, char **arr);
-int				check_missing_or_duplicated_element(t_infos **infos,
-					t_vars *vars);
+int			check_rgb_values(t_infos *infos);
+int			*create_rgb_arr(int r, int g, int b);
+void		check_if_informations_are_valid(t_vars *vars);
+int			count_elements(t_vars *vars, t_counter *count);
+void		free_data(t_infos **infos, char **elements, char **arr);
+int			check_missing_or_duplicated_element(t_infos **infos, t_vars *vars);
 
-void			open_window(t_vars *vars);
-int				close_window(t_vars *vars);
-int				draw_minimap(t_vars *vars);
-void			init_player_infos(t_vars *v);
-void			create_new_image(t_vars *vars);
-void			adjust_angles(double *ray_angle);
-void			initialize_rays_infos(t_vars *vars);
-int				key_press(int keycode, t_vars *vars);
-void			draw_circle(int x, int y, t_img *img);
-int				key_release(int keycode, t_vars *vars);
-void			check_if_there_is_a_wall(t_vars *vars);
-void			draw_pixels_in_each_square(t_vars *vars);
-void			get_floor_and_ceiling_color(t_vars *vars);
-void			get_colors_values_from_file(t_vars *vars);
-void			get_floor_and_ceiling_color(t_vars *vars);
-void			calculate_next_move_of_player(t_vars *vars);
-void			calculate_next_position_coordinates(t_player *player);
-void			draw_line(t_vars *vars, double x2, double y2, int color);
-void			draw_pixels_on_image(t_img *img, int x, int y, int color);
+void		open_window(t_vars *vars);
+int			close_window(t_vars *vars);
+int			draw_minimap(t_vars *vars);
+void		init_player_infos(t_vars *v);
+void		create_new_image(t_vars *vars);
+void		adjust_angles(double *ray_angle);
+void		initialize_rays_infos(t_vars *vars);
+int			key_press(int keycode, t_vars *vars);
+void		draw_circle(int x, int y, t_img *img);
+int			key_release(int keycode, t_vars *vars);
+void		check_if_there_is_a_wall(t_vars *vars);
+void		draw_pixels_in_each_square(t_vars *vars);
+void		get_floor_and_ceiling_color(t_vars *vars);
+void		get_colors_values_from_file(t_vars *vars);
+void		get_floor_and_ceiling_color(t_vars *vars);
+void		calculate_next_move_of_player(t_vars *vars);
+void		calculate_next_position_coordinates(t_player *player);
+void		draw_line(t_vars *vars, double x2, double y2, int color);
+void		draw_pixels_on_image(t_img *img, int x, int y, int color);
 
-void			vertical_wall_intersection(t_vars *vars);
-void			horizontal_wall_intersection(t_vars *vars);
-void			find_first_intersection_with_wall(t_vars *vars,
-					double *ray_x, double *ray_y);
-void			what_direction_the_player_is_facing(t_vars *vars);
-void			ft_texture(t_vars *vars);
+void		vertical_wall_intersection(t_vars *vars);
+void		horizontal_wall_intersection(t_vars *vars);
+void		find_first_intersection_with_wall(t_vars *vars,
+				double *ray_x, double *ray_y);
+void		what_direction_the_player_is_facing(t_vars *vars);
 
 #endif

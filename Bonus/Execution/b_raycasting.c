@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting.c                                       :+:      :+:    :+:   */
+/*   b_raycasting.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 14:57:31 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/02 15:34:34 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/08/31 12:34:23 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../cub3d_bonus.h"
 
 void	adjust_angles(double *ray_angle)
 {
@@ -40,35 +40,17 @@ void	get_ray_distance(t_vars *vars)
 			- vars->ray[vars->i].horizontal_intersection_x)
 		/ fabs(cos(vars->ray[vars->i].ray_angle));
 	if (horizontal_distance < vertical_distance)
-	{
-		vars->ray[vars->i].wallhit_x
-			= vars->ray[vars->i].horizontal_intersection_x;
-		vars->ray[vars->i].wallhit_y
-			= vars->ray[vars->i].horizontal_intersection_y;
 		vars->ray[vars->i].distance = horizontal_distance;
-		vars->ray[vars->i].was_hit_v = 0;
-	}
 	else
-	{
-		vars->ray[vars->i].wallhit_x
-			= vars->ray[vars->i].vertical_intersection_x;
-		vars->ray[vars->i].wallhit_y
-			= vars->ray[vars->i].vertical_intersection_y;
 		vars->ray[vars->i].distance = vertical_distance;
-		vars->ray[vars->i].was_hit_v = 1;
-	}
 }
 
 void	rendering_walls(t_vars *vars)
 {
-	double			rect_y1;
-	double			rect_y2;
-	double			correct_wall_height;
-	double			projected_wall_height;
-	double			offsetx;
-	double			top;
-	unsigned int	color;
-	double			offse_y;
+	double	rect_y1;
+	double	rect_y2;
+	double	correct_wall_height;
+	double	projected_wall_height;
 
 	vars->i = -1;
 	while (++vars->i < WINDOW_WIDTH)
@@ -79,30 +61,9 @@ void	rendering_walls(t_vars *vars)
 			* ((WINDOW_WIDTH / 2) / tan(vars->fov_angle / 2));
 		rect_y1 = (WINDOW_HEIGHT / 2) - (projected_wall_height / 2);
 		rect_y2 = rect_y1 + projected_wall_height;
-		top = rect_y1;
-		if (vars->ray[vars->i].was_hit_v == 1)
-			offsetx = fmod(vars->ray[vars->i].wallhit_y
-					* vars->xpm_width / 64, vars->xpm_width);
-		else
-			offsetx = fmod(vars->ray[vars->i].wallhit_x
-					* vars->xpm_width2 / 64, vars->xpm_width2);
 		while (rect_y1 < rect_y2)
 		{
-			if (vars->ray[vars->i].was_hit_v == 1)
-			{
-				offse_y = (rect_y1 - top)
-					* ((float)vars->xpm_height / projected_wall_height);
-				color = draw_pixels_image(&vars->image,
-						offsetx, offse_y, vars->ray[vars->i].was_hit_v);
-			}
-			else
-			{
-				offse_y = (rect_y1 - top)
-					* ((float)vars->xpm_height2 / projected_wall_height);
-				color = draw_pixels_image(&vars->image, offsetx,
-						offse_y, vars->ray[vars->i].was_hit_v);
-			}
-			draw_pixels_on_image(&vars->image, vars->i, rect_y1, color);
+			draw_pixels_on_image(&vars->image, vars->i, rect_y1, 4463901);
 			rect_y1++;
 		}
 	}

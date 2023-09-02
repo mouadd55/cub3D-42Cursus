@@ -6,11 +6,12 @@
 #    By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/14 09:05:11 by moudrib           #+#    #+#              #
-#    Updated: 2023/09/01 18:55:12 by bbenidar         ###   ########.fr        #
+#    Updated: 2023/09/02 14:46:54 by bbenidar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME    = cub3D
+BONUS    = cub3D_bonus
 CC      = cc
 CFLAGS	= -Wall -Wextra -Werror #-g -fsanitize=address
 OBJDIR	= _Object_files/
@@ -18,13 +19,13 @@ R		= \x1B[91m
 G		= \x1B[32m
 W		= \x1B[0m
 B		= \033[1m
-SRC		= \
-			Libft_utils/libft_utils1.c \
-			Libft_utils/libft_utils2.c \
-			Libft_utils/libft_utils3.c \
-			Libft_utils/libft_utils4.c \
-			Libft_utils/libft_utils5.c \
-			Get_next_line/get_next_line.c \
+MANDATORY_SRCS		= \
+			Mandatory/Libft_utils/libft_utils1.c \
+			Mandatory/Libft_utils/libft_utils2.c \
+			Mandatory/Libft_utils/libft_utils3.c \
+			Mandatory/Libft_utils/libft_utils4.c \
+			Mandatory/Libft_utils/libft_utils5.c \
+			Mandatory/Get_next_line/get_next_line.c \
 			Mandatory/Parsing/cub3d.c \
 			Mandatory/Parsing/parsing.c \
 			Mandatory/Parsing/map_pars.c \
@@ -37,15 +38,40 @@ SRC		= \
 			Mandatory/Execution/drawing_functions.c \
 			Mandatory/Execution/window_management.c \
 			Mandatory/Execution/events_management.c \
+			Mandatory/Execution/wall_intersections.c \
+			Mandatory/Execution/texture.c \
+
+BONUS_SRCS		= \
+			Bonus/Libft_utils/libft_utils1.c \
+			Bonus/Libft_utils/libft_utils2.c \
+			Bonus/Libft_utils/libft_utils3.c \
+			Bonus/Libft_utils/libft_utils4.c \
+			Bonus/Libft_utils/libft_utils5.c \
+			Bonus/Get_next_line/get_next_line.c \
+			Bonus/Parsing/b_cub3d.c \
+			Bonus/Parsing/b_parsing.c \
+			Bonus/Parsing/b_map_pars.c \
+			Bonus/Parsing/b_parsing_utils.c \
+			Bonus/Parsing/b_check_elemnts.c \
+			Bonus/Parsing/b_parsing_elements.c \
+			Bonus/Execution/b_colors.c \
+			Bonus/Execution/b_raycasting.c \
+			Bonus/Execution/b_player_movements.c \
+			Bonus/Execution/b_drawing_functions.c \
+			Bonus/Execution/b_window_management.c \
+			Bonus/Execution/b_events_management.c \
+			Bonus/Execution/b_wall_intersections.c \
 
 
 			
-OBJ = $(addprefix $(OBJDIR), $(SRC:.c=.o))
+MANDATORY_OBJ = $(addprefix $(OBJDIR), $(MANDATORY_SRCS:.c=.o))
+
+BONUS_OBJ = $(addprefix $(OBJDIR), $(BONUS_SRCS:.c=.o))
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	@$(CC) $(CFLAGS) -lmlx -framework OpenGL -framework AppKit $(OBJ) -o $(NAME)
+$(NAME): $(MANDATORY_OBJ)
+	@$(CC) $(CFLAGS) -lmlx -framework OpenGL -framework AppKit $(MANDATORY_OBJ) -o $(NAME)
 # @clear
 # @echo
 # @echo "$(G)Cub3d compilation done ✔️"
@@ -60,7 +86,17 @@ $(NAME): $(OBJ)
 # @echo
 # @echo
 
-$(OBJDIR)%.o: %.c Mandatory/cub3d.h Libft_utils/libft.h Get_next_line/get_next_line.h
+$(OBJDIR)%.o: %.c Mandatory/cub3d.h Mandatory/Libft_utils/libft.h Mandatory/Get_next_line/get_next_line.h
+	@mkdir -p $(@D)
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo "$(G)Compiling: $(W)$<"
+
+bonus: $(BONUS)
+
+$(BONUS): $(BONUS_OBJ)
+	@$(CC) $(CFLAGS) -lmlx -framework OpenGL -framework AppKit $(BONUS_OBJ) -o $(BONUS)
+
+$(OBJDIR)%.o: %.c Bonus/cub3d_bonus.h Bonus/Libft_utils/libft.h Bonus/Get_next_line/get_next_line.h
 	@mkdir -p $(@D)
 	@$(CC) $(CFLAGS) -c $< -o $@
 	@echo "$(G)Compiling: $(W)$<"
@@ -69,9 +105,8 @@ clean:
 	@rm -rf $(OBJDIR)
 
 fclean:	clean
-	@rm -rf $(NAME)
+	@rm -rf $(NAME) $(BONUS)
 
 re: fclean all
 
 .PHONY: all clean fclean re
-	
