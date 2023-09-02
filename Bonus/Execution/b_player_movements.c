@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 12:14:02 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/31 12:34:18 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/02 16:57:08 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,10 @@ void	calculate_next_position_coordinates(t_player *player)
 {
 	int	hypotenuse;
 
-	hypotenuse = (WALL_SIZE * 0.2) / 2;
-	player->x_final = (player->p_x1)
+	hypotenuse = (WALL_SIZE * 0.5) / 2;
+	player->x_final = (MINIMAP_WIDTH / 2)
 		+ (cos(player->starting_angle) * hypotenuse);
-	player->y_final = (player->p_y1)
+	player->y_final = (MINIMAP_HEIGHT / 2)
 		+ (sin(player->starting_angle) * hypotenuse);
 }
 

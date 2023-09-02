@@ -6,7 +6,7 @@
 #    By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/14 09:05:11 by moudrib           #+#    #+#              #
-#    Updated: 2023/09/02 15:51:10 by moudrib          ###   ########.fr        #
+#    Updated: 2023/09/02 16:09:49 by moudrib          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME    = cub3D
 BONUS    = cub3D_bonus
 CC      = cc
 CFLAGS	= -Wall -Wextra -Werror #-g -fsanitize=address
-OBJDIR	= _Object_files/
+M_OBJDIR	= Mandatory_Object_files/
+B_OBJDIR	= Bonus_Object_files/
 R		= \x1B[91m
 G		= \x1B[32m
 W		= \x1B[0m
@@ -33,13 +34,13 @@ MANDATORY_SRCS		= \
 			Mandatory/Parsing/check_elemnts.c \
 			Mandatory/Parsing/parsing_elements.c \
 			Mandatory/Execution/colors.c \
+			Mandatory/Execution/texture.c \
 			Mandatory/Execution/raycasting.c \
 			Mandatory/Execution/player_movements.c \
 			Mandatory/Execution/drawing_functions.c \
 			Mandatory/Execution/window_management.c \
 			Mandatory/Execution/events_management.c \
 			Mandatory/Execution/wall_intersections.c \
-			Mandatory/Execution/texture.c \
 
 BONUS_SRCS		= \
 			Bonus/Libft_utils/libft_utils1.c \
@@ -55,6 +56,7 @@ BONUS_SRCS		= \
 			Bonus/Parsing/b_check_elemnts.c \
 			Bonus/Parsing/b_parsing_elements.c \
 			Bonus/Execution/b_colors.c \
+			Bonus/Execution/b_texture.c \
 			Bonus/Execution/b_raycasting.c \
 			Bonus/Execution/b_player_movements.c \
 			Bonus/Execution/b_drawing_functions.c \
@@ -64,9 +66,9 @@ BONUS_SRCS		= \
 
 
 			
-MANDATORY_OBJ = $(addprefix $(OBJDIR), $(MANDATORY_SRCS:.c=.o))
+MANDATORY_OBJ = $(addprefix $(M_OBJDIR), $(MANDATORY_SRCS:.c=.o))
 
-BONUS_OBJ = $(addprefix $(OBJDIR), $(BONUS_SRCS:.c=.o))
+BONUS_OBJ = $(addprefix $(B_OBJDIR), $(BONUS_SRCS:.c=.o))
 
 all: $(NAME)
 
@@ -86,7 +88,7 @@ $(NAME): $(MANDATORY_OBJ)
 # @echo
 # @echo
 
-$(OBJDIR)%.o: %.c Mandatory/cub3d.h Mandatory/Libft_utils/libft.h Mandatory/Get_next_line/get_next_line.h
+$(M_OBJDIR)%.o: %.c Mandatory/cub3d.h Mandatory/Libft_utils/libft.h Mandatory/Get_next_line/get_next_line.h
 	@mkdir -p $(@D)
 	@$(CC) $(CFLAGS) -c $< -o $@
 	@echo "$(G)Compiling: $(W)$<"
@@ -96,13 +98,13 @@ bonus: $(BONUS)
 $(BONUS): $(BONUS_OBJ)
 	@$(CC) $(CFLAGS) -lmlx -framework OpenGL -framework AppKit $(BONUS_OBJ) -o $(BONUS)
 
-$(OBJDIR)%.o: %.c Bonus/cub3d_bonus.h Bonus/Libft_utils/libft.h Bonus/Get_next_line/get_next_line.h
+$(B_OBJDIR)%.o: %.c Bonus/cub3d_bonus.h Bonus/Libft_utils/libft.h Bonus/Get_next_line/get_next_line.h
 	@mkdir -p $(@D)
 	@$(CC) $(CFLAGS) -c $< -o $@
 	@echo "$(G)Compiling: $(W)$<"
 
 clean:
-	@rm -rf $(OBJDIR)
+	@rm -rf $(M_OBJDIR) $(B_OBJDIR)
 
 fclean:	clean
 	@rm -rf $(NAME) $(BONUS)

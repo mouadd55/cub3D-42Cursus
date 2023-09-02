@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 15:06:11 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/30 15:12:37 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/02 16:16:06 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,18 +99,18 @@ int	draw_minimap(t_vars *vars)
 	check_if_there_is_a_wall(vars);
 	initialize_rays_infos(vars);
 	calculate_next_position_coordinates(&vars->player);
-	while (vars->map && ++vars->y < vars->height)
-	{
-		vars->x = -1;
-		while (++vars->x < vars->width && vars->map[vars->y][vars->x])
-		{
-			vars->j = -1;
-			draw_pixels_in_each_square(vars);
-		}
-	}
-	draw_line(vars, vars->player.x_final * 0.2,
-		vars->player.y_final * 0.2, 12079170);
-	draw_circle(vars->player.p_x1 * 0.2, vars->player.p_y1 * 0.2, &vars->image);
+	// while (vars->map && ++vars->y < vars->height)
+	// {
+	// 	vars->x = -1;
+	// 	while (++vars->x < vars->width && vars->map[vars->y][vars->x])
+	// 	{
+	// 		vars->j = -1;
+	// 		draw_pixels_in_each_square(vars);
+	// 	}
+	// }
+	// draw_line(vars, vars->player.x_final * 0.2,
+		// vars->player.y_final * 0.2, 12079170);
+	// draw_circle(vars->player.p_x1 * 0.2, vars->player.p_y1 * 0.2, &vars->image);
 	mlx_clear_window(vars->mlx, vars->mlx_win);
 	mlx_put_image_to_window(vars->mlx, vars->mlx_win, vars->image.img, 0, 0);
 	return (0);
