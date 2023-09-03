@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:03:57 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/02 16:15:10 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/03 15:46:06 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # define WINDOW_HEIGHT 720
 # define WINDOW_WIDTH 1280
 
-# define MINIMAP_HEIGHT 200
-# define MINIMAP_WIDTH 350
+# define MINIMAP_HEIGHT 150
+# define MINIMAP_WIDTH 250
 
 # define FALSE 0
 
@@ -34,7 +34,7 @@
 # define RIGHT -1
 
 # define WALL_SIZE 64
-# define WALKING_SPEED 3
+# define WALKING_SPEED 4
 
 # include <mlx.h>
 # include <math.h>
@@ -123,6 +123,7 @@ typedef struct s_vars
 	char			**elements;
 	void			*mlx;
 	void			*img;
+	void			*rec;
 	void			*mlx_win;
 	int				xpm_width;
 	int				xpm_height;
@@ -171,7 +172,7 @@ void		adjust_angles(double *ray_angle);
 void		initialize_rays_infos(t_vars *vars);
 int			key_press(int keycode, t_vars *vars);
 int			key_release(int keycode, t_vars *vars);
-void		check_if_there_is_a_wall(t_vars *vars);
+int			check_if_there_is_a_wall(t_vars *vars, int x, int y);
 void		draw_pixels_in_each_square(t_vars *vars);
 void		get_floor_and_ceiling_color(t_vars *vars);
 void		get_colors_values_from_file(t_vars *vars);
@@ -182,10 +183,10 @@ void		calculate_next_position_coordinates(t_player *player);
 void		draw_line(t_vars *vars, double x2, double y2, int color);
 void		draw_pixels_on_image(t_img *img, int x, int y, int color);
 
+void		initialize_images_pointers(t_vars *vars);
 void		vertical_wall_intersection(t_vars *vars);
 void		horizontal_wall_intersection(t_vars *vars);
 void		find_first_intersection_with_wall(t_vars *vars, double *ray_x,
 				double *ray_y);
 void		what_direction_the_player_is_facing(t_vars *vars);
-
 #endif

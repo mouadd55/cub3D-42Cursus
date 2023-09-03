@@ -6,20 +6,18 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 12:14:02 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/30 15:12:37 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/03 15:55:51 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	check_if_there_is_a_wall(t_vars *vars)
+int	check_if_there_is_a_wall(t_vars *vars, int x, int y)
 {
-	if ((vars->map[(int)floor((vars->player.p_y2) / WALL_SIZE)]
-			[(int)floor((vars->player.p_x2) / WALL_SIZE)] != '1'))
-	{
-		vars->player.p_x1 = vars->player.p_x2;
-		vars->player.p_y1 = vars->player.p_y2;
-	}
+	if (vars->map[(int)((vars->player.p_y2 + y) / WALL_SIZE)]
+			[(int)((vars->player.p_x2 + x) / WALL_SIZE)] == '1')
+		return (1);
+	return (0);
 }
 
 void	calculate_next_move_of_player(t_vars *vars)

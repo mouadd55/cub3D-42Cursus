@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 11:19:21 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/02 14:20:49 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/03 11:50:33 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	open_window(t_vars *vars)
 	if (!vars->mlx_win)
 		exit(1);
 	create_new_image(vars);
+	initialize_images_pointers(vars);
 	create_minimap_image(vars);
 	init_player_infos(vars);
 	// mlx_put_image_to_window(vars->mlx, vars->mlx_win, vars->image.win_img, 0, 0);

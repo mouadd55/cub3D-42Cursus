@@ -6,20 +6,18 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 12:14:02 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/02 16:57:08 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/03 15:48:43 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d_bonus.h"
 
-void	check_if_there_is_a_wall(t_vars *vars)
+int	check_if_there_is_a_wall(t_vars *vars, int x, int y)
 {
-	if ((vars->map[(int)floor((vars->player.p_y2) / WALL_SIZE)]
-			[(int)floor((vars->player.p_x2) / WALL_SIZE)] != '1'))
-	{
-		vars->player.p_x1 = vars->player.p_x2;
-		vars->player.p_y1 = vars->player.p_y2;
-	}
+	if (vars->map[(int)((vars->player.p_y2 + y) / WALL_SIZE)]
+			[(int)((vars->player.p_x2 + x) / WALL_SIZE)] == '1')
+		return (1);
+	return (0);
 }
 
 void	calculate_next_move_of_player(t_vars *vars)
@@ -72,10 +70,10 @@ void	calculate_next_position_coordinates(t_player *player)
 {
 	int	hypotenuse;
 
-	hypotenuse = (WALL_SIZE * 0.5) / 2;
-	player->x_final = (MINIMAP_WIDTH / 2)
+	hypotenuse = (WALL_SIZE * 0.5) / 3;
+	player->x_final = (MINIMAP_WIDTH / 3)
 		+ (cos(player->starting_angle) * hypotenuse);
-	player->y_final = (MINIMAP_HEIGHT / 2)
+	player->y_final = (MINIMAP_HEIGHT / 3)
 		+ (sin(player->starting_angle) * hypotenuse);
 }
 

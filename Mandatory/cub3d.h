@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:03:57 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/02 16:13:51 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/03 15:56:34 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,7 @@ void			initialize_rays_infos(t_vars *vars);
 int				key_press(int keycode, t_vars *vars);
 void			draw_circle(int x, int y, t_img *img);
 int				key_release(int keycode, t_vars *vars);
-void			check_if_there_is_a_wall(t_vars *vars);
+int				check_if_there_is_a_wall(t_vars *vars, int x, int y);
 void			draw_pixels_in_each_square(t_vars *vars);
 void			get_floor_and_ceiling_color(t_vars *vars);
 void			get_colors_values_from_file(t_vars *vars);
