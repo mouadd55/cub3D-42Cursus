@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_movements.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 12:14:02 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/30 15:12:37 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/02 19:40:38 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	calculate_next_move_of_player(t_vars *vars)
 
 	if (vars->player.walk_dir_side)
 	{
-		pixels_per_step = vars->player.walk_dir_side * WALKING_SPEED;
+		pixels_per_step = vars->player.walk_dir_side *  WALKING_SPEED;
 		vars->player.starting_angle += vars->player.turn_direction
 			* vars->player.rotation_speed;
 		adjust_angles(&vars->player.starting_angle);

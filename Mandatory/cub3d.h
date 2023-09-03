@@ -6,7 +6,7 @@
 /*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:03:57 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/02 15:34:04 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/09/03 15:32:00 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,12 @@ typedef struct s_player
 typedef struct s_img
 {
 	void			*img;
-	char			*text_img;
-	char			*text_img2;
-	int				size_line;
-	int				size_line2;
+	char			*no_img;
+	char			*we_img;
+	char			*so_img;
+	char			*ea_img;
+	int				no_line;
+	int				we_line;
 	char			*addr;
 	int				endian;
 	int				line_length;
@@ -87,6 +89,7 @@ typedef struct s_img
 typedef struct s_counter
 {
 	int				east;
+	
 	int				west;
 	int				north;
 	int				south;
@@ -119,6 +122,10 @@ typedef struct s_vars
 	int				xpm_height;
 	int				xpm_width2;
 	int				xpm_height2;
+	char			*img_no;
+	char			*img_we;
+	char			*img_so;
+	char			*img_ea;
 	double			x1;
 	double			y1;
 	double			a_x;
