@@ -6,7 +6,7 @@
 #    By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/14 09:05:11 by moudrib           #+#    #+#              #
-#    Updated: 2023/09/05 13:18:30 by bbenidar         ###   ########.fr        #
+#    Updated: 2023/09/05 14:44:50 by bbenidar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -106,6 +106,7 @@ clean:
 	@rm -rf $(OBJDIR)
 
 fclean:	clean
+	@make clean -C mlx
 	@rm -rf $(NAME) $(BONUS)
 
 re: fclean all
