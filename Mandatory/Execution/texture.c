@@ -6,7 +6,7 @@
 /*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 12:34:50 by bbenidar          #+#    #+#             */
-/*   Updated: 2023/09/03 16:22:23 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/09/05 11:41:33 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void ft_get_name_texture(t_vars *vars)
 	{
 		if (tmp->element[0] == 'N' && tmp->element[1] == 'O')
 			vars->img_no = ft_strdup(tmp->value);
-		if (tmp->element[0] == 'S' && tmp->element[1] == 'O')
+		if (tmp->element[0] == 'W' && tmp->element[1] == 'E')
 			vars->img_we = ft_strdup(tmp->value);
 		if (tmp->element[0] == 'S' && tmp->element[1] == 'O')
 			vars->img_so = ft_strdup(tmp->value);
@@ -69,6 +69,8 @@ void	ft_texture(t_vars *vars)
 	int		endian;
 	
 	ft_get_name_texture(vars);
+	printf("no = %s\n", vars->img_we);
+	printf("we = %s\n", vars->img_so);
 	no_ptr = mlx_xpm_file_to_image(vars->mlx, vars->img_no,
 			&vars->xpm_width, &vars->xpm_height);
 	we_ptr = mlx_xpm_file_to_image(vars->mlx, vars->img_we,
@@ -86,6 +88,10 @@ void	ft_texture(t_vars *vars)
 			&bits_per_pixel, &vars->image.no_line, &endian);
 	vars->image.we_img = mlx_get_data_addr(we_ptr,
 			&bits_per_pixel, &vars->image.we_line, &endian);
+	vars->image.so_img = mlx_get_data_addr(so_ptr,
+			&bits_per_pixel, &vars->image.so_line, &endian);
+	vars->image.ea_img = mlx_get_data_addr(ea_ptr,
+			&bits_per_pixel, &vars->image.ea_line, &endian);
 	
 	if (!vars->image.no_img || !vars->image.we_img)
 	{
@@ -106,10 +112,20 @@ int	draw_pixels_image(t_img *img, int x, int y, int flag)
 		position = ((x * (4)) + (y * img->no_line));
 		pixel = img->no_img + position;
 	}
-	else
+	else if (flag == 2)
 	{
 		position = ((x * (4)) + (y * img->we_line));
 		pixel = img->we_img + position;
+	}
+	else if(flag == 3)
+	{
+		position = ((x * (4)) + (y * img->so_line));
+		pixel = img->so_img + position;
+	}
+	else
+	{
+		position = ((x * (4)) + (y * img->ea_line));
+		pixel = img->ea_img + position;
 	}
 	return (*(unsigned int *)pixel);
 }

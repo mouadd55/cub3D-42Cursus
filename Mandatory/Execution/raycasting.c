@@ -6,7 +6,7 @@
 /*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 14:57:31 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/03 16:52:16 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/09/05 11:28:07 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,31 +90,35 @@ void	rendering_walls(t_vars *vars)
 		{
 			if (vars->ray[vars->i].up_down == UP && !vars->ray[vars->i].was_hit_v)
 			{
+				//no
 				offse_y = (rect_y1 - top)
 					* ((float)vars->xpm_height / projected_wall_height);
 				color = draw_pixels_image(&vars->image,
-						offsetx, offse_y, vars->ray[vars->i].was_hit_v);
+						offsetx, offse_y, 1);
 			}
 			else if (vars->ray[vars->i].up_down == DOWN && !vars->ray[vars->i].was_hit_v)
 			{
 				//so
 				offse_y = (rect_y1 - top)
 					* ((float)vars->xpm_height / projected_wall_height);
-				color = 0x0000FF00;
+				color = draw_pixels_image(&vars->image,
+						offsetx, offse_y, 3);
 			}
 			else if (vars->ray[vars->i].left_right == LEFT && vars->ray[vars->i].was_hit_v)
 			{
 				//we
 				offse_y = (rect_y1 - top)
 					* ((float)vars->xpm_height / projected_wall_height);
-				color =  0x00FFFF00;;
+				color =  draw_pixels_image(&vars->image,
+						offsetx, offse_y, 2);
 			}
 			else if (vars->ray[vars->i].left_right == RIGHT && vars->ray[vars->i].was_hit_v)
 			{
 				//ea
 				offse_y = (rect_y1 - top)
 					* ((float)vars->xpm_height / projected_wall_height);
-				color = 0x00FF0000;
+				color = draw_pixels_image(&vars->image,
+						offsetx, offse_y, 4);
 			}
 			draw_pixels_on_image(&vars->image, vars->i, rect_y1, color);
 			rect_y1++;

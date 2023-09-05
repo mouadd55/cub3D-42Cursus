@@ -6,7 +6,7 @@
 #    By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/14 09:05:11 by moudrib           #+#    #+#              #
-#    Updated: 2023/09/02 14:46:54 by bbenidar         ###   ########.fr        #
+#    Updated: 2023/09/05 13:18:30 by bbenidar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,8 @@ BONUS_OBJ = $(addprefix $(OBJDIR), $(BONUS_SRCS:.c=.o))
 all: $(NAME)
 
 $(NAME): $(MANDATORY_OBJ)
-	@$(CC) $(CFLAGS) -lmlx -framework OpenGL -framework AppKit $(MANDATORY_OBJ) -o $(NAME)
+	make -C mlx
+	@$(CC) $(CFLAGS) mlx/libmlx.a -framework OpenGL -framework AppKit $(MANDATORY_OBJ) -o $(NAME)
 # @clear
 # @echo
 # @echo "$(G)Cub3d compilation done ✔️"

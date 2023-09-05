@@ -6,7 +6,7 @@
 /*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:03:57 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/03 15:32:00 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/09/05 13:33:56 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # define WALL_SIZE 64
 # define WALKING_SPEED 3
 
-# include <mlx.h>
+# include "../mlx/mlx.h"
 # include <math.h>
 # include <limits.h>
 # include "Libft_utils/libft.h"
@@ -79,6 +79,8 @@ typedef struct s_img
 	char			*ea_img;
 	int				no_line;
 	int				we_line;
+	int				so_line;
+	int				ea_line;
 	char			*addr;
 	int				endian;
 	int				line_length;

@@ -1,10 +1,10 @@
-NO ./xpm/test.xpm
-SO ./xpm/test.xpm 
-WE ./xpm/test.xpm
+NO ./xpm/no.xpm
+SO ./xpm/so.xpm 
+WE ./xpm/we.xpm
+EA ./xpm/ea.xpm
 
 C 0,0,100
 F 0,0,0
-EA ./xpm/test.xpm
 
 
 
