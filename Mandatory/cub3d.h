@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:03:57 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/03 15:56:34 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/05 13:49:38 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,7 @@ void			get_floor_and_ceiling_color(t_vars *vars);
 void			get_colors_values_from_file(t_vars *vars);
 void			get_floor_and_ceiling_color(t_vars *vars);
 void			calculate_next_move_of_player(t_vars *vars);
-void			calculate_next_position_coordinates(t_player *player);
+void			calculate_ending_point_coordinates_of_player_line(t_player *player);
 void			draw_line(t_vars *vars, double x2, double y2, int color);
 void			draw_pixels_on_image(t_img *img, int x, int y, int color);
 

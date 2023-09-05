@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 12:14:02 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/03 15:55:51 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/05 13:49:07 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	find_player_position(t_vars *v)
 	}
 }
 
-void	calculate_next_position_coordinates(t_player *player)
+void	calculate_ending_point_coordinates_of_player_line(t_player *player)
 {
 	int	hypotenuse;
 

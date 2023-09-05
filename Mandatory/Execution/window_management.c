@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window_management.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 11:19:21 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/02 14:48:22 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/09/05 13:35:34 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,4 @@ void	open_window(t_vars *vars)
 	ft_texture(vars);
 	create_new_image(vars);
 	init_player_infos(vars);
-	mlx_put_image_to_window(vars->mlx, vars->mlx_win, vars->image.img, 0, 0);
 }

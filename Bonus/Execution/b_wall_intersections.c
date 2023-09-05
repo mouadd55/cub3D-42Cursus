@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 19:10:54 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/31 12:34:26 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/05 12:33:13 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	find_first_intersection_with_wall(t_vars *vars,
 void	horizontal_wall_intersection(t_vars *vars)
 {
 	what_direction_the_player_is_facing(vars);
-	vars->a_y = (int)floor(vars->player.p_y1 / WALL_SIZE) * WALL_SIZE;
+	vars->a_y = (int)(vars->player.p_y1 / WALL_SIZE) * WALL_SIZE;
 	if (vars->ray[vars->i].up_down == DOWN)
 		vars->a_y += WALL_SIZE;
 	vars->a_x = vars->player.p_x1
@@ -68,7 +68,7 @@ void	horizontal_wall_intersection(t_vars *vars)
 void	vertical_wall_intersection(t_vars *vars)
 {
 	what_direction_the_player_is_facing(vars);
-	vars->a_x = floor(vars->player.p_x1 / WALL_SIZE) * WALL_SIZE;
+	vars->a_x = (int)(vars->player.p_x1 / WALL_SIZE) * WALL_SIZE;
 	if (vars->ray[vars->i].left_right == RIGHT)
 		vars->a_x += WALL_SIZE;
 	vars->a_y = vars->player.p_y1 + ((vars->a_x - vars->player.p_x1)

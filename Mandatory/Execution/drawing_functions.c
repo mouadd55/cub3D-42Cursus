@@ -6,12 +6,21 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 15:06:11 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/03 16:09:44 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/05 13:48:59 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
+/**
+ * draw_line - This function draws a line between two points defined by
+ *  'vars->x1', 'vars->y1' (starting point) and 'x2', 'y2' (ending point)
+ *  with the specified 'color' on the image.
+ * @vars: A pointer to a 't_vars' struct containing image data and line coordinates.
+ * @x2: The x-coordinate of the ending point of the line.
+ * @y2: The y-coordinate of the ending point of the line.
+ * @color: An integer representing the color of the line to be drawn.
+*/
 void	draw_line(t_vars *vars, double x2, double y2, int color)
 {
 	double	dx;
@@ -114,7 +123,7 @@ int	wall_collision(t_vars *vars)
 
 int	draw_minimap(t_vars *vars)
 {
-	vars->y = -1;
+	// vars->y = -1;
 	calculate_next_move_of_player(vars);
 	get_floor_and_ceiling_color(vars);
 	if (wall_collision(vars) == 0)
@@ -123,7 +132,7 @@ int	draw_minimap(t_vars *vars)
 		vars->player.p_y1 = vars->player.p_y2;
 	}
 	initialize_rays_infos(vars);
-	calculate_next_position_coordinates(&vars->player);
+	calculate_ending_point_coordinates_of_player_line(&vars->player);
 	mlx_clear_window(vars->mlx, vars->mlx_win);
 	mlx_put_image_to_window(vars->mlx, vars->mlx_win, vars->image.img, 0, 0);
 	return (0);
