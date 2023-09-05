@@ -6,7 +6,7 @@
 /*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 14:57:31 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/02 15:34:34 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/09/05 11:28:07 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,19 +88,37 @@ void	rendering_walls(t_vars *vars)
 					* vars->xpm_width2 / 64, vars->xpm_width2);
 		while (rect_y1 < rect_y2)
 		{
-			if (vars->ray[vars->i].was_hit_v == 1)
+			if (vars->ray[vars->i].up_down == UP && !vars->ray[vars->i].was_hit_v)
 			{
+				//no
 				offse_y = (rect_y1 - top)
 					* ((float)vars->xpm_height / projected_wall_height);
 				color = draw_pixels_image(&vars->image,
-						offsetx, offse_y, vars->ray[vars->i].was_hit_v);
+						offsetx, offse_y, 1);
 			}
-			else
+			else if (vars->ray[vars->i].up_down == DOWN && !vars->ray[vars->i].was_hit_v)
 			{
+				//so
 				offse_y = (rect_y1 - top)
-					* ((float)vars->xpm_height2 / projected_wall_height);
-				color = draw_pixels_image(&vars->image, offsetx,
-						offse_y, vars->ray[vars->i].was_hit_v);
+					* ((float)vars->xpm_height / projected_wall_height);
+				color = draw_pixels_image(&vars->image,
+						offsetx, offse_y, 3);
+			}
+			else if (vars->ray[vars->i].left_right == LEFT && vars->ray[vars->i].was_hit_v)
+			{
+				//we
+				offse_y = (rect_y1 - top)
+					* ((float)vars->xpm_height / projected_wall_height);
+				color =  draw_pixels_image(&vars->image,
+						offsetx, offse_y, 2);
+			}
+			else if (vars->ray[vars->i].left_right == RIGHT && vars->ray[vars->i].was_hit_v)
+			{
+				//ea
+				offse_y = (rect_y1 - top)
+					* ((float)vars->xpm_height / projected_wall_height);
+				color = draw_pixels_image(&vars->image,
+						offsetx, offse_y, 4);
 			}
 			draw_pixels_on_image(&vars->image, vars->i, rect_y1, color);
 			rect_y1++;

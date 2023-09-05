@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:03:57 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/05 13:49:38 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/05 14:54:56 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # define WALL_SIZE 64
 # define WALKING_SPEED 3
 
-# include <mlx.h>
+# include "../mlx/mlx.h"
 # include <math.h>
 # include <limits.h>
 # include "Libft_utils/libft.h"
@@ -73,10 +73,14 @@ typedef struct s_player
 typedef struct s_img
 {
 	void			*img;
-	char			*text_img;
-	char			*text_img2;
-	int				size_line;
-	int				size_line2;
+	char			*no_img;
+	char			*we_img;
+	char			*so_img;
+	char			*ea_img;
+	int				no_line;
+	int				we_line;
+	int				so_line;
+	int				ea_line;
 	char			*addr;
 	int				endian;
 	int				line_length;
@@ -87,6 +91,7 @@ typedef struct s_img
 typedef struct s_counter
 {
 	int				east;
+	
 	int				west;
 	int				north;
 	int				south;
@@ -119,6 +124,10 @@ typedef struct s_vars
 	int				xpm_height;
 	int				xpm_width2;
 	int				xpm_height2;
+	char			*img_no;
+	char			*img_we;
+	char			*img_so;
+	char			*img_ea;
 	double			x1;
 	double			y1;
 	double			a_x;

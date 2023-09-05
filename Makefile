@@ -6,7 +6,7 @@
 #    By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/14 09:05:11 by moudrib           #+#    #+#              #
-#    Updated: 2023/09/03 11:52:29 by moudrib          ###   ########.fr        #
+#    Updated: 2023/09/05 14:54:47 by moudrib          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,7 @@ NAME    = cub3D
 BONUS    = cub3D_bonus
 CC      = cc
 CFLAGS	= -Wall -Wextra -Werror #-g -fsanitize=address
-M_OBJDIR	= Mandatory_Object_files/
-B_OBJDIR	= Bonus_Object_files/
+OBJDIR	= _Object_files/
 R		= \x1B[91m
 G		= \x1B[32m
 W		= \x1B[0m
@@ -73,7 +72,8 @@ BONUS_OBJ = $(addprefix $(B_OBJDIR), $(BONUS_SRCS:.c=.o))
 all: $(NAME)
 
 $(NAME): $(MANDATORY_OBJ)
-	@$(CC) $(CFLAGS) -lmlx -framework OpenGL -framework AppKit $(MANDATORY_OBJ) -o $(NAME)
+	make -C mlx
+	@$(CC) $(CFLAGS) mlx/libmlx.a -framework OpenGL -framework AppKit $(MANDATORY_OBJ) -o $(NAME)
 # @clear
 # @echo
 # @echo "$(G)Cub3d compilation done ✔️"
@@ -107,6 +107,7 @@ clean:
 	@rm -rf $(M_OBJDIR) $(B_OBJDIR)
 
 fclean:	clean
+	@make clean -C mlx
 	@rm -rf $(NAME) $(BONUS)
 
 re: fclean all
