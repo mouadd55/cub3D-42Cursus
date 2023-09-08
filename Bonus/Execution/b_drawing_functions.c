@@ -6,7 +6,7 @@
 /*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 15:06:11 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/08 14:20:48 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/09/08 16:25:28 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,27 @@ int	wall_collision(t_vars *vars)
 	return (0);
 }
 
+void	player_animation(t_vars *vars)
+{
+	static int count;
+	int	x;
+	int	y;
+	
+	if(count >= 0 && count <= 10)
+	{
+		vars->rec = mlx_xpm_file_to_image(vars->mlx, "./xpm/Pulsar.xpm", &x, &y);
+		count++;
+	}
+	else if(count > 10 && count <= 20)
+	{
+		vars->rec = mlx_xpm_file_to_image(vars->mlx, "./xpm/tir/PulsCh01.xpm", &x, &y);
+		count++;
+	}
+	
+	else if(count > 20)
+		count = 0;
+}
+
 int	draw_minimap(t_vars *vars)
 {
 	vars->y = -1;
@@ -164,6 +185,7 @@ int	draw_minimap(t_vars *vars)
 	mlx_clear_window(vars->mlx, vars->mlx_win);
 	mlx_put_image_to_window(vars->mlx, vars->mlx_win, vars->image.win_img, 0, 0);
 	mlx_put_image_to_window(vars->mlx, vars->mlx_win, vars->minimap.minimap_img, (WINDOW_WIDTH / 2) - (MINIMAP_WIDTH / 2), 0);
+	player_animation(vars);
 	mlx_put_image_to_window(vars->mlx, vars->mlx_win, vars->rec, 0, 0);
 	return (0);
 }
