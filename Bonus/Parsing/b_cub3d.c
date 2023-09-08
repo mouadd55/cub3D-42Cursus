@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_cub3d.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 13:38:45 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/31 12:33:15 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/06 16:37:06 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,29 @@ void	read_file_and_get_informations(char *file_path, t_vars *vars)
 	check_if_informations_are_valid(vars);
 }
 
+int mouse_event(int x, int y, t_vars *param)
+{
+	double x1;
+	(void)y;
+	
+	x1 = WINDOW_WIDTH / 2;
+	if(param->hid_mouse == -1)
+	{
+		mlx_mouse_move(param->mlx_win, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+		x1 = x - x1;
+		param->player.starting_angle += (x1 * 0.001);
+	}
+	// mlx_mouse_mo
+	return (0);
+}
+
 int	main(int ac, char **av)
 {
 	t_vars	*vars;
 
 	first_checks(ac);
 	vars = malloc(sizeof(t_vars));
+	vars->hid_mouse = 1;
 	if (!vars)
 		return (0);
 	if (check_valid_extension(av[1]))
@@ -105,6 +122,7 @@ int	main(int ac, char **av)
 	mlx_hook(vars->mlx_win, 2, 0, key_press, vars);
 	mlx_hook(vars->mlx_win, 3, 0, key_release, vars);
 	mlx_hook(vars->mlx_win, 17, 0, close_window, vars);
+	mlx_hook(vars->mlx_win, 6, 0, &mouse_event, vars);
 	mlx_loop(vars->mlx);
 	free_data(&vars->infos, NULL, vars->map);
 	return (free(vars), 0);

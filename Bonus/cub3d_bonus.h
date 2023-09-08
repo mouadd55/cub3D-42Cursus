@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:03:57 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/03 15:46:06 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/08 14:33:47 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # define WINDOW_HEIGHT 720
 # define WINDOW_WIDTH 1280
+
 
 # define MINIMAP_HEIGHT 150
 # define MINIMAP_WIDTH 250
@@ -34,9 +35,9 @@
 # define RIGHT -1
 
 # define WALL_SIZE 64
-# define WALKING_SPEED 4
+# define WALKING_SPEED 6
 
-# include <mlx.h>
+# include "../mlx/mlx.h"
 # include <math.h>
 # include <limits.h>
 # include "Libft_utils/libft.h"
@@ -50,6 +51,9 @@ typedef struct s_ray
 	double			ray_angle;
 	double			vertical_intersection_x;
 	double			vertical_intersection_y;
+	double			wallhit_y;
+	double			wallhit_x;
+	int				was_hit_v;
 	double			horizontal_intersection_x;
 	double			horizontal_intersection_y;
 }	t_ray;
@@ -81,16 +85,22 @@ typedef struct s_minimap
 
 typedef struct s_img
 {
-	void			*win_img;
-	char			*text_img;
-	char			*text_img2;
-	int				size_line;
-	int				size_line2;
-	char			*win_addr;
+	void			*img;
+	char			*no_img;
+	char			*we_img;
+	char			*so_img;
+	char			*ea_img;
+	int				no_line;
+	int				we_line;
+	int				so_line;
+	int				ea_line;
+	char			*addr;
 	int				endian;
 	int				line_length;
 	int				bits_per_pixel;
 	int				bits_p_pixel;
+	void			*win_img;
+	void 			*win_addr;
 }	t_img;
 
 typedef struct s_counter
@@ -108,6 +118,7 @@ typedef struct s_vars
 	int				i;
 	int				j;
 	int				x;
+	int 			hid_mouse;
 	int				y;
 	int				size;
 	int				flag;
@@ -123,12 +134,15 @@ typedef struct s_vars
 	char			**elements;
 	void			*mlx;
 	void			*img;
-	void			*rec;
 	void			*mlx_win;
 	int				xpm_width;
 	int				xpm_height;
 	int				xpm_width2;
 	int				xpm_height2;
+	char			*img_no;
+	char			*img_we;
+	char			*img_so;
+	char			*img_ea;
 	double			x1;
 	double			y1;
 	double			a_x;
@@ -140,8 +154,10 @@ typedef struct s_vars
 	t_img			image;
 	t_infos			*infos;
 	t_player		player;
-	t_minimap		minimap;
 	t_ray			ray[WINDOW_WIDTH];
+	t_minimap		minimap;
+	void			*rec;
+
 }	t_vars;
 
 /***************************** Parsing functions ******************************/
@@ -155,6 +171,8 @@ int			general_map_check(char **map);
 int			check_wall(char **str, int i, int j);
 int			check_valid_extension(char *file_name);
 void		ft_error(int cases, t_infos **infos, char **elements, char **arr);
+void		ft_texture(t_vars *vars);
+int			draw_pixels_image(t_img *img, int x, int y, int flag);
 
 int			check_rgb_values(t_infos *infos);
 int			*create_rgb_arr(int r, int g, int b);

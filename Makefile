@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+         #
+#    By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/14 09:05:11 by moudrib           #+#    #+#              #
-#    Updated: 2023/09/05 14:54:47 by moudrib          ###   ########.fr        #
+#    Updated: 2023/09/07 13:45:10 by bbenidar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ MANDATORY_SRCS		= \
 			Mandatory/Execution/drawing_functions.c \
 			Mandatory/Execution/window_management.c \
 			Mandatory/Execution/events_management.c \
-			Mandatory/Execution/wall_intersections.c \
+			Mandatory/Execution/wall_intersections.c 
 
 BONUS_SRCS		= \
 			Bonus/Libft_utils/libft_utils1.c \
@@ -61,7 +61,7 @@ BONUS_SRCS		= \
 			Bonus/Execution/b_drawing_functions.c \
 			Bonus/Execution/b_window_management.c \
 			Bonus/Execution/b_events_management.c \
-			Bonus/Execution/b_wall_intersections.c \
+			Bonus/Execution/b_wall_intersections.c 
 
 
 			
@@ -72,7 +72,7 @@ BONUS_OBJ = $(addprefix $(B_OBJDIR), $(BONUS_SRCS:.c=.o))
 all: $(NAME)
 
 $(NAME): $(MANDATORY_OBJ)
-	make -C mlx
+	@make -C mlx
 	@$(CC) $(CFLAGS) mlx/libmlx.a -framework OpenGL -framework AppKit $(MANDATORY_OBJ) -o $(NAME)
 # @clear
 # @echo
@@ -96,7 +96,8 @@ $(M_OBJDIR)%.o: %.c Mandatory/cub3d.h Mandatory/Libft_utils/libft.h Mandatory/Ge
 bonus: $(BONUS)
 
 $(BONUS): $(BONUS_OBJ)
-	@$(CC) $(CFLAGS) -lmlx -framework OpenGL -framework AppKit $(BONUS_OBJ) -o $(BONUS)
+	@make -C mlx
+	@$(CC) $(CFLAGS) mlx/libmlx.a -framework OpenGL -framework AppKit $(BONUS_OBJ) -o $(BONUS)
 
 $(B_OBJDIR)%.o: %.c Bonus/cub3d_bonus.h Bonus/Libft_utils/libft.h Bonus/Get_next_line/get_next_line.h
 	@mkdir -p $(@D)
@@ -104,10 +105,9 @@ $(B_OBJDIR)%.o: %.c Bonus/cub3d_bonus.h Bonus/Libft_utils/libft.h Bonus/Get_next
 	@echo "$(G)Compiling: $(W)$<"
 
 clean:
-	@rm -rf $(M_OBJDIR) $(B_OBJDIR)
+	rm -rf $(MANDATORY_OBJ) $(BONUS_OBJ)
 
 fclean:	clean
-	@make clean -C mlx
 	@rm -rf $(NAME) $(BONUS)
 
 re: fclean all

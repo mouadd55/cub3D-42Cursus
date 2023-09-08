@@ -6,7 +6,7 @@
 /*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 12:34:50 by bbenidar          #+#    #+#             */
-/*   Updated: 2023/09/05 11:41:33 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/09/07 13:44:57 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,6 @@ void	ft_texture(t_vars *vars)
 	int		endian;
 	
 	ft_get_name_texture(vars);
-	printf("no = %s\n", vars->img_we);
-	printf("we = %s\n", vars->img_so);
 	no_ptr = mlx_xpm_file_to_image(vars->mlx, vars->img_no,
 			&vars->xpm_width, &vars->xpm_height);
 	we_ptr = mlx_xpm_file_to_image(vars->mlx, vars->img_we,

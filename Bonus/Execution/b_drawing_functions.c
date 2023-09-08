@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_drawing_functions.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 15:06:11 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/03 15:54:09 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/08 14:20:48 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ void	initialize_images_pointers(t_vars *vars)
 	int	x;
 	int	y;
 
-	vars->rec = mlx_xpm_file_to_image(vars->mlx, "./xpm/camera.xpm", &x, &y);
+	vars->rec = mlx_xpm_file_to_image(vars->mlx, "./xpm/Pulsar.xpm", &x, &y);
 	if (!vars->rec)
 		ft_error(10, 0, 0, 0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events_management.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 11:07:05 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/24 11:43:26 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/07 14:50:40 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@ int	key_press(int keycode, t_vars *vars)
 		vars->player.walk_dir_side = RIGHT;
 	else if (keycode == 2)
 		vars->player.walk_dir_side = LEFT;
+
 	return (0);
 }

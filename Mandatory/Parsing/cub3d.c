@@ -6,7 +6,7 @@
 /*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 13:38:45 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/05 13:56:34 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/09/07 14:51:09 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,18 +86,6 @@ void	read_file_and_get_informations(char *file_path, t_vars *vars)
 	check_if_informations_are_valid(vars);
 }
 
-int mouse_event(int x, int y, t_vars *param)
-{
-	double x1;
-	(void)y;
-	
-	x1 = WINDOW_WIDTH / 2;
-	mlx_mouse_move(param->mlx_win, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
-	x1 = x - x1;
-	param->player.starting_angle += (x1 * 0.001);
-	// mlx_mouse_mo
-	return (0);
-}
 
 int	main(int ac, char **av)
 {
@@ -118,7 +106,6 @@ int	main(int ac, char **av)
 	mlx_hook(vars->mlx_win, 2, 0, key_press, vars);
 	mlx_hook(vars->mlx_win, 3, 0, key_release, vars);
 	mlx_hook(vars->mlx_win, 17, 0, close_window, vars);
-	mlx_hook(vars->mlx_win, 6, 0, &mouse_event, vars); // for  mergin 
 	mlx_loop(vars->mlx);
 	free_data(&vars->infos, NULL, vars->map);
 	return (free(vars), 0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window_management.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 11:19:21 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/05 14:55:09 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/07 14:49:51 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	open_window(t_vars *vars)
 			WINDOW_HEIGHT, "Cub3D");
 	if (!vars->mlx_win)
 		exit(1);
-	mlx_mouse_move(vars->mlx_win, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
 	ft_texture(vars);
 	create_new_image(vars);
 	init_player_infos(vars);
