@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_window_management.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 11:19:21 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/07 14:10:20 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/09/09 16:36:07 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,10 @@ void	create_new_image(t_vars *vars)
 			&vars->image.endian);
 }
 
-void	 create_minimap_image(t_vars *vars)
+void	create_minimap_image(t_vars *vars)
 {
-	vars->minimap.minimap_img = mlx_new_image(vars->mlx, MINIMAP_WIDTH, MINIMAP_HEIGHT);
+	vars->minimap.minimap_img
+		= mlx_new_image(vars->mlx, MINIMAP_WIDTH, MINIMAP_HEIGHT);
 	vars->minimap.minimap_addr = mlx_get_data_addr(vars->minimap.minimap_img,
 			&vars->minimap.bits_per_pixel, &vars->minimap.line_length,
 			&vars->minimap.endian);
@@ -63,9 +64,6 @@ void	open_window(t_vars *vars)
 		mlx_mouse_move(vars->mlx_win, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
 	ft_texture(vars);
 	create_new_image(vars);
-	initialize_images_pointers(vars);
 	create_minimap_image(vars);
 	init_player_infos(vars);
-	// mlx_put_image_to_window(vars->mlx, vars->mlx_win, vars->image.win_img, 0, 0);
-	// mlx_put_image_to_window(vars->mlx, vars->mlx_win, vars->minimap.minimap_img, 0, 0);
 }

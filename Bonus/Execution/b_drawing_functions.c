@@ -3,23 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   b_drawing_functions.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 15:06:11 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/09 15:17:12 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/09/09 16:39:54 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d_bonus.h"
 
-void	draw_pixels_on_minimap_image(t_minimap *minimap, int x, int y, int color)
+void	draw_pixels_on_minimap_image(t_minimap *minimap, int x, int y,
+	int color)
 {
 	int		position;
 	char	*pixel;
 
 	if (x < 0 || y < 0 || y >= MINIMAP_HEIGHT || x >= MINIMAP_WIDTH)
 		return ;
-	position = ((x * (minimap->bits_per_pixel / 8)) + (y * minimap->line_length));
+	position = ((x * (minimap->bits_per_pixel / 8))
+			+ (y * minimap->line_length));
 	pixel = minimap->minimap_addr + position;
 	*(int *)pixel = color;
 }
@@ -115,64 +117,33 @@ void	minimap(t_vars *vars)
 	}
 }
 
-void	initialize_images_pointers(t_vars *vars)
-{
-	int	x;
-	int	y;
-
-	vars->rec = mlx_xpm_file_to_image(vars->mlx, "./xpm/Pulsar.xpm", &x, &y);
-	if (!vars->rec)
-		ft_error(10, 0, 0, 0);
-}
-
-int	wall_collision(t_vars *vars)
-{
-	if (check_if_there_is_a_wall(vars, 0, -12))
-		return (1);
-	else if (check_if_there_is_a_wall(vars, 0, 12))
-		return (1);
-	else if (check_if_there_is_a_wall(vars, -12, 0))
-		return (1);
-	else if (check_if_there_is_a_wall(vars, 12, 0))
-		return (1);
-	else if (check_if_there_is_a_wall(vars, -12, -12))
-		return (1);
-	else if (check_if_there_is_a_wall(vars, 12, -12))
-		return (1);
-	else if (check_if_there_is_a_wall(vars, -12, 12))
-		return (1);
-	else if (check_if_there_is_a_wall(vars, 12, 12))
-		return (1);
-	return (0);
-}
-
 void	player_animation(t_vars *vars)
 {
-	static int count;
-	int	x;
-	int	y;
-	
-	if(count >= 0 && count <= 4)
+	static int	count;
+	int			x;
+	int			y;
+
+	if (count >= 0 && count <= 4)
 	{
 		vars->rec = mlx_xpm_file_to_image(vars->mlx, "./xpm/knif/Knife01.xpm", &x, &y);
 		count++;
 	}
-	else if(count > 4 && count <= 8)
+	else if (count > 4 && count <= 8)
 	{
 		vars->rec = mlx_xpm_file_to_image(vars->mlx, "./xpm/knif/Knife02.xpm", &x, &y);
 		count++;
 	}
-	else if(count > 8 && count <= 12)
+	else if (count > 8 && count <= 12)
 	{
 		vars->rec = mlx_xpm_file_to_image(vars->mlx, "./xpm/knif/Knife03.xpm", &x, &y);
 		count++;
 	}
-	else if(count > 12 && count <= 16)
+	else if (count > 12 && count <= 16)
 	{
 		vars->rec = mlx_xpm_file_to_image(vars->mlx, "./xpm/knif/Knife04.xpm", &x, &y);
 		count++;
 	}
-	else if(count > 16 && count <= 20)
+	else if (count > 16 && count <= 20)
 	{
 		vars->rec = mlx_xpm_file_to_image(vars->mlx, "./xpm/knif/Knife05.xpm", &x, &y);
 		count++;
@@ -197,7 +168,7 @@ void	player_animation(t_vars *vars)
 	// 	vars->rec = mlx_xpm_file_to_image(vars->mlx, "./xpm/knif/KnifeF04.xpm", &x, &y);
 	// 	count++;
 	// }
-	else if(count > 32)
+	else if (count > 32)
 		count = 0;
 	count++;
 }
@@ -216,10 +187,12 @@ int	draw_minimap(t_vars *vars)
 	calculate_next_position_coordinates(&vars->player);
 	minimap(vars);
 	draw_line(vars, vars->player.x_final, vars->player.y_final, 12079170);
-	draw_circle(MINIMAP_WIDTH / 3, MINIMAP_HEIGHT / 3, &vars->minimap); // draw it outside the hook
+	draw_circle(MINIMAP_WIDTH / 3, MINIMAP_HEIGHT / 3, &vars->minimap);
 	mlx_clear_window(vars->mlx, vars->mlx_win);
-	mlx_put_image_to_window(vars->mlx, vars->mlx_win, vars->image.win_img, 0, 0);
-	mlx_put_image_to_window(vars->mlx, vars->mlx_win, vars->minimap.minimap_img, (WINDOW_WIDTH / 2) - (MINIMAP_WIDTH / 2), 0);
+	mlx_put_image_to_window(vars->mlx, vars->mlx_win,
+		vars->image.win_img, 0, 0);
+	mlx_put_image_to_window(vars->mlx, vars->mlx_win,
+		vars->minimap.minimap_img, 0, 0);
 	player_animation(vars);
 	mlx_put_image_to_window(vars->mlx, vars->mlx_win, vars->rec, 0, 0);
 	return (0);

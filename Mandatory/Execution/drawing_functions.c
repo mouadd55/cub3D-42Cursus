@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 15:06:11 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/05 13:48:59 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/09 16:22:43 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
  * draw_line - This function draws a line between two points defined by
  *  'vars->x1', 'vars->y1' (starting point) and 'x2', 'y2' (ending point)
  *  with the specified 'color' on the image.
- * @vars: A pointer to a 't_vars' struct containing image data and line coordinates.
+ * @vars: A pointer to a struct containing image data and line coordinates.
  * @x2: The x-coordinate of the ending point of the line.
  * @y2: The y-coordinate of the ending point of the line.
  * @color: An integer representing the color of the line to be drawn.
@@ -100,30 +100,8 @@ void	draw_pixels_in_each_square(t_vars *vars)
 	}
 }
 
-int	wall_collision(t_vars *vars)
-{
-	if (check_if_there_is_a_wall(vars, 0, -15))
-		return (1);
-	else if (check_if_there_is_a_wall(vars, 0, 15))
-		return (1);
-	else if (check_if_there_is_a_wall(vars, -15, 0))
-		return (1);
-	else if (check_if_there_is_a_wall(vars, 15, 0))
-		return (1);
-	else if (check_if_there_is_a_wall(vars, -15, -15))
-		return (1);
-	else if (check_if_there_is_a_wall(vars, 15, -15))
-		return (1);
-	else if (check_if_there_is_a_wall(vars, -15, 15))
-		return (1);
-	else if (check_if_there_is_a_wall(vars, 15, 15))
-		return (1);
-	return (0);
-}
-
 int	draw_minimap(t_vars *vars)
 {
-	// vars->y = -1;
 	calculate_next_move_of_player(vars);
 	get_floor_and_ceiling_color(vars);
 	if (wall_collision(vars) == 0)

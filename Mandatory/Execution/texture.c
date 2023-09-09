@@ -3,30 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 12:34:50 by bbenidar          #+#    #+#             */
-/*   Updated: 2023/09/09 15:35:08 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/09/09 16:27:19 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-
-void ft_get_name_texture(t_vars *vars)
+void	ft_get_name_texture(t_vars *vars)
 {
 	t_infos	*tmp;
 
 	tmp = vars->infos;
-	while(tmp)
+	while (tmp)
 	{
 		if (tmp->element[0] == 'N')
 			vars->img_no = ft_strdup(tmp->value);
-		if (tmp->element[0] == 'W')
+		else if (tmp->element[0] == 'W')
 			vars->img_we = ft_strdup(tmp->value);
-		if (tmp->element[0] == 'S')
+		else if (tmp->element[0] == 'S')
 			vars->img_so = ft_strdup(tmp->value);
-		if (tmp->element[0] == 'E')
+		else if (tmp->element[0] == 'E')
 			vars->img_ea = ft_strdup(tmp->value);
 		tmp = tmp->link;
 	}
@@ -40,14 +39,12 @@ void	ft_texture(t_vars *vars)
 	void	*ea_ptr;
 	int		bits_per_pixel;
 	int		endian;
+
 	vars->img_no = NULL;
 	vars->img_we = NULL;
 	vars->img_so = NULL;
 	vars->img_ea = NULL;
-	
 	ft_get_name_texture(vars);
-
-	
 	no_ptr = mlx_xpm_file_to_image(vars->mlx, vars->img_no,
 			&vars->xpm_width, &vars->xpm_height);
 	we_ptr = mlx_xpm_file_to_image(vars->mlx, vars->img_we,
@@ -69,7 +66,6 @@ void	ft_texture(t_vars *vars)
 			&bits_per_pixel, &vars->image.so_line, &endian);
 	vars->image.ea_img = mlx_get_data_addr(ea_ptr,
 			&bits_per_pixel, &vars->image.ea_line, &endian);
-	
 	if (!vars->image.no_img || !vars->image.we_img)
 	{
 		perror("errsor");
@@ -79,9 +75,11 @@ void	ft_texture(t_vars *vars)
 
 int	draw_pixels_image(t_img *img, int x, int y, int flag)
 {
-	size_t		position = 0;
-	char	*pixel = NULL;
+	size_t	position;
+	char	*pixel;
 
+	position = 0;
+	pixel  = NULL;
 	if (x < 0 || y < 0 || y >= WINDOW_HEIGHT || x >= WINDOW_WIDTH)
 		return (0);
 	if (flag == 1)

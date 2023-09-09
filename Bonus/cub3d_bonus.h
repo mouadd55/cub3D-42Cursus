@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:03:57 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/08 14:33:47 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/09/09 16:40:16 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 # define WINDOW_HEIGHT 720
 # define WINDOW_WIDTH 1280
@@ -36,6 +36,7 @@
 
 # define WALL_SIZE 64
 # define WALKING_SPEED 6
+# define ROTATION_SPEED 4
 
 # include "../mlx/mlx.h"
 # include <math.h>
@@ -201,7 +202,7 @@ void		calculate_next_position_coordinates(t_player *player);
 void		draw_line(t_vars *vars, double x2, double y2, int color);
 void		draw_pixels_on_image(t_img *img, int x, int y, int color);
 
-void		initialize_images_pointers(t_vars *vars);
+int			wall_collision(t_vars *vars);
 void		vertical_wall_intersection(t_vars *vars);
 void		horizontal_wall_intersection(t_vars *vars);
 void		find_first_intersection_with_wall(t_vars *vars, double *ray_x,

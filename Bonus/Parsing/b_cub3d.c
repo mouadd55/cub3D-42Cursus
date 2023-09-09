@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_cub3d.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 13:38:45 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/06 16:37:06 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/09/09 16:29:47 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,13 +86,13 @@ void	read_file_and_get_informations(char *file_path, t_vars *vars)
 	check_if_informations_are_valid(vars);
 }
 
-int mouse_event(int x, int y, t_vars *param)
+int	mouse_event(int x, int y, t_vars *param)
 {
-	double x1;
+	double	x1;
+
 	(void)y;
-	
 	x1 = WINDOW_WIDTH / 2;
-	if(param->hid_mouse == -1)
+	if (param->hid_mouse == -1)
 	{
 		mlx_mouse_move(param->mlx_win, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
 		x1 = x - x1;

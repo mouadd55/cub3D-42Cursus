@@ -3,18 +3,19 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+         #
+#    By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/14 09:05:11 by moudrib           #+#    #+#              #
-#    Updated: 2023/09/09 15:27:00 by bbenidar         ###   ########.fr        #
+#    Updated: 2023/09/09 16:18:26 by moudrib          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME    = cub3D
 BONUS    = cub3D_bonus
 CC      = cc
-CFLAGS	= -Wall -Wextra -Werror -g -fsanitize=address
-OBJDIR	= _Object_files/
+CFLAGS	= -Wall -Wextra -Werror -g #-fsanitize=address
+M_OBJDIR	= Mandatory_Object_files/
+B_OBJDIR	= Bonus_Object_files/
 R		= \x1B[91m
 G		= \x1B[32m
 W		= \x1B[0m
@@ -105,11 +106,13 @@ $(B_OBJDIR)%.o: %.c Bonus/cub3d_bonus.h Bonus/Libft_utils/libft.h Bonus/Get_next
 	@echo "$(G)Compiling: $(W)$<"
 
 clean:
-	rm -rf $(MANDATORY_OBJ) $(BONUS_OBJ)
+	@rm -rf $(M_OBJDIR) $(B_OBJDIR)
 
 fclean:	clean
 	@rm -rf $(NAME) $(BONUS)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+rebonus: fclean bonus
+
+.PHONY: all clean fclean re bonus rebonus

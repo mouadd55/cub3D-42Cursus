@@ -6,36 +6,59 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 19:10:54 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/05 12:33:13 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/09 16:39:58 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d_bonus.h"
 
+int	wall_collision(t_vars *vars)
+{
+	if (check_if_there_is_a_wall(vars, 0, -12))
+		return (1);
+	else if (check_if_there_is_a_wall(vars, 0, 12))
+		return (1);
+	else if (check_if_there_is_a_wall(vars, -12, 0))
+		return (1);
+	else if (check_if_there_is_a_wall(vars, 12, 0))
+		return (1);
+	else if (check_if_there_is_a_wall(vars, -12, -12))
+		return (1);
+	else if (check_if_there_is_a_wall(vars, 12, -12))
+		return (1);
+	else if (check_if_there_is_a_wall(vars, -12, 12))
+		return (1);
+	else if (check_if_there_is_a_wall(vars, 12, 12))
+		return (1);
+	return (0);
+}
+
 void	find_first_intersection_with_wall(t_vars *vars,
 	double *ray_x, double *ray_y)
 {
-	while (*ray_x >= 0
-		&& *ray_y >= 0
-		&& *ray_y < vars->height * WALL_SIZE
+	while (*ray_x >= 0 && *ray_y >= 0 && *ray_y < vars->height * WALL_SIZE
 		&& *ray_x < (int)ft_strlen(vars->map[(int)(*ray_y / WALL_SIZE)])
 		* WALL_SIZE)
 	{
 		if (vars->ray[vars->i].up_down == UP)
-			*ray_y -= 0.000000000001;
+			*ray_y -= 0.001;
 		if (vars->ray[vars->i].left_right == LEFT)
-			*ray_x -= 0.000000000001;
+			*ray_x -= 0.001;
 		if (vars->map[(int)(*ray_y / WALL_SIZE)]
 			[(int)(*ray_x / WALL_SIZE)] != '0')
 		{
 			if (vars->ray[vars->i].up_down == UP)
-				*ray_y += 0.000000000001;
+				*ray_y += 0.001;
 			if (vars->ray[vars->i].left_right == LEFT)
-				*ray_x += 0.000000000001;
+				*ray_x += 0.001;
 			break ;
 		}
 		else
 		{
+			if (vars->ray[vars->i].up_down == UP)
+				*ray_y += 0.001;
+			if (vars->ray[vars->i].left_right == LEFT)
+				*ray_x += 0.001;
 			*ray_x += vars->xstep;
 			*ray_y += vars->ystep;
 		}
