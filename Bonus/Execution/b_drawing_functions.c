@@ -6,7 +6,7 @@
 /*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 15:06:11 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/08 16:25:28 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/09/08 16:32:04 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,18 +152,52 @@ void	player_animation(t_vars *vars)
 	int	x;
 	int	y;
 	
-	if(count >= 0 && count <= 10)
+	if(count >= 0 && count <= 4)
 	{
 		vars->rec = mlx_xpm_file_to_image(vars->mlx, "./xpm/Pulsar.xpm", &x, &y);
 		count++;
 	}
-	else if(count > 10 && count <= 20)
+	else if(count > 4 && count <= 8)
 	{
 		vars->rec = mlx_xpm_file_to_image(vars->mlx, "./xpm/tir/PulsCh01.xpm", &x, &y);
 		count++;
 	}
-	
-	else if(count > 20)
+	else if(count > 8 && count <= 12)
+	{
+		vars->rec = mlx_xpm_file_to_image(vars->mlx, "./xpm/tir/PulsCh03.xpm", &x, &y);
+		count++;
+	}
+	else if(count > 12 && count <= 16)
+	{
+		vars->rec = mlx_xpm_file_to_image(vars->mlx, "./xpm/tir/PulsCh04.xpm", &x, &y);
+		count++;
+	}
+	else if(count > 16 && count <= 20)
+	{
+		vars->rec = mlx_xpm_file_to_image(vars->mlx, "./xpm/tir/PulsCh05.xpm", &x, &y);
+		count++;
+	}
+	else if(count > 20 && count <= 24)
+	{
+		vars->rec = mlx_xpm_file_to_image(vars->mlx, "./xpm/tir/PulsCh06.xpm", &x, &y);
+		count++;
+	}
+	else if(count > 24 && count <= 28)
+	{
+		vars->rec = mlx_xpm_file_to_image(vars->mlx, "./xpm/tir/PulsCh07.xpm", &x, &y);
+		count++;
+	}
+	else if(count > 28 && count <= 32)
+	{
+		vars->rec = mlx_xpm_file_to_image(vars->mlx, "./xpm/tir/PulsCh08.xpm", &x, &y);
+		count++;
+	}
+	else if (count > 32 && count <= 36)
+	{
+		vars->rec = mlx_xpm_file_to_image(vars->mlx, "./xpm/tir/PulsCh09.xpm", &x, &y);
+		count++;
+	}
+	else if(count > 36)
 		count = 0;
 }
 
