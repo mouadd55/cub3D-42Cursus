@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 11:19:21 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/09 16:36:07 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/10 17:07:44 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	get_window_resolution(t_vars *vars)
 
 int	close_window(t_vars *vars)
 {
-	// destroy image
 	mlx_destroy_window(vars->mlx, vars->mlx_win);
 	free_data(&vars->infos, NULL, vars->map);
 	free (vars);

@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 12:14:02 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/09 16:24:50 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/10 15:24:39 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,10 @@ void	calculate_next_move_of_player(t_vars *vars)
 {
 	double	pixels_per_step;
 
-	if (vars->player.walk_dir_side)
+	if (vars->player.side_walk)
 	{
-		pixels_per_step = vars->player.walk_dir_side * WALKING_SPEED;
+		pixels_per_step = vars->player.side_walk * WALKING_SPEED
+			+ (vars->speed * vars->player.side_walk);
 		vars->player.starting_angle += vars->player.turn_direction
 			* vars->player.rotation_speed;
 		adjust_angles(&vars->player.starting_angle);
@@ -37,7 +38,8 @@ void	calculate_next_move_of_player(t_vars *vars)
 	}
 	else
 	{
-		pixels_per_step = vars->player.walk_direction * WALKING_SPEED;
+		pixels_per_step = vars->player.walk_direction
+			* WALKING_SPEED + (vars->speed * vars->player.walk_direction);
 		vars->player.starting_angle += vars->player.turn_direction
 			* vars->player.rotation_speed;
 		adjust_angles(&vars->player.starting_angle);
@@ -80,7 +82,8 @@ void	calculate_ending_point_coordinates_of_player_line(t_player *player)
 void	init_player_infos(t_vars *vars)
 {
 	find_player_position(vars);
-	vars->player.walk_dir_side = 0;
+	vars->speed = 0;
+	vars->player.side_walk = 0;
 	vars->player.turn_direction = 0;
 	vars->player.walk_direction = 0;
 	if (vars->map[vars->j][vars->i] == 'N')

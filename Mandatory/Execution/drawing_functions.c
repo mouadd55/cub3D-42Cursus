@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 15:06:11 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/09 16:22:43 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/10 17:08:33 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,5 +113,6 @@ int	draw_minimap(t_vars *vars)
 	calculate_ending_point_coordinates_of_player_line(&vars->player);
 	mlx_clear_window(vars->mlx, vars->mlx_win);
 	mlx_put_image_to_window(vars->mlx, vars->mlx_win, vars->image.img, 0, 0);
+	mlx_string_put(vars->mlx, vars->mlx_win, 450, 700, 0x111, "+: increase player speed   -: decrease player speed");
 	return (0);
 }

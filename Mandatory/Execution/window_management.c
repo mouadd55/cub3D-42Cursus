@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window_management.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 11:19:21 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/07 14:49:51 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/09/10 17:08:04 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	get_window_resolution(t_vars *vars)
 
 int	close_window(t_vars *vars)
 {
+	mlx_destroy_image(vars->mlx, vars->image.img);
 	mlx_destroy_window(vars->mlx, vars->mlx_win);
 	free_data(&vars->infos, NULL, vars->map);
 	free (vars);

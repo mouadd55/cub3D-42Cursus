@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:03:57 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/09 16:23:06 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/10 15:16:32 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 
 # define FALSE 0
 
-# define LEFT 1
-# define RIGHT -1
+# define LEFT -1
+# define RIGHT 1
 
 # define FORWARD 1
 # define BACKWARD -1
@@ -27,11 +27,8 @@
 # define UP 1
 # define DOWN -1
 
-# define LEFT 1
-# define RIGHT -1
-
 # define WALL_SIZE 64
-# define WALKING_SPEED 5
+# define WALKING_SPEED 1
 # define ROTATION_SPEED 3
 
 # include "../mlx/mlx.h"
@@ -64,7 +61,7 @@ typedef struct s_player
 	double			x_final;
 	double			y_final;
 	int				turn_dir_top;
-	int				walk_dir_side;
+	int				side_walk;
 	int				turn_direction;
 	int				walk_direction;
 	double			rotation_speed;
@@ -107,8 +104,9 @@ typedef struct s_vars
 	int				y;
 	int				size;
 	int				flag;
-	int				length;
 	int				width;
+	int				speed;
+	int				length;
 	int				height;
 	int				map_fd;
 	int				floor_color;

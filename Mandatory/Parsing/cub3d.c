@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 13:38:45 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/09 16:27:38 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/10 17:20:20 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,14 @@ void	read_file_and_get_informations(char *file_path, t_vars *vars)
 	check_if_informations_are_valid(vars);
 }
 
+void	leaks()
+{
+	system("leaks cub3D");
+}
+
 int	main(int ac, char **av)
 {
+	atexit(leaks);
 	t_vars	*vars;
 
 	first_checks(ac);
