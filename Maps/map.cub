@@ -3,7 +3,7 @@ SO ./xpm/so.xpm
 WE ./xpm/we.xpm
 EA ./xpm/ea.xpm
 
-C 0,0,100
+C 135,23,23
 F 0,0,0
 
 

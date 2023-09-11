@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_drawing_functions.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 15:06:11 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/10 17:08:20 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/11 16:29:37 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,60 +117,286 @@ void	minimap(t_vars *vars)
 	}
 }
 
+void	player_pistl_animation(t_vars *vars)
+{
+	static int count;
+
+	if(vars->fire == 0)
+	{
+		if(count >= 0 && count <= 10)
+		{
+			vars->rec = vars->pistol_img[0];
+			count++;
+		}
+		else if(count > 10 && count <= 20)
+		{
+			vars->rec = vars->pistol_img[1];
+			count++;
+		}
+		else if(count > 20)
+			count = 0;
+	}
+	else if(vars->fire == 1 && vars->amo > 0)
+	{
+		if(count >= 0 && count <= 2)
+		{
+			vars->rec = vars->pistol_img[1];
+			count++;
+		}
+		else if(count > 2 && count <= 4)
+		{
+			vars->rec = vars->pistol_img[2];
+			count++;
+		}
+		else if(count > 4 && count <= 6)
+		{
+			vars->rec = vars->pistol_img[3];
+			count++;
+		}
+		else if(count > 6 && count <= 7)
+		{
+			vars->rec = vars->pistol_img[4];
+			count++;
+		}
+		else if(count > 7 && count <= 8)
+		{
+			vars->rec = vars->pistol_img[5];
+			count++;
+		}
+		else if(count > 8 && count <= 9)
+		{
+			vars->rec = vars->pistol_img[6];
+			count++;
+		}
+		else if(count > 9)
+		{
+			vars->fire = 0;
+			count = 0;
+		}
+	}
+	else if(vars->fire == 3 && vars->ammo_full > 0)
+	{
+		if(count >= 0 && count <= 2)
+		{
+			vars->rec = vars->pistol_img[7];
+			count++;
+		}
+		else if(count > 2 && count <= 4)
+		{
+			vars->rec = vars->pistol_img[8];
+			count++;
+		}
+		else if(count > 4 && count <= 6)
+		{
+			vars->rec = vars->pistol_img[9];
+			count++;
+		}
+		else if(count > 6 && count <= 8)
+		{
+			vars->rec = vars->pistol_img[10];
+			count++;
+		}
+		else if(count > 8 && count <= 10)
+		{
+			vars->rec = vars->pistol_img[11];
+			count++;
+		}
+		else if(count > 10 && count <= 12)
+		{
+			vars->rec = vars->pistol_img[12];
+			count++;
+		}
+		else if(count > 12 && count <= 14)
+		{
+			vars->rec = vars->pistol_img[13];
+			count++;
+		}
+		else if(count > 14 && count <= 16)
+		{
+			vars->rec = vars->pistol_img[14];
+			count++;
+		}
+		else if(count > 16 && count <= 18)
+		{
+			vars->rec = vars->pistol_img[15];
+			count++;
+		}
+		else if(count > 18 && count <= 20)
+		{
+			vars->rec = vars->pistol_img[16];
+			count++;
+		}
+		else if(count > 20 && count <= 22)
+		{
+			vars->rec = vars->pistol_img[17];
+			count++;
+		}
+		else if(count > 22 && count <= 24)
+		{
+			vars->rec = vars->pistol_img[18];
+			count++;
+		}
+		else if(count > 24 && count <= 26)
+		{
+			vars->rec = vars->pistol_img[19];
+			count++;
+		}
+		else if(count > 26 && count <= 28)
+		{
+			vars->rec = vars->pistol_img[20];
+			count++;
+		}
+		else if(count > 28 && count <= 30)
+		{
+			vars->rec = vars->pistol_img[21];
+			count++;
+		}
+		else if(count > 30 && count <= 32)
+		{
+			vars->rec = vars->pistol_img[22];
+			count++;
+		}
+		else if(count > 32 && count <= 34)
+		{
+			vars->rec = vars->pistol_img[23];
+			count++;
+		}
+		else if(count > 34 && count <= 36)
+		{
+			vars->rec = vars->pistol_img[24];
+			count++;
+		}
+		else if(count > 36 && count <= 38)
+		{
+			vars->rec = vars->pistol_img[25];
+			count++;
+		}
+		else if(count > 38 && count <= 40)
+		{
+			vars->rec = vars->pistol_img[26];
+			count++;
+		}
+		else if(count > 40 && count <= 42)
+		{
+			vars->rec = vars->pistol_img[27];
+			count++;
+		}
+		else if(count > 42 && count <= 44)
+		{
+			vars->rec = vars->pistol_img[28];
+			count++;
+		}
+		else if(count > 44)
+		{
+			vars->fire = 0;
+			count = 0;
+		}
+	}
+}
+
+
 void	player_animation(t_vars *vars)
 {
-	static int	count;
-	int			x;
-	int			y;
+	static int count;
+	
+	if (vars->fire == 0 || vars->fire == 3)
+	{
+		if(count >= 0 && count <= 4)
+		{
+			vars->rec = vars->knife_img[0];
+			count++;
+		}
+		else if(count > 4 && count <= 8)
+		{
+			vars->rec = vars->knife_img[1];
+			count++;
+		}
+		else if(count > 8 && count <= 12)
+		{
+			vars->rec = vars->knife_img[2];
+			count++;
+		}
+		else if(count > 12 && count <= 16)
+		{
+			vars->rec = vars->knife_img[3];
+			count++;
+		}
+		else if(count > 16 && count <= 20)
+		{
+			vars->rec = vars->knife_img[4];
+			count++;
+		}
+		else if(count > 20)
+			count = 0;
+	}
+	else if(vars->fire == 1)
+	{
+		if(count >= 0 && count <= 2)
+		{
+			vars->rec = vars->knife_img[0];
+			count++;
+		}
+		else if(count > 2 && count <=4)
+		{
+			vars->rec = vars->knife_img[1];
+			count++;
+		}
+		else if(count >4 && count <= 6)
+		{
+			vars->rec = vars->knife_img[2];
+			count++;
+		}
+		else if(count > 6 && count <= 8)
+		{
+			vars->rec = vars->knife_img[3];
+			count++;
+		}
+		else if(count > 8 && count <= 10)
+		{
+			vars->rec = vars->knife_img[4];
+			count++;
+		}
+		else if(count > 10 && count <= 12)
+		{
+			vars->rec = vars->knife_img[5];
+			count++;
+		}
+		else if(count > 12 && count <= 14)
+		{
+			vars->rec = vars->knife_img[6];
+			count++;
+		}
+		else if(count > 14 && count <= 16)
+		{
+			vars->rec = vars->knife_img[7];
+			count++;
+		}
+		else if (count > 16 && count <= 18)
+		{
+			vars->rec = vars->knife_img[8];
+			count++;
+		}
+		else if(count > 18)
+		{
+			vars->fire = 0;
+			count = 0;
+		}
+	}
+}
 
-	if (count >= 0 && count <= 4)
+void ft_get_amo(t_vars *vars)
+{
+	char *str;
+	
+	if(vars->woppen == 0)
+		mlx_string_put(vars->mlx, vars->mlx_win, 550, 100, 0xFFFFFF, "amo : ∞");
+	else if(vars->woppen == 1)
 	{
-		vars->rec = mlx_xpm_file_to_image(vars->mlx, "./xpm/knif/Knife01.xpm", &x, &y);
-		count++;
+		str = ft_strjoin(ft_strdup("amo : "), ft_itoa(vars->amo));
+		str = ft_strjoin(str, "/");
+		str = ft_strjoin(str, ft_itoa(vars->ammo_full));
+		mlx_string_put(vars->mlx, vars->mlx_win, 550, 100, 0xFFFFFF, str); 
 	}
-	else if (count > 4 && count <= 8)
-	{
-		vars->rec = mlx_xpm_file_to_image(vars->mlx, "./xpm/knif/Knife02.xpm", &x, &y);
-		count++;
-	}
-	else if (count > 8 && count <= 12)
-	{
-		vars->rec = mlx_xpm_file_to_image(vars->mlx, "./xpm/knif/Knife03.xpm", &x, &y);
-		count++;
-	}
-	else if (count > 12 && count <= 16)
-	{
-		vars->rec = mlx_xpm_file_to_image(vars->mlx, "./xpm/knif/Knife04.xpm", &x, &y);
-		count++;
-	}
-	else if (count > 16 && count <= 20)
-	{
-		vars->rec = mlx_xpm_file_to_image(vars->mlx, "./xpm/knif/Knife05.xpm", &x, &y);
-		count++;
-	}
-	// else if(count > 20 && count <= 24)
-	// {
-	// 	vars->rec = mlx_xpm_file_to_image(vars->mlx, "./xpm/knif/KnifeF01.xpm", &x, &y);
-	// 	count++;
-	// }
-	// else if(count > 24 && count <= 28)
-	// {
-	// 	vars->rec = mlx_xpm_file_to_image(vars->mlx, "./xpm/knif/KnifeF02.xpm", &x, &y);
-	// 	count++;
-	// }
-	// else if(count > 28 && count <= 32)
-	// {
-	// 	vars->rec = mlx_xpm_file_to_image(vars->mlx, "./xpm/knif/KnifeF03.xpm", &x, &y);
-	// 	count++;
-	// }
-	// else if (count > 32 && count <= 36)
-	// {
-	// 	vars->rec = mlx_xpm_file_to_image(vars->mlx, "./xpm/knif/KnifeF04.xpm", &x, &y);
-	// 	count++;
-	// }
-	else if (count > 32)
-		count = 0;
-	count++;
 }
 
 int	draw_minimap(t_vars *vars)
@@ -193,8 +419,12 @@ int	draw_minimap(t_vars *vars)
 		vars->image.win_img, 0, 0);
 	mlx_put_image_to_window(vars->mlx, vars->mlx_win,
 		vars->minimap.minimap_img, 0, 0);
-	player_animation(vars);
-	mlx_put_image_to_window(vars->mlx, vars->mlx_win, vars->rec, 0, 0);
+	if(vars->woppen == 0)
+		player_animation(vars);
+	else if (vars->woppen == 1)
+		player_pistl_animation(vars);
+	mlx_put_image_to_window(vars->mlx, vars->mlx_win, vars->rec, 250, 0);
+	ft_get_amo(vars);
 	mlx_string_put(vars->mlx, vars->mlx_win, 450, 700, 0x111, "+: increase player speed   -: decrease player speed");
 	return (0);
 }

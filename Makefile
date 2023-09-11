@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+         #
+#    By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/14 09:05:11 by moudrib           #+#    #+#              #
-#    Updated: 2023/09/10 14:43:59 by moudrib          ###   ########.fr        #
+#    Updated: 2023/09/11 14:23:36 by bbenidar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ BONUS_SRCS		= \
 			Bonus/Libft_utils/libft_utils3.c \
 			Bonus/Libft_utils/libft_utils4.c \
 			Bonus/Libft_utils/libft_utils5.c \
+			Bonus/Libft_utils/libft_utils6.c \
 			Bonus/Get_next_line/get_next_line.c \
 			Bonus/Parsing/b_cub3d.c \
 			Bonus/Parsing/b_parsing.c \

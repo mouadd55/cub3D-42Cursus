@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_cub3d.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 13:38:45 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/09 16:29:47 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/11 17:35:28 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,13 +102,31 @@ int	mouse_event(int x, int y, t_vars *param)
 	return (0);
 }
 
+
+int mouse_press(int bot, int x, int y, t_vars *vars)
+{
+	(void)x;
+	(void)y;
+	if (bot == 1  && vars->fire != 3)
+	{
+		if(vars->amo > 0 && vars->woppen == PISTOL)
+			vars->amo = vars->amo - 1;
+		vars->fire = 1;
+	}
+	return (0);
+}
+
 int	main(int ac, char **av)
 {
 	t_vars	*vars;
 
 	first_checks(ac);
 	vars = malloc(sizeof(t_vars));
+	vars->woppen = KNIFE;
 	vars->hid_mouse = 1;
+	vars->fire = 0;
+	vars->amo = 30;
+	vars->ammo_full = 320;
 	if (!vars)
 		return (0);
 	if (check_valid_extension(av[1]))
@@ -123,6 +141,7 @@ int	main(int ac, char **av)
 	mlx_hook(vars->mlx_win, 3, 0, key_release, vars);
 	mlx_hook(vars->mlx_win, 17, 0, close_window, vars);
 	mlx_hook(vars->mlx_win, 6, 0, &mouse_event, vars);
+	mlx_hook(vars->mlx_win, 4, 0, &mouse_press, vars);
 	mlx_loop(vars->mlx);
 	free_data(&vars->infos, NULL, vars->map);
 	return (free(vars), 0);

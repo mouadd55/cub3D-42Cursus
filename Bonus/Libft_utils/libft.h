@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 10:55:15 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/22 11:48:02 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/11 14:16:39 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_infos
 }	t_infos;
 
 void		ft_putnbr(int nbr);
+char		*ft_itoa(int n);
 void		ft_putstr(char *str);
 ssize_t		ft_atoi(const char *str);
 char		**ft_free_arr(char **arr);

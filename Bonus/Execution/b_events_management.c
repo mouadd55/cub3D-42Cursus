@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_events_management.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 11:07:05 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/10 15:27:11 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/11 16:32:41 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,38 @@ int	key_press(int keycode, t_vars *vars)
 			mlx_mouse_hide();
 		else
 			mlx_mouse_show();
+	}
+	else if (keycode == 36){
+		if(vars->amo > 0)
+			vars->amo = vars->amo - 1;
+		vars->fire = 1;
+	}
+	else if(keycode == 3)
+	{
+		if(vars->woppen == KNIFE)
+			vars->woppen = PISTOL;
+		else if (vars->woppen == PISTOL)
+			vars->woppen = KNIFE;
+			
+	}
+	if (keycode == 15)
+	{
+		if (vars->ammo_full > 0)
+		{
+			if(vars->amo < 30)
+				vars->fire = 3;
+			if ((vars->ammo_full - (30 - vars->amo) >= 0))
+			{
+				vars->ammo_full = vars->ammo_full - (30 - vars->amo);
+				vars->amo = 30;
+			}
+			else
+			{
+				printf("ammo_full = %d\n", vars->ammo_full);
+				vars->amo += vars->ammo_full;
+				vars->ammo_full = 0;
+			}
+		}
 	}
 	return (0);
 }

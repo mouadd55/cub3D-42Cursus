@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:03:57 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/10 15:27:22 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/11 16:07:40 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@
 # define WALKING_SPEED 1
 # define ROTATION_SPEED 4
 
+# define KNIFE 0
+# define PISTOL 1
+
 # include "../mlx/mlx.h"
 # include <math.h>
 # include <limits.h>
@@ -56,6 +59,7 @@ typedef struct s_ray
 	double			horizontal_intersection_x;
 	double			horizontal_intersection_y;
 }	t_ray;
+
 
 typedef struct s_player
 {
@@ -150,6 +154,10 @@ typedef struct s_vars
 	double			xstep;
 	double			ystep;
 	double			fov_angle;
+	int				fire;
+	int				woppen;
+	int				amo;
+	int				ammo_full;	
 	t_infos			*tmp;
 	t_img			image;
 	t_infos			*infos;
@@ -157,6 +165,9 @@ typedef struct s_vars
 	t_ray			ray[WINDOW_WIDTH];
 	t_minimap		minimap;
 	void			*rec;
+	void			*wopp;
+	char			*knife_img[10];
+	char			*pistol_img[30];
 
 }	t_vars;
 
