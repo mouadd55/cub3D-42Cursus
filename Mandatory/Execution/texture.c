@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 12:34:50 by bbenidar          #+#    #+#             */
-/*   Updated: 2023/09/09 16:27:19 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/12 13:04:38 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ void	ft_get_name_texture(t_vars *vars)
 	while (tmp)
 	{
 		if (tmp->element[0] == 'N')
-			vars->img_no = ft_strdup(tmp->value);
+			vars->img_no = tmp->value;
 		else if (tmp->element[0] == 'W')
-			vars->img_we = ft_strdup(tmp->value);
+			vars->img_we = tmp->value;
 		else if (tmp->element[0] == 'S')
-			vars->img_so = ft_strdup(tmp->value);
+			vars->img_so = tmp->value;
 		else if (tmp->element[0] == 'E')
-			vars->img_ea = ft_strdup(tmp->value);
+			vars->img_ea = tmp->value;
 		tmp = tmp->link;
 	}
 }
