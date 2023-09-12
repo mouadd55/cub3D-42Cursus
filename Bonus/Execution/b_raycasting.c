@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_raycasting.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 14:57:31 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/10 17:17:22 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/12 14:32:49 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,28 +93,28 @@ void	rendering_walls(t_vars *vars)
 				//no
 				offse_y = (line_y1 - top)
 					* ((float)vars->xpm_height / projected_wall_height);
-				color = draw_pixels_image(&vars->image, offsetx, offse_y, 1);
+				color = draw_pixels_image(&vars->image, offsetx, offse_y, 1, vars);
 			}
 			else if (vars->ray[vars->i].up_down == DOWN && !vars->ray[vars->i].was_hit_v)
 			{
 				//so
 				offse_y = (line_y1 - top)
 					* ((float)vars->xpm_height / projected_wall_height);
-				color = draw_pixels_image(&vars->image, offsetx, offse_y, 3);
+				color = draw_pixels_image(&vars->image, offsetx, offse_y, 3, vars);
 			}
 			else if (vars->ray[vars->i].left_right == LEFT && vars->ray[vars->i].was_hit_v)
 			{
 				//we
 				offse_y = (line_y1 - top)
 					* ((float)vars->xpm_height / projected_wall_height);
-				color =  draw_pixels_image(&vars->image, offsetx, offse_y, 2);
+				color =  draw_pixels_image(&vars->image, offsetx, offse_y, 2, vars);
 			}
 			else if (vars->ray[vars->i].left_right == RIGHT && vars->ray[vars->i].was_hit_v)
 			{
 				//ea
 				offse_y = (line_y1 - top)
 					* ((float)vars->xpm_height / projected_wall_height);
-				color = draw_pixels_image(&vars->image, offsetx, offse_y, 4);
+				color = draw_pixels_image(&vars->image, offsetx, offse_y, 4, vars);
 			}
 			draw_pixels_on_image(&vars->image, vars->i, line_y1, color);
 			line_y1++;

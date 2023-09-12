@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 14:57:31 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/12 12:52:46 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/12 15:39:25 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,35 +85,35 @@ void	rendering_walls(t_vars *vars)
 					* vars->xpm_width / 64, vars->xpm_width);
 		else
 			offsetx = fmod(vars->ray[vars->i].wallhit_x
-					* vars->xpm_width2 / 64, vars->xpm_width2);
+					* vars->xpm_width / 64, vars->xpm_width);
 		while (line_y1 < line_y2)
 		{
-			if (vars->ray[vars->i].up_down == UP && !vars->ray[vars->i].was_hit_v)
+			if (vars->ray[vars->i].up_down == UP
+				&& !vars->ray[vars->i].was_hit_v)
 			{
-				//no
 				offse_y = (line_y1 - top)
-					* ((float)vars->xpm_height / projected_wall_height);
+					* (vars->xpm_height / projected_wall_height);
 				color = draw_pixels_image(&vars->image, offsetx, offse_y, 1);
 			}
-			else if (vars->ray[vars->i].up_down == DOWN && !vars->ray[vars->i].was_hit_v)
+			else if (vars->ray[vars->i].up_down == DOWN
+				&& !vars->ray[vars->i].was_hit_v)
 			{
-				//so
 				offse_y = (line_y1 - top)
-					* ((float)vars->xpm_height / projected_wall_height);
+					* (vars->xpm_height / projected_wall_height);
 				color = draw_pixels_image(&vars->image, offsetx, offse_y, 3);
 			}
-			else if (vars->ray[vars->i].left_right == LEFT && vars->ray[vars->i].was_hit_v)
+			else if (vars->ray[vars->i].left_right == LEFT
+				&& vars->ray[vars->i].was_hit_v)
 			{
-				//we
 				offse_y = (line_y1 - top)
-					* ((float)vars->xpm_height / projected_wall_height);
-				color =  draw_pixels_image(&vars->image, offsetx, offse_y, 2);
+					* (vars->xpm_height / projected_wall_height);
+				color = draw_pixels_image(&vars->image, offsetx, offse_y, 2);
 			}
-			else if (vars->ray[vars->i].left_right == RIGHT && vars->ray[vars->i].was_hit_v)
+			else if (vars->ray[vars->i].left_right == RIGHT
+				&& vars->ray[vars->i].was_hit_v)
 			{
-				//ea
 				offse_y = (line_y1 - top)
-					* ((float)vars->xpm_height / projected_wall_height);
+					* (vars->xpm_height / projected_wall_height);
 				color = draw_pixels_image(&vars->image, offsetx, offse_y, 4);
 			}
 			draw_pixels_on_image(&vars->image, vars->i, line_y1, color);

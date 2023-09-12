@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 12:34:50 by bbenidar          #+#    #+#             */
-/*   Updated: 2023/09/12 13:04:38 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/12 15:36:38 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,35 @@ void	ft_texture(t_vars *vars)
 	ft_get_name_texture(vars);
 	no_ptr = mlx_xpm_file_to_image(vars->mlx, vars->img_no,
 			&vars->xpm_width, &vars->xpm_height);
+	if (vars->xpm_height * vars->xpm_width > 720 * 720)
+	{
+		perror("imag");
+		exit(1);
+	}
 	we_ptr = mlx_xpm_file_to_image(vars->mlx, vars->img_we,
 			&vars->xpm_width2, &vars->xpm_height2);
+	if (vars->xpm_height2 * vars->xpm_width2 > 720 * 720)
+	{
+		write(1, "img to big\n", 12);
+		exit(1);
+	}
 	so_ptr = mlx_xpm_file_to_image(vars->mlx, vars->img_so,
 			&vars->xpm_width2, &vars->xpm_height2);
+	if (vars->xpm_height2 * vars->xpm_width2 > 720 * 720)
+	{
+		write(1, "img to big\n", 12);
+		exit(1);
+	}
 	ea_ptr = mlx_xpm_file_to_image(vars->mlx, vars->img_ea,
 			&vars->xpm_width2, &vars->xpm_height2);
+	if (vars->xpm_height2 * vars->xpm_width2 > 720 * 720)
+	{
+		write(1, "img to big\n", 12);
+		exit(1);
+	}
 	if (!no_ptr || !we_ptr || !so_ptr || !ea_ptr)
 	{
-		perror("image: ");
+		write(1, "img to big\n", 12);
 		exit(1);
 	}
 	vars->image.no_img = mlx_get_data_addr(no_ptr,
@@ -68,44 +88,38 @@ void	ft_texture(t_vars *vars)
 			&bits_per_pixel, &vars->image.ea_line, &endian);
 	if (!vars->image.no_img || !vars->image.we_img)
 	{
-		perror("errsor");
+		perror("error");
 		return ;
 	}
 }
 
 int	draw_pixels_image(t_img *img, int x, int y, int flag)
 {
-	size_t	position;
+	int		position;
 	char	*pixel;
 
 	position = 0;
-	pixel  = NULL;
 	if (x < 0 || y < 0 || y >= WINDOW_HEIGHT || x >= WINDOW_WIDTH)
 		return (0);
 	if (flag == 1)
 	{
-		position = abs(((x * (4)) + (y * img->no_line)));
-		// if (position > 0 && position < ft_strlen(img->no_img))
-			pixel = img->no_img + position;
+		position = abs((x * (4)) + (y * img->no_line));
+		pixel = img->no_img + position;
 	}
 	else if (flag == 2)
 	{
-		position = abs(((x * (4)) + (y * img->we_line)));
-		// if (position > 0 && position < ft_strlen(img->we_img))
-			pixel = img->we_img + position;
+		position = abs((x * (4)) + (y * img->we_line));
+		pixel = img->we_img + position;
 	}
-	else if(flag == 3)
+	else if (flag == 3)
 	{
-		position = abs(((x * (4)) + (y * img->so_line)));
-		// if (position > 0 && position < ft_strlen(img->so_img))
-			pixel = img->so_img + position;
+		position = abs((x * (4)) + (y * img->so_line));
 		pixel = img->so_img + position;
 	}
 	else
 	{
-		position = abs(((x * (4)) + (y * img->ea_line)));
-		// if (position > 0 && position < ft_strlen(img->ea_img))
-			pixel = img->ea_img + position;
+		position = abs((x * (4)) + (y * img->ea_line));
+		pixel = img->ea_img + position;
 	}
-	return (*(int *)pixel);
+	return (*(unsigned int *)pixel);
 }

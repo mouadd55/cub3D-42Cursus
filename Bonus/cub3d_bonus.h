@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:03:57 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/12 12:44:42 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/12 14:32:27 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,7 +184,7 @@ int			check_wall(char **str, int i, int j);
 int			check_valid_extension(char *file_name);
 void		ft_error(int cases, t_infos **infos, char **elements, char **arr);
 void		ft_texture(t_vars *vars);
-int			draw_pixels_image(t_img *img, int x, int y, int flag);
+int			draw_pixels_image(t_img *img, int x, int y, int flag,t_vars *vars);
 
 int			check_rgb_values(t_infos *infos);
 int			*create_rgb_arr(int r, int g, int b);

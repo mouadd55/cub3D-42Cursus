@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window_management.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 11:19:21 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/12 13:57:37 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/12 15:32:06 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	get_window_resolution(t_vars *vars)
 	if (!vars->lengths)
 		exit(1);
 	while (++i < vars->height)
-		vars->lengths[i] = (int)ft_strlen(vars->map[i]); // free
+		vars->lengths[i] = (int)ft_strlen(vars->map[i]);
 }
 
 int	close_window(t_vars *vars)
@@ -60,11 +60,11 @@ void	open_window(t_vars *vars)
 	if (!vars->mlx)
 		exit(1);
 	get_window_resolution(vars);
+	ft_texture(vars);
 	vars->mlx_win = mlx_new_window(vars->mlx, WINDOW_WIDTH,
 			WINDOW_HEIGHT, "Cub3D");
 	if (!vars->mlx_win)
 		exit(1);
-	ft_texture(vars);
 	create_new_image(vars);
 	init_player_infos(vars);
 	get_colors_values_from_file(vars);

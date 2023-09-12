@@ -6,7 +6,7 @@
 /*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 12:34:50 by bbenidar          #+#    #+#             */
-/*   Updated: 2023/09/07 14:26:19 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/09/12 14:33:35 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,16 @@ void ft_get_name_texture(t_vars *vars)
 	tmp = vars->infos;
 	while(tmp)
 	{
-		if (tmp->element[0] == 'N' && tmp->element[1] == 'O')
-			vars->img_no = ft_strdup(tmp->value);
-		if (tmp->element[0] == 'W' && tmp->element[1] == 'E')
-			vars->img_we = ft_strdup(tmp->value);
-		if (tmp->element[0] == 'S' && tmp->element[1] == 'O')
-			vars->img_so = ft_strdup(tmp->value);
-		if (tmp->element[0] == 'E' && tmp->element[1] == 'A')
-			vars->img_ea = ft_strdup(tmp->value);
+		if (tmp->element[0] == 'N')
+			vars->img_no = tmp->value;
+		if (tmp->element[0] == 'W')
+			vars->img_we = tmp->value;
+		if (tmp->element[0] == 'S')
+			vars->img_so = tmp->value;
+		if (tmp->element[0] == 'E')
+			vars->img_ea = tmp->value;
 		tmp = tmp->link;
 	}
-	remove_spaces(vars->img_no);
-	remove_spaces(vars->img_we);
-	remove_spaces(vars->img_so);
-	remove_spaces(vars->img_ea);
 }
 
 void	ft_texture(t_vars *vars)
@@ -99,32 +95,38 @@ void	ft_texture(t_vars *vars)
 }
 
 
-int	draw_pixels_image(t_img *img, int x, int y, int flag)
+int	draw_pixels_image(t_img *img, int x, int y, int flag, t_vars *vars)
 {
 	int		position;
 	char	*pixel;
-
+	
+	pixel = NULL;
+	position = 0;
 	if (x < 0 || y < 0 || y >= WINDOW_HEIGHT || x >= WINDOW_WIDTH)
 		return (0);
 	if (flag == 1)
 	{
-		position = ((x * (4)) + (y * img->no_line));
-		pixel = img->no_img + position;
+		position = abs((x * (4)) + (y * img->no_line));
+		if(position > 0 && position < vars->xpm_width * vars->xpm_height)
+			pixel = img->no_img + position;
 	}
 	else if (flag == 2)
 	{
-		position = ((x * (4)) + (y * img->we_line));
-		pixel = img->we_img + position;
+		position = abs((x * (4)) + (y * img->we_line));
+		if(position > 0 && position < vars->xpm_width * vars->xpm_height)
+			pixel = img->we_img + position;
 	}
 	else if(flag == 3)
 	{
-		position = ((x * (4)) + (y * img->so_line));
-		pixel = img->so_img + position;
+		position = abs((x * (4)) + (y * img->so_line));
+		if(position > 0 && position < vars->xpm_width * vars->xpm_height)
+			pixel = img->so_img + position;
 	}
 	else
 	{
-		position = ((x * (4)) + (y * img->ea_line));
-		pixel = img->ea_img + position;
+		position = abs((x * (4)) + (y * img->ea_line));
+		if(position > 0 && position <= vars->xpm_width * vars->xpm_height)
+			pixel = img->ea_img + position;
 	}
 	return (*(unsigned int *)pixel);
 }

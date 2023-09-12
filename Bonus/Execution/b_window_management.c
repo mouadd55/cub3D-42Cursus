@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_window_management.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 11:19:21 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/12 13:59:49 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/12 14:12:27 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	close_window(t_vars *vars)
 {
 	mlx_destroy_window(vars->mlx, vars->mlx_win);
 	free_data(&vars->infos, NULL, vars->map);
+	free (vars->lengths);
 	free (vars);
 	exit(0);
 }
