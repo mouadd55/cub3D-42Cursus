@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 12:14:02 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/10 15:26:49 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/12 13:47:46 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,32 +22,28 @@ int	check_if_there_is_a_wall(t_vars *vars, int x, int y)
 
 void	calculate_next_move_of_player(t_vars *vars)
 {
+	double	side_walk_flag;
 	double	pixels_per_step;
 
+	vars->player.starting_angle += vars->player.turn_direction
+		* vars->player.rotation_speed;
+	adjust_angles(&vars->player.starting_angle);
 	if (vars->player.side_walk)
 	{
 		pixels_per_step = vars->player.side_walk * WALKING_SPEED
 			+ (vars->speed * vars->player.side_walk);
-		vars->player.starting_angle += vars->player.turn_direction
-			* vars->player.rotation_speed;
-		adjust_angles(&vars->player.starting_angle);
-		vars->player.p_x2 = vars->player.p_x1 + cos(vars->player.starting_angle
-				+ (M_PI / 2)) * pixels_per_step;
-		vars->player.p_y2 = vars->player.p_y1 + sin(vars->player.starting_angle
-				+ (M_PI / 2)) * pixels_per_step;
+		side_walk_flag = (M_PI / 2);
 	}
 	else
 	{
 		pixels_per_step = vars->player.walk_direction
 			* WALKING_SPEED + (vars->speed * vars->player.walk_direction);
-		vars->player.starting_angle += vars->player.turn_direction
-			* vars->player.rotation_speed;
-		adjust_angles(&vars->player.starting_angle);
-		vars->player.p_x2 = vars->player.p_x1
-			+ cos(vars->player.starting_angle) * pixels_per_step;
-		vars->player.p_y2 = vars->player.p_y1
-			+ sin(vars->player.starting_angle) * pixels_per_step;
+		side_walk_flag = 0;
 	}
+	vars->player.p_x2 = vars->player.p_x1 + cos(vars->player.starting_angle
+			+ side_walk_flag) * pixels_per_step;
+	vars->player.p_y2 = vars->player.p_y1 + sin(vars->player.starting_angle
+			+ side_walk_flag) * pixels_per_step;
 }
 
 void	find_player_position(t_vars *v)

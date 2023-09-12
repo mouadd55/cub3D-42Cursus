@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 11:19:21 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/12 13:02:41 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/12 13:59:49 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,12 @@ int	close_window(t_vars *vars)
 void	create_new_image(t_vars *vars)
 {
 	vars->image.win_img = mlx_new_image(vars->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-	if (!vars->image.img)
+	if (!vars->image.win_img)
 		exit (1);
 	vars->image.win_addr = mlx_get_data_addr(vars->image.win_img,
 			&vars->image.bits_per_pixel, &vars->image.line_length,
 			&vars->image.endian);
-	if (!vars->image.addr)
+	if (!vars->image.win_addr)
 		exit (1);
 }
 
@@ -137,4 +137,5 @@ void	open_window(t_vars *vars)
 	create_new_image(vars);
 	create_minimap_image(vars);
 	init_player_infos(vars);
+	get_colors_values_from_file(vars);
 }

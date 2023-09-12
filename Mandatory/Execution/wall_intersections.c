@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 19:10:54 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/12 12:27:26 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/12 13:17:33 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,7 @@ void	find_first_intersection_with_wall(t_vars *vars,
 			*ray_y -= 0.001;
 		if (vars->ray[vars->i].left_right == LEFT)
 			*ray_x -= 0.001;
-		if (vars->map[(int)(*ray_y / WALL_SIZE)]
-			[(int)(*ray_x / WALL_SIZE)] != '0')
+		if (vars->map[(int)*ray_y / WALL_SIZE][(int)*ray_x / WALL_SIZE] != '0')
 		{
 			if (vars->ray[vars->i].up_down == UP)
 				*ray_y += 0.001;

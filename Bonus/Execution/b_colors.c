@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_colors.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 11:49:49 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/11 18:12:02 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/09/12 13:58:36 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void	get_colors_values_from_file(t_vars *vars)
 	while (tmp)
 	{
 		if (tmp->element[0] == 'C')
-			vars->ceiling_color = (tmp->rgb[0] * pow(256, 2))
-				+ tmp->rgb[1] * 256 + tmp->rgb[2];
+			vars->ceiling_color = (tmp->rgb[0] << 16)
+				+ (tmp->rgb[1] << 8) + tmp->rgb[2];
 		else if (tmp->element[0] == 'F')
-			vars->floor_color = (tmp->rgb[0] * pow(256, 2))
-				+ tmp->rgb[1] * 256 + tmp->rgb[2];
+			vars->floor_color = (tmp->rgb[0] << 16)
+				+ (tmp->rgb[1] << 8) + tmp->rgb[2];
 		tmp = tmp->link;
 	}
 }
@@ -36,7 +36,6 @@ void	get_floor_and_ceiling_color(t_vars *vars)
 
 	floor_grade = vars->floor_color;
 	ceil_grade = vars->ceiling_color;
-	get_colors_values_from_file(vars);
 	vars->i = -1;
 	while (++vars->i < WINDOW_HEIGHT / 2)
 	{

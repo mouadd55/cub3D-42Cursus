@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 11:19:21 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/12 13:04:24 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/12 13:57:37 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,5 @@ void	open_window(t_vars *vars)
 	ft_texture(vars);
 	create_new_image(vars);
 	init_player_infos(vars);
+	get_colors_values_from_file(vars);
 }
