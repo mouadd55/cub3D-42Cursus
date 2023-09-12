@@ -6,7 +6,7 @@
 /*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 11:07:05 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/11 16:32:41 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/09/12 23:48:36 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,24 +57,24 @@ int	key_press(int keycode, t_vars *vars)
 		else
 			mlx_mouse_show();
 	}
-	else if (keycode == 36){
-		if(vars->amo > 0)
+	else if (keycode == 36)
+	{
+		if (vars->amo > 0 && vars->woppen == PISTOL)
 			vars->amo = vars->amo - 1;
 		vars->fire = 1;
 	}
-	else if(keycode == 3)
+	else if (keycode == 3)
 	{
-		if(vars->woppen == KNIFE)
+		if (vars->woppen == KNIFE)
 			vars->woppen = PISTOL;
 		else if (vars->woppen == PISTOL)
 			vars->woppen = KNIFE;
-			
 	}
 	if (keycode == 15)
 	{
 		if (vars->ammo_full > 0)
 		{
-			if(vars->amo < 30)
+			if (vars->amo < 30)
 				vars->fire = 3;
 			if ((vars->ammo_full - (30 - vars->amo) >= 0))
 			{

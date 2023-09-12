@@ -6,7 +6,7 @@
 /*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 13:38:45 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/11 17:35:28 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/09/12 22:43:37 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,36 +86,6 @@ void	read_file_and_get_informations(char *file_path, t_vars *vars)
 	check_if_informations_are_valid(vars);
 }
 
-int	mouse_event(int x, int y, t_vars *param)
-{
-	double	x1;
-
-	(void)y;
-	x1 = WINDOW_WIDTH / 2;
-	if (param->hid_mouse == -1)
-	{
-		mlx_mouse_move(param->mlx_win, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
-		x1 = x - x1;
-		param->player.starting_angle += (x1 * 0.001);
-	}
-	// mlx_mouse_mo
-	return (0);
-}
-
-
-int mouse_press(int bot, int x, int y, t_vars *vars)
-{
-	(void)x;
-	(void)y;
-	if (bot == 1  && vars->fire != 3)
-	{
-		if(vars->amo > 0 && vars->woppen == PISTOL)
-			vars->amo = vars->amo - 1;
-		vars->fire = 1;
-	}
-	return (0);
-}
-
 int	main(int ac, char **av)
 {
 	t_vars	*vars;
@@ -125,8 +95,6 @@ int	main(int ac, char **av)
 	vars->woppen = KNIFE;
 	vars->hid_mouse = 1;
 	vars->fire = 0;
-	vars->amo = 30;
-	vars->ammo_full = 320;
 	if (!vars)
 		return (0);
 	if (check_valid_extension(av[1]))

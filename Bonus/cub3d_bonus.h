@@ -6,7 +6,7 @@
 /*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:03:57 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/12 14:32:27 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/09/12 23:34:30 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # define WINDOW_HEIGHT 720
 # define WINDOW_WIDTH 1280
-
 
 # define MINIMAP_HEIGHT 150
 # define MINIMAP_WIDTH 250
@@ -30,7 +29,6 @@
 
 # define UP 1
 # define DOWN -1
-
 
 # define WALL_SIZE 64
 # define WALKING_SPEED 1
@@ -59,7 +57,6 @@ typedef struct s_ray
 	double			horizontal_intersection_x;
 	double			horizontal_intersection_y;
 }	t_ray;
-
 
 typedef struct s_player
 {
@@ -103,7 +100,7 @@ typedef struct s_img
 	int				bits_per_pixel;
 	int				bits_p_pixel;
 	void			*win_img;
-	void 			*win_addr;
+	void			*win_addr;
 }	t_img;
 
 typedef struct s_counter
@@ -121,7 +118,7 @@ typedef struct s_vars
 	int				i;
 	int				j;
 	int				x;
-	int 			hid_mouse;
+	int				hid_mouse;
 	int				y;
 	int				size;
 	int				flag;
@@ -167,6 +164,16 @@ typedef struct s_vars
 	t_minimap		minimap;
 	void			*rec;
 	void			*wopp;
+	double			top;
+	double			line_y1;
+	double			line_y2;
+	void			*no_ptr;
+	void			*we_ptr;
+	void			*so_ptr;
+	void			*ea_ptr;
+	double			correct_wall_height;
+	double			projected_wall_height;
+	double			offsetx;
 	char			*knife_img[10];
 	char			*pistol_img[30];
 
@@ -184,7 +191,7 @@ int			check_wall(char **str, int i, int j);
 int			check_valid_extension(char *file_name);
 void		ft_error(int cases, t_infos **infos, char **elements, char **arr);
 void		ft_texture(t_vars *vars);
-int			draw_pixels_image(t_img *img, int x, int y, int flag,t_vars *vars);
+int			draw_pixels_image(t_img *img, int x, int y, int flag);
 
 int			check_rgb_values(t_infos *infos);
 int			*create_rgb_arr(int r, int g, int b);
@@ -219,4 +226,7 @@ void		horizontal_wall_intersection(t_vars *vars);
 void		find_first_intersection_with_wall(t_vars *vars, double *ray_x,
 				double *ray_y);
 void		what_direction_the_player_is_facing(t_vars *vars);
+int			mouse_press(int bot, int x, int y, t_vars *vars);
+int			mouse_event(int x, int y, t_vars *param);
+void		rendering_walls(t_vars *vars);
 #endif

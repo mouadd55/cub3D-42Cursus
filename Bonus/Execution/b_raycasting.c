@@ -6,7 +6,7 @@
 /*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 14:57:31 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/12 14:32:49 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/09/12 23:11:54 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,16 @@ void	what_direction_the_player_is_facing(t_vars *vars)
 	if (vars->ray[vars->i].ray_angle < M_PI_2
 		|| vars->ray[vars->i].ray_angle > (3 * M_PI_2))
 		vars->ray[vars->i].left_right = RIGHT;
+}
+
+void	get_ray_distance_splt(t_vars *vars, double vertical_distance)
+{
+	vars->ray[vars->i].wallhit_x
+		= vars->ray[vars->i].vertical_intersection_x;
+	vars->ray[vars->i].wallhit_y
+		= vars->ray[vars->i].vertical_intersection_y;
+	vars->ray[vars->i].distance = vertical_distance;
+	vars->ray[vars->i].was_hit_v = 1;
 }
 
 void	get_ray_distance(t_vars *vars)
@@ -49,77 +59,7 @@ void	get_ray_distance(t_vars *vars)
 		vars->ray[vars->i].was_hit_v = 0;
 	}
 	else
-	{
-		vars->ray[vars->i].wallhit_x
-			= vars->ray[vars->i].vertical_intersection_x;
-		vars->ray[vars->i].wallhit_y
-			= vars->ray[vars->i].vertical_intersection_y;
-		vars->ray[vars->i].distance = vertical_distance;
-		vars->ray[vars->i].was_hit_v = 1;
-	}
-}
-
-void	rendering_walls(t_vars *vars)
-{
-	double			line_y1;
-	double			line_y2;
-	double			correct_wall_height;
-	double			projected_wall_height;
-	double			offsetx;
-	double			top;
-	unsigned int	color;
-	double			offse_y;
-
-	vars->i = -1;
-	while (++vars->i < WINDOW_WIDTH)
-	{
-		correct_wall_height = vars->ray[vars->i].distance
-			* cos(vars->ray[vars->i].ray_angle - vars->player.starting_angle);
-		projected_wall_height = (WALL_SIZE / correct_wall_height)
-			* ((WINDOW_WIDTH / 2) / tan(vars->fov_angle / 2));
-		line_y1 = (WINDOW_HEIGHT / 2) - (projected_wall_height / 2);
-		line_y2 = line_y1 + projected_wall_height;
-		top = line_y1;
-		if (vars->ray[vars->i].was_hit_v == 1)
-			offsetx = fmod(vars->ray[vars->i].wallhit_y
-					* vars->xpm_width / 64, vars->xpm_width);
-		else
-			offsetx = fmod(vars->ray[vars->i].wallhit_x
-					* vars->xpm_width2 / 64, vars->xpm_width2);
-		while (line_y1 < line_y2)
-		{
-			if (vars->ray[vars->i].up_down == UP && !vars->ray[vars->i].was_hit_v)
-			{
-				//no
-				offse_y = (line_y1 - top)
-					* ((float)vars->xpm_height / projected_wall_height);
-				color = draw_pixels_image(&vars->image, offsetx, offse_y, 1, vars);
-			}
-			else if (vars->ray[vars->i].up_down == DOWN && !vars->ray[vars->i].was_hit_v)
-			{
-				//so
-				offse_y = (line_y1 - top)
-					* ((float)vars->xpm_height / projected_wall_height);
-				color = draw_pixels_image(&vars->image, offsetx, offse_y, 3, vars);
-			}
-			else if (vars->ray[vars->i].left_right == LEFT && vars->ray[vars->i].was_hit_v)
-			{
-				//we
-				offse_y = (line_y1 - top)
-					* ((float)vars->xpm_height / projected_wall_height);
-				color =  draw_pixels_image(&vars->image, offsetx, offse_y, 2, vars);
-			}
-			else if (vars->ray[vars->i].left_right == RIGHT && vars->ray[vars->i].was_hit_v)
-			{
-				//ea
-				offse_y = (line_y1 - top)
-					* ((float)vars->xpm_height / projected_wall_height);
-				color = draw_pixels_image(&vars->image, offsetx, offse_y, 4, vars);
-			}
-			draw_pixels_on_image(&vars->image, vars->i, line_y1, color);
-			line_y1++;
-		}
-	}
+		get_ray_distance_splt(vars, vertical_distance);
 }
 
 void	initialize_rays_infos(t_vars *vars)

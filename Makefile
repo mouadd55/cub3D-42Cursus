@@ -6,7 +6,7 @@
 #    By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/14 09:05:11 by moudrib           #+#    #+#              #
-#    Updated: 2023/09/12 14:09:43 by bbenidar         ###   ########.fr        #
+#    Updated: 2023/09/12 23:11:08 by bbenidar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,9 @@ BONUS_SRCS		= \
 			Bonus/Execution/b_drawing_functions.c \
 			Bonus/Execution/b_window_management.c \
 			Bonus/Execution/b_events_management.c \
-			Bonus/Execution/b_wall_intersections.c 
+			Bonus/Execution/b_wall_intersections.c \
+			Bonus/Execution/b_mous.c  \
+			Bonus/Execution/b_rendring_wall.c 
 
 
 			
