@@ -6,7 +6,7 @@
 /*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 14:57:31 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/12 15:39:25 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/09/12 16:03:32 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,19 @@ void	what_direction_the_player_is_facing(t_vars *vars)
 
 void	get_ray_distance(t_vars *vars)
 {
-	double	vertical_distance;
-	double	horizontal_distance;
-
-	vertical_distance = fabs(vars->player.p_x1
+	vars->vertical_distance = fabs(vars->player.p_x1
 			- vars->ray[vars->i].vertical_intersection_x)
 		/ fabs(cos(vars->ray[vars->i].ray_angle));
-	horizontal_distance = fabs(vars->player.p_x1
+	vars->horizontal_distance = fabs(vars->player.p_x1
 			- vars->ray[vars->i].horizontal_intersection_x)
 		/ fabs(cos(vars->ray[vars->i].ray_angle));
-	if (horizontal_distance < vertical_distance)
+	if (vars->horizontal_distance < vars->vertical_distance)
 	{
 		vars->ray[vars->i].wallhit_x
 			= vars->ray[vars->i].horizontal_intersection_x;
 		vars->ray[vars->i].wallhit_y
 			= vars->ray[vars->i].horizontal_intersection_y;
-		vars->ray[vars->i].distance = horizontal_distance;
+		vars->ray[vars->i].distance = vars->horizontal_distance;
 		vars->ray[vars->i].was_hit_v = 0;
 	}
 	else
@@ -54,7 +51,7 @@ void	get_ray_distance(t_vars *vars)
 			= vars->ray[vars->i].vertical_intersection_x;
 		vars->ray[vars->i].wallhit_y
 			= vars->ray[vars->i].vertical_intersection_y;
-		vars->ray[vars->i].distance = vertical_distance;
+		vars->ray[vars->i].distance = vars->vertical_distance;
 		vars->ray[vars->i].was_hit_v = 1;
 	}
 }

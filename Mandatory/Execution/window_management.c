@@ -6,7 +6,7 @@
 /*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 11:19:21 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/12 15:32:06 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/09/12 15:51:51 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ void	open_window(t_vars *vars)
 	vars->mlx = mlx_init();
 	if (!vars->mlx)
 		exit(1);
-	get_window_resolution(vars);
 	ft_texture(vars);
+	get_window_resolution(vars);
 	vars->mlx_win = mlx_new_window(vars->mlx, WINDOW_WIDTH,
 			WINDOW_HEIGHT, "Cub3D");
 	if (!vars->mlx_win)

@@ -6,7 +6,7 @@
 /*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:03:57 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/12 15:35:07 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/09/12 16:03:03 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,10 @@ typedef struct s_vars
 	int				j;
 	int				x;
 	int				y;
+	void			*no_ptr;
+	void			*we_ptr;
+	void			*so_ptr;
+	void			*ea_ptr;
 	int				size;
 	int				flag;
 	int				width;
@@ -127,6 +131,8 @@ typedef struct s_vars
 	char			*img_we;
 	char			*img_so;
 	char			*img_ea;
+	double			vertical_distance;
+	double			horizontal_distance;
 	double			x1;
 	double			y1;
 	double			a_x;
