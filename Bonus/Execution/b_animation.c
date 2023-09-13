@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_animation.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 13:55:31 by bbenidar          #+#    #+#             */
-/*   Updated: 2023/09/13 16:51:13 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/09/13 17:57:10 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ void	player_pistl_animation(t_vars *vars)
 	}
 	else
 		player_pistl_animation_2(vars, &count);
+	if (!vars->rec)
+		exit (1); // print error
 	count++;
 }
 
@@ -112,5 +114,7 @@ void	player_animation(t_vars *vars)
 	}
 	else
 		player_animation_2(vars, &count);
+	if (!vars->rec)
+		exit (1); // leaks
 	count++;
 }

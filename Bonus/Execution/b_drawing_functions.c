@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_drawing_functions.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 15:06:11 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/13 17:18:58 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/09/13 18:00:44 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,19 @@ void	minimap(t_vars *vars)
 void	ft_get_amo(t_vars *vars)
 {
 	char	*str;
+	char	*tmp;
 
-	if (vars->woppen == 0)
-		mlx_string_put(vars->mlx, vars->mlx_win, 550, 100, 0xFFFFFF, "amo : ∞");
-	else if (vars->woppen == 1)
+	if (vars->weapon == 1)
 	{
-		str = ft_strjoin(ft_strdup("amo : "), ft_itoa(vars->amo));
+		tmp = ft_itoa(vars->amo);
+		str = ft_strjoin(ft_strdup("ammo : "), tmp);
+		free(tmp);
 		str = ft_strjoin(str, "/");
-		str = ft_strjoin(str, ft_itoa(vars->ammo_full));
-		mlx_string_put(vars->mlx, vars->mlx_win, 550, 100, 0xFFFFFF, str); 
+		tmp = ft_itoa(vars->ammo_full);
+		str = ft_strjoin(str, tmp);
+		free(tmp);
+		mlx_string_put(vars->mlx, vars->mlx_win, 550, 100, 0xFFFFFF, str);
+		free(str);
 	}
 	mlx_string_put(vars->mlx, vars->mlx_win, 450, 700, 0x111,
 		"+: increase player speed   -: decrease player speed");
@@ -55,7 +59,7 @@ void	draw_minimap_splt(t_vars *vars)
 		vars->image.win_img, 0, 0);
 	mlx_put_image_to_window(vars->mlx, vars->mlx_win,
 		vars->minimap.minimap_img, 0, 0);
-	if (vars->woppen == 0)
+	if (vars->weapon == 0)
 		player_animation(vars);
 	else
 		player_pistl_animation(vars);

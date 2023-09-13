@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_events_management.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 11:07:05 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/13 13:42:02 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/09/13 18:00:11 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,10 @@ void	key_press_2(int keycode, t_vars *vars)
 		vars->fire = 1;
 	else if (keycode == 3)
 	{
-		if (vars->woppen == KNIFE)
-			vars->woppen = PISTOL;
-		else if (vars->woppen == PISTOL)
-			vars->woppen = KNIFE;
+		if (vars->weapon == KNIFE)
+			vars->weapon = PISTOL;
+		else if (vars->weapon == PISTOL)
+			vars->weapon = KNIFE;
 	}
 	else
 		key_press_3(keycode, vars);
