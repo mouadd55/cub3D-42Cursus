@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_animation.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 13:55:31 by bbenidar          #+#    #+#             */
-/*   Updated: 2023/09/13 17:57:10 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/13 21:08:06 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,10 @@ void	player_pistl_animation(t_vars *vars)
 	else
 		player_pistl_animation_2(vars, &count);
 	if (!vars->rec)
-		exit (1); // print error
+	{
+		write(1, "img not found\n", 15);
+		exit (1);
+	}
 	count++;
 }
 
@@ -115,6 +118,9 @@ void	player_animation(t_vars *vars)
 	else
 		player_animation_2(vars, &count);
 	if (!vars->rec)
-		exit (1); // leaks
+	{
+		write(1, "img not found\n", 15);
+		exit (1);
+	}
 	count++;
 }

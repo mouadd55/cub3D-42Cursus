@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_cub3d.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 13:38:45 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/13 19:12:39 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/13 21:06:51 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,14 +86,8 @@ void	read_file_and_get_informations(char *file_path, t_vars *vars)
 	check_if_informations_are_valid(vars);
 }
 
-void	leaks()
-{
-	system("leaks cub3D");
-}
-
 int	main(int ac, char **av)
 {
-	atexit(leaks);
 	t_vars	*vars;
 
 	first_checks(ac);
