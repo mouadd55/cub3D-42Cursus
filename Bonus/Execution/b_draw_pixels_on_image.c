@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_draw_pixels_on_image.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 17:14:11 by bbenidar          #+#    #+#             */
-/*   Updated: 2023/09/13 17:17:39 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/09/13 19:08:01 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,15 @@ void	draw_pixels_on_minimap_image(t_minimap *minimap, int x, int y,
 	*(int *)pixel = color;
 }
 
+/**
+ * draw_line - This function draws a line between two points defined by
+ *  'vars->x1', 'vars->y1' (starting point) and 'x2', 'y2' (ending point)
+ *  with the specified 'color' on the image.
+ * @vars: A pointer to a struct containing image data and line coordinates.
+ * @x2: The x-coordinate of the ending point of the line.
+ * @y2: The y-coordinate of the ending point of the line.
+ * @color: An integer representing the color of the line to be drawn.
+*/
 void	draw_line(t_vars *vars, double x2, double y2, int color)
 {
 	double	dx;

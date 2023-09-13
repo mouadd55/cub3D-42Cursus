@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:03:57 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/13 17:32:13 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/13 19:12:39 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,22 +177,19 @@ int			check_missing_or_duplicated_element(t_infos **infos,
 
 void		open_window(t_vars *vars);
 int			close_window(t_vars *vars);
-int			draw_minimap(t_vars *vars);
+int			render_game(t_vars *vars);
 void		init_player_infos(t_vars *v);
 void		create_new_image(t_vars *vars);
 void		adjust_angles(double *ray_angle);
 void		initialize_rays_infos(t_vars *vars);
 int			key_press(int keycode, t_vars *vars);
-void		draw_circle(int x, int y, t_img *img);
 int			key_release(int keycode, t_vars *vars);
 int			check_if_there_is_a_wall(t_vars *vars, int x, int y);
-void		draw_pixels_in_each_square(t_vars *vars);
 void		get_floor_and_ceiling_color(t_vars *vars);
 void		get_colors_values_from_file(t_vars *vars);
 void		get_floor_and_ceiling_color(t_vars *vars);
 void		calculate_next_move_of_player(t_vars *vars);
 void		calculate_ending_point_coordinates_of_player_line(t_player *player);
-void		draw_line(t_vars *vars, double x2, double y2, int color);
 void		draw_pixels_on_image(t_img *img, int x, int y, int color);
 
 int			wall_collision(t_vars *vars);

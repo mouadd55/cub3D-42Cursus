@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 17:24:53 by bbenidar          #+#    #+#             */
-/*   Updated: 2023/09/13 17:37:54 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/13 19:13:57 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 unsigned int	get_pixel_color(t_vars *vars,
 			int offsetx, double projected_wall_height)
 {
-	double			offse_y;
+	double			offset_y;
 
-	offse_y = (vars->line_y1 - vars->top)
+	offset_y = (vars->line_y1 - vars->top)
 		* ((float)vars->xpm_height / projected_wall_height);
-	return (draw_pixels_image(&vars->image, offsetx, offse_y, 1));
+	return (draw_pixels_image(&vars->image, offsetx, offset_y, 1));
 }
 
 void	color_set(t_vars *vars, unsigned int *color, int offsetx)

@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 07:31:19 by moudrib           #+#    #+#             */
-/*   Updated: 2023/08/31 12:08:23 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/13 19:20:40 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,11 @@ void	ft_error(int cases, t_infos **infos, char **elements, char **arr)
 		ft_putstr("\e[1m\x1B[31mError: \e[37mResolution not supported.\n");
 	else if (cases == 9)
 		ft_putstr("\e[1m\x1B[31mError: \e[37mAdjust player settings.\n");
+	else if (cases == 10)
+	{
+		ft_putstr("\e[1m\x1B[31mError: \e[37mSomething wrong ");
+		ft_putstr("with the files.\n");
+	}
 	free_data(infos, elements, arr);
 	exit(1);
 }

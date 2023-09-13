@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 13:38:45 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/13 17:48:45 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/13 19:12:39 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int	main(int ac, char **av)
 	if (!general_map_check(vars->map))
 		exit(1);
 	open_window(vars);
-	mlx_loop_hook(vars->mlx, draw_minimap, vars);
+	mlx_loop_hook(vars->mlx, render_game, vars);
 	mlx_hook(vars->mlx_win, 2, 0, key_press, vars);
 	mlx_hook(vars->mlx_win, 3, 0, key_release, vars);
 	mlx_hook(vars->mlx_win, 17, 0, close_window, vars);

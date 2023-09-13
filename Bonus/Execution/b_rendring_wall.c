@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_rendring_wall.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 23:10:09 by bbenidar          #+#    #+#             */
-/*   Updated: 2023/09/12 23:46:43 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/09/13 19:14:20 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 unsigned int	get_pixel_color(t_vars *vars,
 			int offsetx, double projected_wall_height)
 {
-	double			offse_y;
+	double			offset_y;
 
-	offse_y = (vars->line_y1 - vars->top)
+	offset_y = (vars->line_y1 - vars->top)
 		* ((float)vars->xpm_height / projected_wall_height);
-	return (draw_pixels_image(&vars->image, offsetx, offse_y, 1));
+	return (draw_pixels_image(&vars->image, offsetx, offset_y, 1));
 }
 
 void	color_set(t_vars *vars, unsigned int *color, int offsetx)

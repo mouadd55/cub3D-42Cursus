@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 15:06:11 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/13 18:00:44 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/13 19:12:39 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_get_amo(t_vars *vars)
 		"+: increase player speed   -: decrease player speed");
 }
 
-void	draw_minimap_splt(t_vars *vars)
+void	render_game_splt(t_vars *vars)
 {
 	mlx_put_image_to_window(vars->mlx, vars->mlx_win,
 		vars->image.win_img, 0, 0);
@@ -72,7 +72,7 @@ void	draw_minimap_splt(t_vars *vars)
 	ft_get_amo(vars);
 }
 
-int	draw_minimap(t_vars *vars)
+int	render_game(t_vars *vars)
 {
 	vars->y = -1;
 	calculate_next_move_of_player(vars);
@@ -89,6 +89,6 @@ int	draw_minimap(t_vars *vars)
 	draw_line(vars, vars->player.x_final, vars->player.y_final, 12079170);
 	draw_circle(MINIMAP_WIDTH / 3, MINIMAP_HEIGHT / 3, &vars->minimap);
 	mlx_clear_window(vars->mlx, vars->mlx_win);
-	draw_minimap_splt(vars);
+	render_game_splt(vars);
 	return (0);
 }

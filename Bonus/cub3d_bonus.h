@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:03:57 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/13 17:59:57 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/13 19:12:39 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,7 +202,7 @@ int			check_missing_or_duplicated_element(t_infos **infos, t_vars *vars);
 
 void		open_window(t_vars *vars);
 int			close_window(t_vars *vars);
-int			draw_minimap(t_vars *vars);
+int			render_game(t_vars *vars);
 void		init_player_infos(t_vars *v);
 void		create_new_image(t_vars *vars);
 void		adjust_angles(double *ray_angle);

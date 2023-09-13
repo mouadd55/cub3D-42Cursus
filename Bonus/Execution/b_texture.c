@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_texture.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 12:34:50 by bbenidar          #+#    #+#             */
-/*   Updated: 2023/09/12 22:46:52 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/09/13 19:56:19 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,9 @@ void	ft_texture_split(t_vars *vars)
 			&bits_per_pixel, &vars->image.so_line, &endian);
 	vars->image.ea_img = mlx_get_data_addr(vars->ea_ptr,
 			&bits_per_pixel, &vars->image.ea_line, &endian);
-	if (!vars->image.no_img || !vars->image.we_img)
-	{
-		perror("error");
-		return ;
-	}
+	if (!vars->image.no_img || !vars->image.we_img
+		|| !vars->image.ea_img || !vars->image.so_img)
+		ft_error(10, 0, 0, 0);
 }
 
 void	ft_texture(t_vars *vars)
@@ -64,15 +62,9 @@ void	ft_texture(t_vars *vars)
 			&vars->xpm_width2, &vars->xpm_height2);
 	if ((vars->xpm_height2 * vars->xpm_width2 > (720 * 720))
 		|| (vars->xpm_height * vars->xpm_width > (720 * 720)))
-	{
-		write(1, "img to big\n", 12);
-		exit(1);
-	}
+		ft_error(10, 0, 0, 0);
 	if (!vars->no_ptr || !vars->we_ptr || !vars->so_ptr || !vars->ea_ptr)
-	{
-		perror("error");
-		exit(1);
-	}
+		ft_error(10, 0, 0, 0);
 	ft_texture_split(vars);
 }
 
