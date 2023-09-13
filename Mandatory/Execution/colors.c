@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 11:49:49 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/12 14:03:36 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/13 14:10:35 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ void	get_floor_and_ceiling_color(t_vars *vars)
 		vars->j = -1;
 		while (++vars->j < WINDOW_WIDTH)
 			draw_pixels_on_image(&vars->image, vars->j, vars->i, ceil_grade);
-		if (vars->i % 5 == 0)
-			ceil_grade -= 1;
 	}
 	vars->i--;
 	while (++vars->i < WINDOW_HEIGHT)

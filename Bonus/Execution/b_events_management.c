@@ -6,7 +6,7 @@
 /*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 11:07:05 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/12 23:48:36 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/09/13 13:42:02 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,57 @@ int	key_release(int keycode, t_vars *vars)
 	else if (keycode == 123 || keycode == 124)
 		vars->player.turn_direction = FALSE;
 	return (0);
+}
+
+void	key_press_3(int keycode, t_vars *vars)
+{
+	if (keycode == 15)
+	{
+		if (vars->ammo_full > 0)
+		{
+			if (vars->amo < 30)
+				vars->fire = 3;
+			if ((vars->ammo_full - (30 - vars->amo) >= 0))
+			{
+				vars->ammo_full = vars->ammo_full - (30 - vars->amo);
+				vars->amo = 30;
+			}
+			else
+			{
+				printf("ammo_full = %d\n", vars->ammo_full);
+				vars->amo += vars->ammo_full;
+				vars->ammo_full = 0;
+			}
+		}
+	}
+}
+
+void	key_press_2(int keycode, t_vars *vars)
+{
+	if (keycode == 78)
+	{
+		if (vars->speed > 1)
+			vars->speed--;
+	}
+	else if (keycode == 12)
+	{
+		vars->hid_mouse *= -1;
+		if (vars->hid_mouse == -1)
+			mlx_mouse_hide();
+		else
+			mlx_mouse_show();
+	}
+	else if (keycode == 36)
+		vars->fire = 1;
+	else if (keycode == 3)
+	{
+		if (vars->woppen == KNIFE)
+			vars->woppen = PISTOL;
+		else if (vars->woppen == PISTOL)
+			vars->woppen = KNIFE;
+	}
+	else
+		key_press_3(keycode, vars);
 }
 
 int	key_press(int keycode, t_vars *vars)
@@ -44,50 +95,7 @@ int	key_press(int keycode, t_vars *vars)
 		if (vars->speed < 7)
 			vars->speed++;
 	}
-	else if (keycode == 78)
-	{
-		if (vars->speed > 1)
-			vars->speed--;
-	}
-	else if (keycode == 12)
-	{
-		vars->hid_mouse *= -1;
-		if (vars->hid_mouse == -1)
-			mlx_mouse_hide();
-		else
-			mlx_mouse_show();
-	}
-	else if (keycode == 36)
-	{
-		if (vars->amo > 0 && vars->woppen == PISTOL)
-			vars->amo = vars->amo - 1;
-		vars->fire = 1;
-	}
-	else if (keycode == 3)
-	{
-		if (vars->woppen == KNIFE)
-			vars->woppen = PISTOL;
-		else if (vars->woppen == PISTOL)
-			vars->woppen = KNIFE;
-	}
-	if (keycode == 15)
-	{
-		if (vars->ammo_full > 0)
-		{
-			if (vars->amo < 30)
-				vars->fire = 3;
-			if ((vars->ammo_full - (30 - vars->amo) >= 0))
-			{
-				vars->ammo_full = vars->ammo_full - (30 - vars->amo);
-				vars->amo = 30;
-			}
-			else
-			{
-				printf("ammo_full = %d\n", vars->ammo_full);
-				vars->amo += vars->ammo_full;
-				vars->ammo_full = 0;
-			}
-		}
-	}
+	else
+		key_press_2(keycode, vars);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 21:46:34 by bbenidar          #+#    #+#             */
-/*   Updated: 2023/09/12 22:48:07 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/09/13 16:45:23 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,6 @@ int	mouse_press(int bot, int x, int y, t_vars *vars)
 	(void)x;
 	(void)y;
 	if (bot == 1)
-	{
-		if (vars->amo > 0 && vars->woppen == PISTOL)
-			vars->amo = vars->amo - 1;
 		vars->fire = 1;
-	}
 	return (0);
 }

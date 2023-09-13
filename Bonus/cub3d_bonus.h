@@ -6,7 +6,7 @@
 /*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:03:57 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/12 23:34:30 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/09/13 17:17:17 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,4 +229,8 @@ void		what_direction_the_player_is_facing(t_vars *vars);
 int			mouse_press(int bot, int x, int y, t_vars *vars);
 int			mouse_event(int x, int y, t_vars *param);
 void		rendering_walls(t_vars *vars);
+void		ft_get_gun_img(t_vars *vars);
+void		player_animation(t_vars *vars);
+void		player_pistl_animation(t_vars *vars);
+void		draw_pixel_on_map(t_vars *vars, double start_x, double start_y);
 #endif

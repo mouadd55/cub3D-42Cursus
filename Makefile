@@ -6,14 +6,14 @@
 #    By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/14 09:05:11 by moudrib           #+#    #+#              #
-#    Updated: 2023/09/12 23:11:08 by bbenidar         ###   ########.fr        #
+#    Updated: 2023/09/13 17:28:18 by bbenidar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME    = cub3D
 BONUS    = cub3D_bonus
 CC      = cc
-CFLAGS	= -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS	= -Wall -Wextra -Werror #-g -fsanitize=address
 M_OBJDIR	= Mandatory_Object_files/
 B_OBJDIR	= Bonus_Object_files/
 R		= \x1B[91m
@@ -40,7 +40,8 @@ MANDATORY_SRCS		= \
 			Mandatory/Execution/drawing_functions.c \
 			Mandatory/Execution/window_management.c \
 			Mandatory/Execution/events_management.c \
-			Mandatory/Execution/wall_intersections.c 
+			Mandatory/Execution/wall_intersections.c  \
+			Mandatory/Execution/rendering_walls.c 
 
 BONUS_SRCS		= \
 			Bonus/Libft_utils/libft_utils1.c \
@@ -65,7 +66,10 @@ BONUS_SRCS		= \
 			Bonus/Execution/b_events_management.c \
 			Bonus/Execution/b_wall_intersections.c \
 			Bonus/Execution/b_mous.c  \
-			Bonus/Execution/b_rendring_wall.c 
+			Bonus/Execution/b_rendring_wall.c \
+			Bonus/Execution/b_apload_file.c \
+			Bonus/Execution/b_animation.c \
+			Bonus/Execution/b_draw_pixels_on_image.c 
 
 
 			

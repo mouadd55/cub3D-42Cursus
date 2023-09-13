@@ -6,7 +6,7 @@
 /*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:03:57 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/12 16:03:03 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/09/13 17:27:44 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,12 +127,18 @@ typedef struct s_vars
 	int				xpm_height;
 	int				xpm_width2;
 	int				xpm_height2;
+	double			top;
+	double			line_y1;
+	double			line_y2;
+	double			correct_wall_height;
+	double			projected_wall_height;
 	char			*img_no;
 	char			*img_we;
 	char			*img_so;
 	char			*img_ea;
 	double			vertical_distance;
 	double			horizontal_distance;
+	double			offsetx;
 	double			x1;
 	double			y1;
 	double			a_x;
@@ -196,5 +202,6 @@ void		find_first_intersection_with_wall(t_vars *vars,
 				double *ray_x, double *ray_y);
 void		what_direction_the_player_is_facing(t_vars *vars);
 void		ft_texture(t_vars *vars);
+void		rendering_walls(t_vars *vars);
 
 #endif
