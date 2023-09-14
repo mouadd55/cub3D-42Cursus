@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:03:57 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/13 19:12:39 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/14 14:04:26 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,33 +118,46 @@ typedef struct s_vars
 	int				i;
 	int				j;
 	int				x;
-	int				hid_mouse;
 	int				y;
+	int				amo;
 	int				size;
 	int				flag;
+	int				fire;
 	int				width;
 	int				speed;
 	int				length;
-	int				*lengths;
 	int				height;
 	int				map_fd;
-	int				floor_color;
-	int				ceiling_color;
-	char			*str;
-	char			**arr;
-	char			**map;
-	char			**elements;
-	void			*mlx;
-	void			*img;
-	void			*mlx_win;
+	int				weapon;
+	int				ammo_full;	
+	int				*lengths;
+	int				hid_mouse;
 	int				xpm_width;
 	int				xpm_height;
 	int				xpm_width2;
 	int				xpm_height2;
+	int				floor_color;
+	int				ceiling_color;
+	char			*str;
+	char			*line;
+	char			**arr;
+	char			**map;
 	char			*img_no;
 	char			*img_we;
 	char			*img_so;
 	char			*img_ea;
+	char			**elements;
+	char			*knife_img[10];
+	char			*pistol_img[30];
+	void			*mlx;
+	void			*img;
+	void			*rec;
+	void			*wopp;
+	void			*no_ptr;
+	void			*we_ptr;
+	void			*so_ptr;
+	void			*ea_ptr;
+	void			*mlx_win;
 	double			x1;
 	double			y1;
 	double			a_x;
@@ -152,31 +165,18 @@ typedef struct s_vars
 	double			xstep;
 	double			ystep;
 	double			fov_angle;
-	int				fire;
-	int				weapon;
-	int				amo;
-	int				ammo_full;	
+	double			top;
+	double			line_y1;
+	double			line_y2;
+	double			correct_wall_height;
+	double			projected_wall_height;
+	double			offsetx;
 	t_infos			*tmp;
 	t_img			image;
 	t_infos			*infos;
 	t_player		player;
-	t_ray			ray[WINDOW_WIDTH];
 	t_minimap		minimap;
-	void			*rec;
-	void			*wopp;
-	double			top;
-	double			line_y1;
-	double			line_y2;
-	void			*no_ptr;
-	void			*we_ptr;
-	void			*so_ptr;
-	void			*ea_ptr;
-	double			correct_wall_height;
-	double			projected_wall_height;
-	double			offsetx;
-	char			*knife_img[10];
-	char			*pistol_img[30];
-
+	t_ray			ray[WINDOW_WIDTH];
 }	t_vars;
 
 /***************************** Parsing functions ******************************/
@@ -210,7 +210,6 @@ void		initialize_rays_infos(t_vars *vars);
 int			key_press(int keycode, t_vars *vars);
 int			key_release(int keycode, t_vars *vars);
 int			check_if_there_is_a_wall(t_vars *vars, int x, int y);
-void		draw_pixels_in_each_square(t_vars *vars);
 void		get_floor_and_ceiling_color(t_vars *vars);
 void		get_colors_values_from_file(t_vars *vars);
 void		get_floor_and_ceiling_color(t_vars *vars);

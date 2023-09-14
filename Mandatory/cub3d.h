@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:03:57 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/13 19:12:39 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/14 14:02:55 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,50 +102,51 @@ typedef struct s_vars
 	int				j;
 	int				x;
 	int				y;
-	void			*no_ptr;
-	void			*we_ptr;
-	void			*so_ptr;
-	void			*ea_ptr;
 	int				size;
 	int				flag;
 	int				width;
 	int				speed;
 	int				length;
-	int				*lengths;
 	int				height;
 	int				map_fd;
-	int				floor_color;
-	int				ceiling_color;
-	char			*str;
-	char			**arr;
-	char			**map;
-	char			**elements;
-	void			*mlx;
-	void			*img;
-	void			*mlx_win;
+	int				*lengths;
 	int				xpm_width;
 	int				xpm_height;
 	int				xpm_width2;
 	int				xpm_height2;
-	double			top;
-	double			line_y1;
-	double			line_y2;
-	double			correct_wall_height;
-	double			projected_wall_height;
+	int				floor_color;
+	int				ceiling_color;
+	char			*str;
+	char			*line;
+	char			**arr;
+	char			**map;
 	char			*img_no;
 	char			*img_we;
 	char			*img_so;
 	char			*img_ea;
-	double			vertical_distance;
-	double			horizontal_distance;
-	double			offsetx;
+	char			**elements;
+	void			*mlx;
+	void			*img;
+	void			*no_ptr;
+	void			*we_ptr;
+	void			*so_ptr;
+	void			*ea_ptr;
+	void			*mlx_win;
+	double			top;
 	double			x1;
 	double			y1;
 	double			a_x;
 	double			a_y;
 	double			xstep;
 	double			ystep;
+	double			line_y1;
+	double			line_y2;
+	double			offsetx;
 	double			fov_angle;
+	double			vertical_distance;
+	double			horizontal_distance;
+	double			correct_wall_height;
+	double			projected_wall_height;
 	t_infos			*tmp;
 	t_img			image;
 	t_infos			*infos;

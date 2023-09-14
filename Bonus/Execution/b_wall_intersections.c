@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 19:10:54 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/14 10:40:37 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/14 14:06:15 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	correct_intersection_values(t_vars *vars,
 	if (vars->ray[vars->i].up_down == UP)
 		*ray_y += number;
 	if (vars->ray[vars->i].left_right == LEFT)
-		*ray_x += number;		
+		*ray_x += number;
 }
 
 int	wall_collision(t_vars *vars)
