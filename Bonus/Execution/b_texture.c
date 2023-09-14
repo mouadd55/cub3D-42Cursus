@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_texture.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 12:34:50 by bbenidar          #+#    #+#             */
-/*   Updated: 2023/09/13 19:56:19 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/14 15:16:41 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,21 @@ void	ft_texture(t_vars *vars)
 	ft_get_name_texture(vars);
 	vars->no_ptr = mlx_xpm_file_to_image(vars->mlx, vars->img_no,
 			&vars->xpm_width, &vars->xpm_height);
+	if (vars->xpm_height * vars->xpm_width > (720 * 720))
+		ft_error(10, 0, 0, 0);
 	vars->we_ptr = mlx_xpm_file_to_image(vars->mlx, vars->img_we,
 			&vars->xpm_width2, &vars->xpm_height2);
+	if (vars->xpm_height2 * vars->xpm_width2 > (720 * 720))
+		ft_error(10, 0, 0, 0);
 	vars->so_ptr = mlx_xpm_file_to_image(vars->mlx, vars->img_so,
-			&vars->xpm_width2, &vars->xpm_height2);
+			&vars->xpm_width3, &vars->xpm_height3);
+	if (vars->xpm_height3 * vars->xpm_width3 > (720 * 720))
+		ft_error(10, 0, 0, 0);
 	vars->ea_ptr = mlx_xpm_file_to_image(vars->mlx, vars->img_ea,
-			&vars->xpm_width2, &vars->xpm_height2);
-	if ((vars->xpm_height2 * vars->xpm_width2 > (720 * 720))
-		|| (vars->xpm_height * vars->xpm_width > (720 * 720)))
+			&vars->xpm_width4, &vars->xpm_height4);
+	if (vars->xpm_height2 * vars->xpm_width2 > (720 * 720))
+		ft_error(10, 0, 0, 0);
+	if (vars->xpm_height4 * vars->xpm_width4 > (720 * 720))
 		ft_error(10, 0, 0, 0);
 	if (!vars->no_ptr || !vars->we_ptr || !vars->so_ptr || !vars->ea_ptr)
 		ft_error(10, 0, 0, 0);

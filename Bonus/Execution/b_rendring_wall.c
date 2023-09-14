@@ -3,39 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   b_rendring_wall.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 23:10:09 by bbenidar          #+#    #+#             */
-/*   Updated: 2023/09/14 14:28:09 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/14 15:15:57 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d_bonus.h"
 
 unsigned int	get_pixel_color(t_vars *vars,
-			int offsetx, double projected_wall_height)
+			int offsetx, double projected_wall_height, int flag)
 {
 	double			offset_y;
 
-	offset_y = (vars->line_y1 - vars->top)
-		* ((float)vars->xpm_height / projected_wall_height);
-	return (draw_pixels_image(&vars->image, offsetx, offset_y, 1));
+	if (flag == 1)
+		offset_y = (vars->line_y1 - vars->top)
+			* ((float)vars->xpm_height / projected_wall_height);
+	if (flag == 2)
+		offset_y = (vars->line_y1 - vars->top)
+			* ((float)vars->xpm_height2 / projected_wall_height);
+	if (flag == 3)
+		offset_y = (vars->line_y1 - vars->top)
+			* ((float)vars->xpm_height3 / projected_wall_height);
+	if (flag == 4)
+		offset_y = (vars->line_y1 - vars->top)
+			* ((float)vars->xpm_height4 / projected_wall_height);
+	return (draw_pixels_image(&vars->image, offsetx, offset_y, flag));
 }
 
 void	color_set(t_vars *vars, unsigned int *color, int offsetx)
 {
 	if (vars->ray[vars->i].up_down == UP
 		&& !vars->ray[vars->i].was_hit_v)
-		*color = get_pixel_color(vars, offsetx, vars->projected_wall_height);
+		*color = get_pixel_color(vars, offsetx, vars->projected_wall_height, 1);
 	else if (vars->ray[vars->i].up_down == DOWN
 		&& !vars->ray[vars->i].was_hit_v)
-		*color = get_pixel_color(vars, offsetx, vars->projected_wall_height);
+		*color = get_pixel_color(vars, offsetx, vars->projected_wall_height, 3);
 	else if (vars->ray[vars->i].left_right == LEFT
 		&& vars->ray[vars->i].was_hit_v)
-		*color = get_pixel_color(vars, offsetx, vars->projected_wall_height);
+		*color = get_pixel_color(vars, offsetx, vars->projected_wall_height, 2);
 	else if (vars->ray[vars->i].left_right == RIGHT
 		&& vars->ray[vars->i].was_hit_v)
-		*color = get_pixel_color(vars, offsetx, vars->projected_wall_height);
+		*color = get_pixel_color(vars, offsetx, vars->projected_wall_height, 4);
 }
 
 void	draw_wall_column(t_vars *vars, unsigned int *color)

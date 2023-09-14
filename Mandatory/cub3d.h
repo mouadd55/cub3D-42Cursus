@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:03:57 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/14 14:02:55 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/14 14:43:44 by bbenidar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,10 @@ typedef struct s_vars
 	int				xpm_height;
 	int				xpm_width2;
 	int				xpm_height2;
+	int				xpm_width3;
+	int				xpm_height3;
+	int				xpm_width4;
+	int				xpm_height4;
 	int				floor_color;
 	int				ceiling_color;
 	char			*str;
