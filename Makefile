@@ -6,14 +6,14 @@
 #    By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/14 09:05:11 by moudrib           #+#    #+#              #
-#    Updated: 2023/09/14 15:27:38 by moudrib          ###   ########.fr        #
+#    Updated: 2023/09/14 17:01:07 by moudrib          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME    = cub3D
 BONUS    = cub3D_bonus
 CC      = cc
-CFLAGS	= -Wall -Wextra -Werror #-g -fsanitize=address
+CFLAGS	= -Wall -Wextra -Werror
 M_OBJDIR	= Mandatory_Object_files/
 B_OBJDIR	= Bonus_Object_files/
 R		= \x1B[91m
@@ -81,19 +81,19 @@ all: $(NAME)
 
 $(NAME): $(MANDATORY_OBJ)
 	@$(CC) $(CFLAGS) mlx/libmlx.a -framework OpenGL -framework AppKit $(MANDATORY_OBJ) -o $(NAME)
-# @clear
-# @echo
-# @echo "$(G)Cub3d compilation done ✔️"
-# @echo
-# @echo "                            $(R)██████$(W)╗ $(R)██$(W)╗   $(R)██$(W)╗ $(R)██████$(W)╗  $(R)██████$(W)╗  $(R)██████$(W)╗ "
-# @echo "                           $(R)██$(W)╔════╝ $(R)██$(W)║   $(R)██$(W)║ $(R)██$(W)╔══$(R)██$(W)╗ ╚════$(R)██$(W)╗ $(R)██$(W)╔══$(R)██$(W)╗"
-# @echo "                           $(W)█$(R)█$(W)║      $(W)█$(R)█$(W)║   $(R)█$(W)█$(W)║ $(W)█$(R)█████$(W)╔╝  $(R)█████$(W)╔╝ $(W)█$(R)█$(W)║  $(R)██$(W)║"
-# @echo "                           $(W)██$(R)║      $(W)██$(R)║   $(W)██$(R)║ $(W)██$(R)╔══$(W)██$(R)╗  ╚═══$(W)██$(R)╗ $(W)██$(R)║  $(W)██$(R)║"
-# @echo "                           ╚$(W)██████$(R)╗ ╚$(W)██████$(R)╔╝ $(W)██████$(R)╔╝ $(W)██████$(R)╔╝ $(W)██████$(R)╔╝"
-# @echo "                            ╚═════╝  ╚═════╝  ╚═════╝  ╚═════╝  ╚═════╝ "
-# @echo "                                                  $(B)$(R)Made by $(W)$(B)Arobase $(R)&& $(W)$(B)Don Juan"
-# @echo
-# @echo
+	@clear
+	@echo
+	@echo "$(G)Cub3d compilation done ✔️"
+	@echo
+	@echo "                            $(R)██████$(W)╗ $(R)██$(W)╗   $(R)██$(W)╗ $(R)██████$(W)╗  $(R)██████$(W)╗  $(R)██████$(W)╗ "
+	@echo "                           $(R)██$(W)╔════╝ $(R)██$(W)║   $(R)██$(W)║ $(R)██$(W)╔══$(R)██$(W)╗ ╚════$(R)██$(W)╗ $(R)██$(W)╔══$(R)██$(W)╗"
+	@echo "                           $(W)█$(R)█$(W)║      $(W)█$(R)█$(W)║   $(R)█$(W)█$(W)║ $(W)█$(R)█████$(W)╔╝  $(R)█████$(W)╔╝ $(W)█$(R)█$(W)║  $(R)██$(W)║"
+	@echo "                           $(W)██$(R)║      $(W)██$(R)║   $(W)██$(R)║ $(W)██$(R)╔══$(W)██$(R)╗  ╚═══$(W)██$(R)╗ $(W)██$(R)║  $(W)██$(R)║"
+	@echo "                           ╚$(W)██████$(R)╗ ╚$(W)██████$(R)╔╝ $(W)██████$(R)╔╝ $(W)██████$(R)╔╝ $(W)██████$(R)╔╝"
+	@echo "                            ╚═════╝  ╚═════╝  ╚═════╝  ╚═════╝  ╚═════╝ "
+	@echo "                                                  $(B)$(R)Made by $(W)$(B)Arobase $(R)&& $(W)$(B)Don Juan"
+	@echo
+	@echo
 
 $(M_OBJDIR)%.o: %.c Mandatory/cub3d.h Mandatory/Libft_utils/libft.h Mandatory/Get_next_line/get_next_line.h
 	@mkdir -p $(@D)

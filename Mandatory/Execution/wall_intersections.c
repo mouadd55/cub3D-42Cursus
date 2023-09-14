@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 19:10:54 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/14 14:04:55 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/14 16:57:33 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,9 @@ void	find_first_intersection_with_wall(t_vars *vars,
 		&& *ray_x < vars->lengths[(int)(*ray_y / WALL_SIZE)] * WALL_SIZE)
 	{
 		correct_intersection_values(vars, ray_x, ray_y, 1);
-		if (vars->map[(int)*ray_y / WALL_SIZE][(int)*ray_x / WALL_SIZE] != '0')
+		if (*ray_x < (int)ft_strlen(vars->map[(int)(*ray_y / WALL_SIZE)])
+			* WALL_SIZE && vars->map[(int)(*ray_y / WALL_SIZE)]
+				[(int)(*ray_x / WALL_SIZE)] != '0')
 		{
 			correct_intersection_values(vars, ray_x, ray_y, 0);
 			break ;
