@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 13:38:45 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/14 15:18:10 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/09/14 15:25:20 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	**copy_the_map_from_file_to_2d_array(char *file_path, int map_fd)
 		return (0);
 	vars.line = ft_get_next_line(map_fd);
 	if (!vars.line)
-		ft_error(5, 0, 0, 0);
+		ft_error(10, 0, 0, 0);
 	while (vars.line)
 	{
 		if (is_printable(vars.line))

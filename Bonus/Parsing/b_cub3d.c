@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 13:38:45 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/14 13:52:49 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/14 15:25:26 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	read_file_and_get_informations(char *file_path, t_vars *vars)
 		return ;
 	line = ft_get_next_line(vars->map_fd);
 	if (!line)
-		ft_error(5, 0, 0, 0);
+		ft_error(10, 0, 0, 0);
 	vars->i = 0;
 	while (line)
 	{
