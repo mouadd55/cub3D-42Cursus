@@ -6,7 +6,7 @@
 #    By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/14 09:05:11 by moudrib           #+#    #+#              #
-#    Updated: 2023/09/14 10:55:14 by moudrib          ###   ########.fr        #
+#    Updated: 2023/09/14 15:27:38 by moudrib          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,7 +80,6 @@ BONUS_OBJ = $(addprefix $(B_OBJDIR), $(BONUS_SRCS:.c=.o))
 all: $(NAME)
 
 $(NAME): $(MANDATORY_OBJ)
-	@make -C mlx
 	@$(CC) $(CFLAGS) mlx/libmlx.a -framework OpenGL -framework AppKit $(MANDATORY_OBJ) -o $(NAME)
 # @clear
 # @echo
@@ -104,7 +103,6 @@ $(M_OBJDIR)%.o: %.c Mandatory/cub3d.h Mandatory/Libft_utils/libft.h Mandatory/Ge
 bonus: $(BONUS)
 
 $(BONUS): $(BONUS_OBJ)
-	@make -C mlx
 	@$(CC) $(CFLAGS) mlx/libmlx.a -framework OpenGL -framework AppKit $(BONUS_OBJ) -o $(BONUS)
 
 $(B_OBJDIR)%.o: %.c Bonus/cub3d_bonus.h Bonus/Libft_utils/libft.h Bonus/Get_next_line/get_next_line.h
