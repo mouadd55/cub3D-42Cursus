@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 13:38:45 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/14 14:05:49 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/14 14:22:24 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ void	read_file_and_get_informations(char *file_path, t_vars *vars)
 	}
 	check_if_informations_are_valid(vars);
 }
+
+
 
 int	main(int ac, char **av)
 {

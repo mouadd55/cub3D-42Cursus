@@ -6,7 +6,7 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 17:24:53 by bbenidar          #+#    #+#             */
-/*   Updated: 2023/09/14 11:31:23 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/14 14:27:39 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,16 @@ void	color_set(t_vars *vars, unsigned int *color, int offsetx)
 		*color = get_pixel_color(vars, offsetx, vars->projected_wall_height);
 }
 
+void	draw_wall_column(t_vars *vars, unsigned int *color)
+{
+	while (vars->line_y1 < vars->line_y2)
+	{
+		color_set(vars, color, vars->offsetx);
+		draw_pixels_on_image(&vars->image, vars->i, vars->line_y1, *color);
+		vars->line_y1++;
+	}
+}
+
 void	rendering_walls(t_vars *vars)
 {
 	unsigned int	color;
@@ -58,11 +68,8 @@ void	rendering_walls(t_vars *vars)
 		else
 			vars->offsetx = fmod(vars->ray[vars->i].wallhit_x
 					* vars->xpm_width2 / 64, vars->xpm_width2);
-		while (vars->line_y1 < vars->line_y2)
-		{
-			color_set(vars, &color, vars->offsetx);
-			draw_pixels_on_image(&vars->image, vars->i, vars->line_y1, color);
-			vars->line_y1++;
-		}
+		if (vars->line_y1 < 0)
+			vars->line_y1 = 0;
+		draw_wall_column(vars, &color);
 	}
 }
