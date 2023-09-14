@@ -6,11 +6,25 @@
 /*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 19:10:54 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/12 12:44:55 by moudrib          ###   ########.fr       */
+/*   Updated: 2023/09/14 10:40:37 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d_bonus.h"
+
+void	correct_intersection_values(t_vars *vars,
+	double *ray_x, double *ray_y, int flag)
+{
+	double	number;
+
+	number = 0.001;
+	if (flag == 1)
+		number *= -1;
+	if (vars->ray[vars->i].up_down == UP)
+		*ray_y += number;
+	if (vars->ray[vars->i].left_right == LEFT)
+		*ray_x += number;		
+}
 
 int	wall_collision(t_vars *vars)
 {
@@ -39,24 +53,15 @@ void	find_first_intersection_with_wall(t_vars *vars,
 	while (*ray_x >= 0 && *ray_y >= 0 && *ray_y < vars->height * WALL_SIZE
 		&& *ray_x < vars->lengths[(int)(*ray_y / WALL_SIZE)] * WALL_SIZE)
 	{
-		if (vars->ray[vars->i].up_down == UP)
-			*ray_y -= 0.001;
-		if (vars->ray[vars->i].left_right == LEFT)
-			*ray_x -= 0.001;
+		correct_intersection_values(vars, ray_x, ray_y, 1);
 		if (vars->map[(int)*ray_y / WALL_SIZE][(int)*ray_x / WALL_SIZE] != '0')
 		{
-			if (vars->ray[vars->i].up_down == UP)
-				*ray_y += 0.001;
-			if (vars->ray[vars->i].left_right == LEFT)
-				*ray_x += 0.001;
+			correct_intersection_values(vars, ray_x, ray_y, 0);
 			break ;
 		}
 		else
 		{
-			if (vars->ray[vars->i].up_down == UP)
-				*ray_y += 0.001;
-			if (vars->ray[vars->i].left_right == LEFT)
-				*ray_x += 0.001;
+			correct_intersection_values(vars, ray_x, ray_y, 0);
 			*ray_x += vars->xstep;
 			*ray_y += vars->ystep;
 		}

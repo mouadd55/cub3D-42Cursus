@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_movements.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 12:14:02 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/12 15:37:19 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/09/14 10:10:51 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	calculate_ending_point_coordinates_of_player_line(t_player *player)
 {
 	int	hypotenuse;
 
-	hypotenuse = (WALL_SIZE * 0.2) / 2;
+	hypotenuse = 6;
 	player->x_final = (player->p_x1)
 		+ (cos(player->starting_angle) * hypotenuse);
 	player->y_final = (player->p_y1)

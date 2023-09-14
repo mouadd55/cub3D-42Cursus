@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_cub3d.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbenidar <bbenidar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moudrib <moudrib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 13:38:45 by moudrib           #+#    #+#             */
-/*   Updated: 2023/09/13 21:06:51 by bbenidar         ###   ########.fr       */
+/*   Updated: 2023/09/14 10:59:00 by moudrib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ void	read_file_and_get_informations(char *file_path, t_vars *vars)
 	if (!vars->elements)
 		return ;
 	line = ft_get_next_line(vars->map_fd);
+	if (!line)
+		ft_error(5, 0, 0, 0);
 	vars->i = 0;
 	while (line)
 	{
