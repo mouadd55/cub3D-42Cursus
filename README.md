@@ -2,7 +2,7 @@
 <h1>Cub3D</h1>
 </div>
 <p align="center">
-    <img src="https://github.com/mouadd55/cub3D-42Cursus/assets/49005437/5b9c7bff-bdb6-4ef7-8555-1f154a8e2ef5">
+    <img src="https://github.com/mouadd55/cub3D-42Cursus/assets/49005437/25a2f667-e1c0-4e61-9826-f95efea98fc9">
 </p>
 
 <p align="center">
@@ -27,7 +27,7 @@ For more detailed information, look at the [**subject of this project**](https:/
 cub3D is a graphic design project inspired by the world-famous Wolfenstein 3D game, allowing users to explore ray-casting and create a dynamic view inside a maze. This project serves as a playground to explore the playful practical applications of mathematics, focusing on windows, colors, events, and shape filling, all built using the C programming language.
 <br><br>
 
-https://github.com/mouadd55/cub3D-42Cursus/assets/49005437/439c3a84-9ad4-451d-8677-5c506bc94d04
+https://github.com/mouadd55/cub3D-42Cursus/assets/49005437/91a68cbe-b978-481a-8f41-60200c8fddca
 
 <br>
 
